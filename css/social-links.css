@@ -1,0 +1,39 @@
+.icon-button {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  padding: 15px;
+  margin: 0px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.icon-button .circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: transparent;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.icon-button .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  color: rgb(0, 0, 0);
+  /* z-index: 1; */
+}
+
+.icon-button:hover .circle {
+  background: grey;
+  transform: scale(1.2);
+}
