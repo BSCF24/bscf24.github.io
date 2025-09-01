@@ -1,0 +1,133 @@
+:root {
+    --header-height: 50px;
+}
+
+body {
+    padding-top: var(--header-height);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    height: var(--header-height);
+    box-sizing: border-box;
+}
+
+.nav-title img {
+    height: 40px;
+}
+
+.hamburger {
+    display: none;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.nav {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.nav li {
+    position: relative;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 8px;
+    display: block;
+    white-space: nowrap;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    list-style: none;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.dropdown.active {
+    display: block;
+}
+
+.dropdown li a {
+    padding: 8px;
+    font-weight: normal;
+}
+
+.dropdown li a:hover {
+    background-color: #f0f0f0;
+}
+
+@media (max-width: 767px) {
+    .hamburger {
+        display: block;
+        order: 2;
+    }
+
+    .nav-title {
+        flex-grow: 1;
+        order: 1;
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+        z-index: 999;
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .nav li {
+        width: 100%;
+    }
+
+    .dropdown {
+        position: static;
+        border: none;
+        background-color: #f8f8f8;
+    }
+
+    .dropdown li a {
+        padding-left: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .team-item:hover .dropdown {
+        display: block;
+    }
+}

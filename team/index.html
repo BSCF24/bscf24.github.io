@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEAM - BSCF</title>
+    <!-- FONTS [JOST, TIRO] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/posts.css">
+    <link rel="icon" type="image/png" href="/contents/images/icon.png">
+</head>
+
+<body>
+    <link rel="stylesheet" href="/css/header.css">
+<header>
+    <div class="nav-title">
+        <img src="/contents/images/logo.png" alt="RUPSA Logo">
+    </div>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <ul class="nav">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/team">TEAM</a></li>
+        <li><a href="/projects">PROJECTS</a></li>
+    </ul>
+</header>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav');
+        const teamLink = document.querySelector('.team-link');
+        const dropdown = document.querySelector('.dropdown');
+
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
+        });
+
+        // Team dropdown toggle on mobile
+        teamLink.addEventListener('click', (e) => {
+            if (window.innerWidth <= 767) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+                teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+            }
+        });
+
+        // Close dropdown and nav when clicking a nav link on mobile
+        document.querySelectorAll('.nav a:not(.team-link)').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    nav.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    dropdown.classList.remove('active');
+                    teamLink.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+                teamLink.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+</script>
+    <main>
+        <section id="team" class="content-section">
+    <h2>Our Team</h2>
+    <p>Meet the dedicated individuals driving the vision and mission of BSCF forward. Our team is committed to
+        empowering Bangladeshi youth and fostering a sustainable, inclusive future.</p>
+
+    <!-- Founder Section -->
+    <div class="team-founder">
+        <h3>Founder</h3>
+        <div class="team-member">
+            <div class="image-container">
+                <img src="/contents/images/team/founder.jpg" alt="Niloy Saha, Founder of BSCF">
+            </div>
+            <div class="member-details">
+                <h4>Niloy Saha</h4>
+                <p class="role">Founder & CEO</p>
+                <p>Niloy Saha established BSCF with a vision to uplift Bangladeshi youth through socio-cultural
+                    and educational initiatives.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Members Section -->
+    <div class="team-members">
+        <h3>Core Team</h3>
+        <div class="members-grid">
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/reashad.jpg" alt="Reashad Akhtar">
+                </div>
+
+                <div class="member-details">
+                    <h4>Reashad Akhtar</h4>
+                    <p class="role">Executive Director</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/rafia.jpg" alt="Rafia Jebin">
+                </div>
+                <div class="member-details">
+                    <h4>Rafia Jebin </h4>
+                    <p class="role">Director (Organisation)</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/saad.jpg" alt="Samin Yeasar">
+                </div>
+                <div class="member-details">
+                    <h4>Samin Yasar Saad</h4>
+                    <p class="role">Director (Administration)</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/redwan.jpg" alt="Redwan">
+
+                </div>
+                <div class="member-details">
+                    <h4>Redwan Ahmed</h4>
+                    <p class="role">Director (Event)</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/ohi.jpeg" alt="Ohi">
+                </div>
+                <div class="member-details">
+                    <h4>Aurit Ahsan Ohi</h4>
+                    <p class="role">Director (Policy & Legal Affaires)</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/arabinda.jpg" alt="Arabinda">
+
+                </div>
+                <div class="member-details">
+                    <h4>Arabinda Banerjee Anik</h4>
+                    <p class="role">Assistant Director (Finance)</p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/sharin.JPEG" alt="sharin">
+                </div>
+                <div class="member-details">
+                    <h4>Sadia Nowshin Sharin</h4>
+                    <p class="role">Assistant Director (External Affairs)</p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/avik.png" alt="Avik">
+                </div>
+                <div class="member-details">
+                    <h4>Avik Arefin</h4>
+                    <p class="role">Assistant Director</p>
+                    <p class="role">(IT & Logistics)</p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/rafa.jpg" alt="Rafa">
+                </div>
+                <div class="member-details">
+                    <h4>Tayba Tabassum Ahmed Rafa</h4>
+                    <p class="role">Assistant Director (Communication)</p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/najib.jpg" alt="Najib">
+                </div>
+                <div class="member-details">
+                    <h4>Najib Chowdhury</h4>
+                    <p class="role">Assistant Director (Research & Documentation)</p>
+                </div>
+            </div>
+
+
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/sifat.jpg" alt="Sifat">
+                </div>
+                <div class="member-details">
+                    <h4>Safiat Rahaman Sifat</h4>
+                    <p class="role">Assistant Director (Grassroots Coordination)</p>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Team section styles */
+    #team {
+        padding: 4rem 2rem;
+        background-color: #f9f9f9;
+    }
+
+    #team h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    #team > p {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 3rem auto;
+        font-size: 1.1rem;
+        color: #666;
+    }
+
+    .team-founder h3,
+    .team-members h3 {
+        font-size: 2rem;
+        color: #228B22;
+        margin-bottom: 2rem;
+        text-align: center;
+        border-bottom: 2px solid #228B22;
+        padding-bottom: 0.5rem;
+        display: inline-block;
+    }
+
+    .team-founder,
+    .team-members {
+        margin-top: 3rem;
+        text-align: center;
+    }
+
+    .members-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        align-items: stretch; /* Align items to stretch to the same height */
+    }
+
+    .team-member {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex; /* Use flexbox for layout */
+        flex-direction: column; /* Arrange children vertically */
+    }
+
+    .team-member:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .team-member .image-container {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 1.5rem auto;
+        border: 4px solid #228B22;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        flex-shrink: 0; /* Prevent image container from shrinking */
+    }
+
+    .team-member img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .member-details {
+        flex-grow: 1; /* Allow details to take up remaining space */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Distribute space */
+    }
+
+    .member-details h4 {
+        font-size: 1.4rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .member-details .role {
+        font-size: 1rem;
+        color: #555;
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    .member-details p:not(.role) {
+        font-size: 1rem;
+        color: #777;
+        line-height: 1.6;
+        flex-grow: 1; /* Allow description to take up space */
+    }
+
+    /* Founder section specific style */
+    .team-founder .team-member {
+        max-width: 500px; /* Allow founder section to be wider */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (min-width: 768px) {
+        .team-founder .team-member {
+            display: flex;
+            flex-direction: row; /* Horizontal layout for founder */
+            text-align: left;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .team-founder .image-container {
+            margin: 0;
+        }
+    }
+
+    @media (max-width: 767px) {
+        #team {
+            padding: 2rem 1rem;
+        }
+
+        #team h2 {
+            font-size: 2rem;
+        }
+
+        .members-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+    </main>
+    <link rel="stylesheet" href="/css/footer.css">
+<!-- ICONS [BOOTSTRAP] -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css?v=1.11.3">
+<link rel="stylesheet" href="/css/social-links.css">
+<div class="row" style="padding-top: 10px; padding-bottom: 10px;">
+    <a class="icon-button" href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank">
+        <div class="circle"></div> <i class="icon bi bi-facebook large"></i>
+    </a>
+    <details>
+        <summary>
+            <div class="icon-button">
+                <div class="circle"></div> <i class="icon bi bi-envelope large"></i>
+            </div>
+        </summary>
+        <ul>
+            <li>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bscf24@gmail.com">Gmail</a>
+            </li>
+            <li>
+                <a href="https://compose.mail.yahoo.com/?to=bscf24@gmail.com">Yahoo</a>
+            </li>
+            <li>
+                <a href="https://outlook.office.com/mail/deeplink/compose?to=bscf24@gmail.com">Outlook</a>
+            </li>
+        </ul>
+    </details>
+</div>
+
+<footer class="footer-container">
+    <div class="footer-content">
+        <img class="footer-logo" src="/contents/images/logo.png" alt="BSCF Logo">
+        <div class="footer-links row">
+            <div class="footer-column">
+                <h5>Main</h5>
+                <hr class="footer-divider" />
+                <p><a href="/">Home</a></p>
+                <p><a href="/contact">Contact Us</a></p>
+                <p><a href="/about">About Us</a></p>
+            </div>
+            <div class="footer-column">
+                <h5>Projects</h5>
+                <hr class="footer-divider" />
+                <p><a href="/projects">Projects</a></p>
+            </div>
+            <div class="footer-column">
+                <h5>Others</h5>
+                <hr class="footer-divider" />
+                <p><a href="/donate">Invest In Us</a></p>
+                <p><a href="https://logistica4u.com/">Our Corporate Wing</a></p>
+                <p><a href="#">Our Partners</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div id="footer-copyright">© 2025 All rights reserved by BSCF.</div>
+</body>
+
+</html>

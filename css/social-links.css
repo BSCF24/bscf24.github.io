@@ -29,11 +29,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 28px;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   /* z-index: 1; */
 }
 
 .icon-button:hover .circle {
-  background: grey;
+  background: rgb(175, 175, 175);
   transform: scale(1.2);
 }

@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-family: "Jost", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ffffff;
+    /* Ensure body takes full viewport height */
+    /* Offset for fixed header */
+}
+
