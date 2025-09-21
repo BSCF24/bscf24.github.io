@@ -48,6 +48,7 @@
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
         <li><a href="/apply">APPLY</a></li>
+        <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
 <script>
@@ -64,13 +65,15 @@
         });
 
         // Team dropdown toggle on mobile
-        teamLink.addEventListener('click', (e) => {
-            if (window.innerWidth <= 767) {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-                teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
-            }
-        });
+        if (teamLink) {
+            teamLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                    teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+                }
+            });
+        }
 
         // Close dropdown and nav when clicking a nav link on mobile
         document.querySelectorAll('.nav a:not(.team-link)').forEach(link => {
@@ -78,23 +81,32 @@
                 if (window.innerWidth <= 767) {
                     nav.classList.remove('active');
                     hamburger.setAttribute('aria-expanded', 'false');
-                    dropdown.classList.remove('active');
-                    teamLink.setAttribute('aria-expanded', 'false');
+                    if (dropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                    if (teamLink) {
+                        teamLink.setAttribute('aria-expanded', 'false');
+                    }
                 }
             });
         });
 
         // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
+            if (dropdown && !e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
                 dropdown.classList.remove('active');
-                teamLink.setAttribute('aria-expanded', 'false');
+                if (teamLink) {
+                    teamLink.setAttribute('aria-expanded', 'false');
+                }
             }
         });
     });
 </script>
     <main>
-        <section id="team" class="content-section">
+        
+
+
+<section id="team" class="content-section">
     <h2>Our Team</h2>
     <p>Meet the dedicated individuals driving the vision and mission of BSCF forward. Our team is committed to
         empowering Bangladeshi youth and fostering a sustainable, inclusive future.</p>
@@ -102,135 +114,169 @@
     <!-- Founder Section -->
     <div class="team-founder">
         <h3>Founder</h3>
-        <div class="team-member">
-            <div class="image-container">
-                <img src="/contents/images/team/founder.jpg" alt="Niloy Saha, Founder of BSCF">
+        <a href="/team/niloy-saha/" class="team-member-link">
+            <div class="team-member">
+                <div class="image-container">
+                    <img src="/contents/images/team/founder.jpg" alt="Niloy Saha">
+                </div>
+                <div class="member-details">
+                    <h4>Niloy Saha</h4>
+                    <p class="role">Founder &amp; CEO</p>
+                    <p>Niloy Saha established BSCF with a vision to uplift Bangladeshi youth through socio-cultural and educational initiatives.</p>
+                </div>
             </div>
-            <div class="member-details">
-                <h4>Niloy Saha</h4>
-                <p class="role">Founder & CEO</p>
-                <p>Niloy Saha established BSCF with a vision to uplift Bangladeshi youth through socio-cultural
-                    and educational initiatives.</p>
-            </div>
-        </div>
+        </a>
     </div>
 
     <!-- Team Members Section -->
     <div class="team-members">
         <h3>Core Team</h3>
         <div class="members-grid">
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/reashad.jpg" alt="Reashad Akhtar">
+            
+            <a href="/team/niloy-saha/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/founder.jpg" alt="Niloy Saha">
+                    </div>
+                    <div class="member-details">
+                        <h4>Niloy Saha</h4>
+                        <p class="role">Founder &amp; CEO</p>
+                    </div>
                 </div>
-
-                <div class="member-details">
-                    <h4>Reashad Akhtar</h4>
-                    <p class="role">Executive Director</p>
+            </a>
+            
+            <a href="/team/reashad-akhtar/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/reashad.jpg" alt="Reashad Akhtar">
+                    </div>
+                    <div class="member-details">
+                        <h4>Reashad Akhtar</h4>
+                        <p class="role">Executive Director</p>
+                    </div>
                 </div>
-            </div>
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/rafia.jpg" alt="Rafia Jebin">
+            </a>
+            
+            <a href="/team/rafia-jebin/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/rafia.jpg" alt="Rafia Jebin">
+                    </div>
+                    <div class="member-details">
+                        <h4>Rafia Jebin</h4>
+                        <p class="role">Director (Organisation)</p>
+                    </div>
                 </div>
-                <div class="member-details">
-                    <h4>Rafia Jebin </h4>
-                    <p class="role">Director (Organisation)</p>
+            </a>
+            
+            <a href="/team/samin-yasar-saad/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/saad.jpg" alt="Samin Yasar Saad">
+                    </div>
+                    <div class="member-details">
+                        <h4>Samin Yasar Saad</h4>
+                        <p class="role">Director (Administration)</p>
+                    </div>
                 </div>
-            </div>
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/saad.jpg" alt="Samin Yeasar">
+            </a>
+            
+            <a href="/team/redwan-ahmed/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/redwan.jpg" alt="Redwan Ahmed">
+                    </div>
+                    <div class="member-details">
+                        <h4>Redwan Ahmed</h4>
+                        <p class="role">Director (Event)</p>
+                    </div>
                 </div>
-                <div class="member-details">
-                    <h4>Samin Yasar Saad</h4>
-                    <p class="role">Director (Administration)</p>
+            </a>
+            
+            <a href="/team/aurit-ahsan-ohi/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/ohi.jpeg" alt="Aurit Ahsan Ohi">
+                    </div>
+                    <div class="member-details">
+                        <h4>Aurit Ahsan Ohi</h4>
+                        <p class="role">Director (Policy &amp; Legal Affaires)</p>
+                    </div>
                 </div>
-            </div>
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/redwan.jpg" alt="Redwan">
-
+            </a>
+            
+            <a href="/team/arabinda-banerjee-anik/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/arabinda.jpg" alt="Arabinda Banerjee Anik">
+                    </div>
+                    <div class="member-details">
+                        <h4>Arabinda Banerjee Anik</h4>
+                        <p class="role">Assistant Director (Finance)</p>
+                    </div>
                 </div>
-                <div class="member-details">
-                    <h4>Redwan Ahmed</h4>
-                    <p class="role">Director (Event)</p>
+            </a>
+            
+            <a href="/team/sadia-nowshin-sharin/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/sharin.JPEG" alt="Sadia Nowshin Sharin">
+                    </div>
+                    <div class="member-details">
+                        <h4>Sadia Nowshin Sharin</h4>
+                        <p class="role">Assistant Director (External Affairs)</p>
+                    </div>
                 </div>
-            </div>
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/ohi.jpeg" alt="Ohi">
+            </a>
+            
+            <a href="/team/avik-arefin/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/avik.png" alt="Avik Arefin">
+                    </div>
+                    <div class="member-details">
+                        <h4>Avik Arefin</h4>
+                        <p class="role">Assistant Director (IT &amp; Logistics)</p>
+                    </div>
                 </div>
-                <div class="member-details">
-                    <h4>Aurit Ahsan Ohi</h4>
-                    <p class="role">Director (Policy & Legal Affaires)</p>
+            </a>
+            
+            <a href="/team/tayba-tabassum-ahmed-rafa/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/rafa.jpg" alt="Tayba Tabassum Ahmed Rafa">
+                    </div>
+                    <div class="member-details">
+                        <h4>Tayba Tabassum Ahmed Rafa</h4>
+                        <p class="role">Assistant Director (Communication)</p>
+                    </div>
                 </div>
-            </div>
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/arabinda.jpg" alt="Arabinda">
-
+            </a>
+            
+            <a href="/team/najib-chowdhury/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/najib.jpg" alt="Najib Chowdhury">
+                    </div>
+                    <div class="member-details">
+                        <h4>Najib Chowdhury</h4>
+                        <p class="role">Assistant Director (Research &amp; Documentation)</p>
+                    </div>
                 </div>
-                <div class="member-details">
-                    <h4>Arabinda Banerjee Anik</h4>
-                    <p class="role">Assistant Director (Finance)</p>
+            </a>
+            
+            <a href="/team/safiat-rahaman-sifat/" class="team-member-link">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="/contents/images/team/sifat.jpg" alt="Safiat Rahaman Sifat">
+                    </div>
+                    <div class="member-details">
+                        <h4>Safiat Rahaman Sifat</h4>
+                        <p class="role">Assistant Director (Grassroots Coordination)</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/sharin.JPEG" alt="sharin">
-                </div>
-                <div class="member-details">
-                    <h4>Sadia Nowshin Sharin</h4>
-                    <p class="role">Assistant Director (External Affairs)</p>
-                </div>
-            </div>
-
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/avik.png" alt="Avik">
-                </div>
-                <div class="member-details">
-                    <h4>Avik Arefin</h4>
-                    <p class="role">Assistant Director</p>
-                    <p class="role">(IT & Logistics)</p>
-                </div>
-            </div>
-
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/rafa.jpg" alt="Rafa">
-                </div>
-                <div class="member-details">
-                    <h4>Tayba Tabassum Ahmed Rafa</h4>
-                    <p class="role">Assistant Director (Communication)</p>
-                </div>
-            </div>
-
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/najib.jpg" alt="Najib">
-                </div>
-                <div class="member-details">
-                    <h4>Najib Chowdhury</h4>
-                    <p class="role">Assistant Director (Research & Documentation)</p>
-                </div>
-            </div>
-
-
-            <div class="team-member">
-                <div class="image-container">
-                    <img src="/contents/images/team/sifat.jpg" alt="Sifat">
-                </div>
-                <div class="member-details">
-                    <h4>Safiat Rahaman Sifat</h4>
-                    <p class="role">Assistant Director (Grassroots Coordination)</p>
-                </div>
-            </div>
-
-
-
+            </a>
+            
         </div>
     </div>
 </section>
@@ -268,6 +314,12 @@
         display: inline-block;
     }
 
+    .team-member-link {
+        text-decoration: none;
+        display: flex;
+        align-items: stretch;
+    }
+
     .team-founder,
     .team-members {
         margin-top: 3rem;
@@ -290,6 +342,7 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         display: flex; /* Use flexbox for layout */
         flex-direction: column; /* Arrange children vertically */
+        width: 100%;
     }
 
     .team-member:hover {
@@ -381,31 +434,31 @@
 <!-- ICONS [BOOTSTRAP] -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css?v=1.11.3">
 <link rel="stylesheet" href="/css/social-links.css">
-<div class="row" style="padding-top: 10px; padding-bottom: 10px;">
-    <a class="icon-button" href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank">
-        <div class="circle"></div> <i class="icon bi bi-facebook large"></i>
-    </a>
-    <details>
-        <summary>
-            <div class="icon-button">
-                <div class="circle"></div> <i class="icon bi bi-envelope large"></i>
-            </div>
-        </summary>
-        <ul>
-            <li>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bscf24@gmail.com">Gmail</a>
-            </li>
-            <li>
-                <a href="https://compose.mail.yahoo.com/?to=bscf24@gmail.com">Yahoo</a>
-            </li>
-            <li>
-                <a href="https://outlook.office.com/mail/deeplink/compose?to=bscf24@gmail.com">Outlook</a>
-            </li>
-        </ul>
-    </details>
-</div>
 
 <footer class="footer-container">
+    <div class="row" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
+        <a class="icon-button" href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank">
+            <div class="circle"></div> <i class="icon bi bi-facebook large"></i>
+        </a>
+        <details class="icon-details">
+            <summary>
+                <div class="icon-button">
+                    <div class="circle"></div> <i class="icon bi bi-envelope large"></i>
+                </div>
+            </summary>
+            <ul>
+                <li>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bscf24@gmail.com">Gmail</a>
+                </li>
+                <li>
+                    <a href="https://compose.mail.yahoo.com/?to=bscf24@gmail.com">Yahoo</a>
+                </li>
+                <li>
+                    <a href="https://outlook.office.com/mail/deeplink/compose?to=bscf24@gmail.com">Outlook</a>
+                </li>
+            </ul>
+        </details>
+    </div>
     <div class="footer-content">
         <img class="footer-logo" src="/contents/images/logo.png" alt="BSCF Logo">
         <div class="footer-links row">

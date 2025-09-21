@@ -12,6 +12,10 @@
   outline: none;
 }
 
+.icon-details {
+    display: inline-block;
+}
+
 .icon-button .circle {
   position: absolute;
   top: 0;

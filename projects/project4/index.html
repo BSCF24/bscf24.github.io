@@ -52,6 +52,7 @@
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
         <li><a href="/apply">APPLY</a></li>
+        <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
 <script>
@@ -68,13 +69,15 @@
         });
 
         // Team dropdown toggle on mobile
-        teamLink.addEventListener('click', (e) => {
-            if (window.innerWidth <= 767) {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-                teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
-            }
-        });
+        if (teamLink) {
+            teamLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                    teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+                }
+            });
+        }
 
         // Close dropdown and nav when clicking a nav link on mobile
         document.querySelectorAll('.nav a:not(.team-link)').forEach(link => {
@@ -82,17 +85,23 @@
                 if (window.innerWidth <= 767) {
                     nav.classList.remove('active');
                     hamburger.setAttribute('aria-expanded', 'false');
-                    dropdown.classList.remove('active');
-                    teamLink.setAttribute('aria-expanded', 'false');
+                    if (dropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                    if (teamLink) {
+                        teamLink.setAttribute('aria-expanded', 'false');
+                    }
                 }
             });
         });
 
         // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
+            if (dropdown && !e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
                 dropdown.classList.remove('active');
-                teamLink.setAttribute('aria-expanded', 'false');
+                if (teamLink) {
+                    teamLink.setAttribute('aria-expanded', 'false');
+                }
             }
         });
     });
@@ -180,31 +189,31 @@ and although we wanted to finish it all within ramadan, due to unavailability of
 <!-- ICONS [BOOTSTRAP] -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css?v=1.11.3">
 <link rel="stylesheet" href="/css/social-links.css">
-<div class="row" style="padding-top: 10px; padding-bottom: 10px;">
-    <a class="icon-button" href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank">
-        <div class="circle"></div> <i class="icon bi bi-facebook large"></i>
-    </a>
-    <details>
-        <summary>
-            <div class="icon-button">
-                <div class="circle"></div> <i class="icon bi bi-envelope large"></i>
-            </div>
-        </summary>
-        <ul>
-            <li>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bscf24@gmail.com">Gmail</a>
-            </li>
-            <li>
-                <a href="https://compose.mail.yahoo.com/?to=bscf24@gmail.com">Yahoo</a>
-            </li>
-            <li>
-                <a href="https://outlook.office.com/mail/deeplink/compose?to=bscf24@gmail.com">Outlook</a>
-            </li>
-        </ul>
-    </details>
-</div>
 
 <footer class="footer-container">
+    <div class="row" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
+        <a class="icon-button" href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank">
+            <div class="circle"></div> <i class="icon bi bi-facebook large"></i>
+        </a>
+        <details class="icon-details">
+            <summary>
+                <div class="icon-button">
+                    <div class="circle"></div> <i class="icon bi bi-envelope large"></i>
+                </div>
+            </summary>
+            <ul>
+                <li>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bscf24@gmail.com">Gmail</a>
+                </li>
+                <li>
+                    <a href="https://compose.mail.yahoo.com/?to=bscf24@gmail.com">Yahoo</a>
+                </li>
+                <li>
+                    <a href="https://outlook.office.com/mail/deeplink/compose?to=bscf24@gmail.com">Outlook</a>
+                </li>
+            </ul>
+        </details>
+    </div>
     <div class="footer-content">
         <img class="footer-logo" src="/contents/images/logo.png" alt="BSCF Logo">
         <div class="footer-links row">

@@ -1,12 +1,13 @@
 .footer-container {
     background: #228B22;
-    padding: 3rem 2rem;
+    padding: 0 2rem 0rem 2rem;
     color: #000000;
 }
 
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
+    padding-bottom: 2rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -31,6 +32,7 @@
     font-size: 1.2rem;
     color: #000000;
     margin-bottom: 0.5rem;
+    font-weight: bold;
 }
 
 .footer-divider {
