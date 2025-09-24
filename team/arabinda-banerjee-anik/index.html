@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>{{ member.name }}</title>
+    <title>Arabinda Banerjee Anik</title>
     <meta name="description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://bscf.dev/team/arabinda-banerjee-anik/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ member.name }}">
+    <meta property="og:title" content="Arabinda Banerjee Anik">
     <meta property="og:description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
     
 
@@ -19,7 +19,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="bscf.dev">
     <meta property="twitter:url" content="https://bscf.dev/team/arabinda-banerjee-anik/">
-    <meta name="twitter:title" content="{{ member.name }}">
+    <meta name="twitter:title" content="Arabinda Banerjee Anik">
     <meta name="twitter:description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
     
     
@@ -106,59 +106,223 @@
         
 <section id="member-details" class="content-section">
     <div class="member-profile">
-        <div class="image-container">
-            <img src="/contents/images/team/arabinda.jpg" alt="Arabinda Banerjee Anik">
+        <div class="member-left">
+            <div class="member-header">
+                <div class="image-container">
+                    <img src="/contents/images/team/arabinda.jpg" alt="Arabinda Banerjee Anik">
+                </div>
+                <div class="member-info">
+                    <h1>Arabinda Banerjee Anik</h1>
+                    <p class="role">Assistant Director</p>
+                    
+                        <p class="department">Finance</p>
+                    
+                </div>
+            </div>
         </div>
-        <div class="member-info">
-            <h1>Arabinda Banerjee Anik</h1>
-            <p class="role">Assistant Director (Finance)</p>
-            <p>A dedicated member of the BSCF team.</p>
+        <div class="member-right">
+            <div class="bio-content">
+                <p class="bio-text">Meet Arabinda Banerjee, an undergraduate physics student and active volunteer in social and policy initiatives from Rajshahi, Bangladesh.
+For about eight months, Arabinda has been Assistant Director of Finance at Bangladesh Socio-Cultural Forum (BSCF), where he managed finances, organized events, planned workshops on case solving, directed the Divisional Astronomy Camp 2024, led a fundraising team for flood relief, and handled sponsorships for the Future STEM Leaders Program Cohort-1. As Volunteer Coordinator for Youth For Policy-Rajshahi Division for around ten months, he formed an Anti-Sexual Harassment Committee at Rajshahi University School, created a documentary for International Mother Language Day, organized a Gender Equality session at Rajshahi University of Engineering &amp; Technology, and helped with the Youth Policy Summit at Dhaka University.
+Professionally, he managed trainer enrollments at Kore Search in Dhaka from November 2024 to June 2025. As Campus Ambassador for SheSTEM for one month, he advanced women&#39;s careers by collecting CVs, placing candidates in jobs and internships, and signed an MOU between SheSTEM and BSCF for programs like the Future STEM Leaders and Divisional Astronomy Camp 2025. 
+Passionate about cricket, debate, and case competitions, he broke into the top 16 in RUDF Fresher&#39;s Championship, reached semifinals in BrandEdge 2025 and Sellsation 2023, and was a semifinalist in an interdepartmental debate on Free Market Environmentalism. Arabinda enjoys music, business, books, and friends, aiming to grow in business and social impact.</p>
+            </div>
         </div>
     </div>
 </section>
 
 <style>
     #member-details {
-        padding: 4rem 2rem;
-    }
-    .member-profile {
-        max-width: 800px;
-        margin: 0 auto;
+        padding: 2rem;
+        min-height: calc(100vh - 200px);
         display: flex;
-        gap: 2rem;
         align-items: center;
     }
-    .member-profile .image-container {
-        width: 200px;
-        height: 200px;
+
+    .member-profile {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        width: 100%;
+        min-height: 500px;
+    }
+
+    .member-left {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 20px 0 0 20px;
+    }
+
+    .member-right {
+        flex: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem;
+        background: #ffffff;
+        border-radius: 0 20px 20px 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .member-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .image-container {
+        width: 220px;
+        height: 220px;
         border-radius: 50%;
         overflow: hidden;
-        flex-shrink: 0;
-        border: 5px solid #228B22;
+        border: 6px solid #228B22;
+        box-shadow: 0 8px 25px rgba(34, 139, 34, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .member-profile img {
+
+    .image-container:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 35px rgba(34, 139, 34, 0.4);
+    }
+
+    .image-container img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.3s ease;
     }
+
     .member-info h1 {
         font-size: 2.5rem;
         margin-bottom: 0.5rem;
+        color: #2c3e50;
+        font-weight: 600;
     }
+
     .member-info .role {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         font-style: italic;
-        color: #555;
-        margin-bottom: 1rem;
+        color: #228B22;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        background: rgba(34, 139, 34, 0.1);
+        border-radius: 25px;
+        border: 2px solid rgba(34, 139, 34, 0.2);
     }
-    @media (max-width: 768px) {
+
+    .member-info .department {
+        display: block;
+        font-size: 1.1rem;
+        font-style: italic;
+        color: #333;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        background: #f0f0f0;
+        border-radius: 25px;
+        border: 2px solid #ddd;
+        margin-top: 0.5rem;
+    }
+
+    .bio-content {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .bio-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #4a5568;
+        text-align: justify;
+        padding: 2rem;
+        background: rgba(248, 249, 250, 0.5);
+        border-radius: 15px;
+        border-left: 4px solid #228B22;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
         .member-profile {
             flex-direction: column;
-            text-align: center;
+            max-width: 800px;
+        }
+        
+        .member-left {
+            flex: none;
+            border-radius: 20px 20px 0 0;
+            padding: 2rem 1rem;
+        }
+        
+        .member-right {
+            flex: none;
+            border-radius: 0 0 20px 20px;
+            padding: 2rem 1rem;
+        }
+
+        .image-container {
+            width: 180px;
+            height: 180px;
+        }
+
+        .member-info h1 {
+            font-size: 2rem;
+        }
+
+        .member-info .role {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        #member-details {
+            padding: 1rem;
+        }
+
+        .member-left,
+        .member-right {
+            padding: 1.5rem;
+        }
+
+        .image-container {
+            width: 150px;
+            height: 150px;
+        }
+
+        .member-info h1 {
+            font-size: 1.8rem;
+        }
+
+        .bio-text {
+            font-size: 1rem;
+            padding: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .member-info h1 {
+            font-size: 1.5rem;
+        }
+
+        .member-info .role {
+            font-size: 1rem;
+        }
+
+        .image-container {
+            width: 120px;
+            height: 120px;
+        }
+
+        .bio-text {
+            padding: 1rem;
         }
     }
 </style>
-
     </main>
     <link rel="stylesheet" href="/css/footer.css">
 <!-- ICONS [BOOTSTRAP] -->
