@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="/css/header.css">
 <header>
     <div class="nav-title">
-        <img src="/contents/images/logo.png" alt="RUPSA Logo">
+        <img src="/contents/images/logo.svg" alt="BSCF Logo">
     </div>
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
     <ul class="nav">
@@ -110,6 +110,79 @@
         <p>Empowering Youth for a Sustainable Future</p>
     </div>
 </section>
+
+<section class="partners-section">
+    <h2>Partners and Clients</h2>
+    <div class="partners-grid">
+        <div class="partner-card">
+            <div class="partner-badge">Government</div>
+            <img src="/contents/images/pc/16.png" alt="Government" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Government</div>
+            <img src="/contents/images/pc/13.png" alt="ZILA Parishad" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Government</div>
+            <img src="/contents/images/pc/15.png" alt="Novo Theater" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Government</div>
+            <img src="/contents/images/pc/12.png" alt="RCC" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">NGO</div>
+            <img src="/contents/images/pc/11.png" alt="RCCI" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Lifestyle</div>
+            <img src="/contents/images/pc/9.png" alt="skincafe" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Fashion</div>
+            <img src="/contents/images/pc/10.png" alt="shajgoj" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Consulting</div>
+            <img src="/contents/images/pc/lightcastle.svg" alt="lightcastle" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">NGO</div>
+            <img src="/contents/images/pc/shestem.svg" alt="SheSTEM" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Policy</div>
+            <img src="/contents/images/pc/yfp.svg" alt="Youth for Policy" class="partner-logo">
+        </div>
+
+        <div class="partner-card">
+            <div class="partner-badge">Development</div>
+            <img src="/contents/images/pc/3.png" alt="iid" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Media</div>
+            <img src="/contents/images/pc/6.png" alt="jamuna" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Media</div>
+            <img src="/contents/images/pc/5.png" alt="thedailystar" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Media</div>
+            <img src="/contents/images/pc/4.png" alt="Shomokal" class="partner-logo">
+        </div>
+
+        <div class="partner-card">
+            <div class="partner-badge">Industry</div>
+            <img src="/contents/images/pc/8.png" alt="ngi" class="partner-logo">
+        </div>
+        <div class="partner-card">
+            <div class="partner-badge">Tech</div>
+            <img src="/contents/images/pc/17.png" alt="mobileguru" class="partner-logo">
+        </div>
+    </div>
+</section>
+
 <section id="about" class="content-section">
     <div class="about-container">
         <h2>About BSCF</h2>
@@ -241,6 +314,151 @@
     .initiative-card p {
         text-align: justify;
     }
+
+    /* Partners Section - Updated */
+    .partners-section {
+        padding: 5rem 2rem;
+        background: #fff;
+        text-align: center;
+    }
+
+    .partners-section h2 {
+        font-size: 2.5rem;
+        color: #006400;
+        margin-bottom: 3rem;
+    }
+
+    .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .partner-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid #f0f0f0;
+        position: relative;
+        overflow: hidden;
+        height: 140px;
+    }
+
+    .partner-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #006400, #228B22);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .partner-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .partner-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .partner-logo {
+        width: auto;
+        height: auto;
+        max-width: 140px;
+        max-height: 100px;
+        object-fit: contain;
+        filter: grayscale(20%) contrast(1.1);
+        transition: all 0.3s ease;
+    }
+
+    .partner-card:hover .partner-logo {
+        filter: grayscale(0%) contrast(1.2);
+        transform: scale(1.05);
+    }
+
+    .partner-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: #006400;
+        color: white;
+        font-size: 0.60rem;
+        font-weight: 600;
+        padding: 0.4rem 0.8rem;
+        border-radius: 16px;
+        opacity: 0;
+        transform: translateX(10px);
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+
+    .partner-card:hover .partner-badge {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .partners-grid {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .partner-card {
+            padding: 1.5rem;
+            height: 120px;
+        }
+
+        .partner-logo {
+            max-width: 120px;
+            max-height: 80px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .partners-section {
+            padding: 3rem 1rem;
+        }
+
+        .partners-grid {
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .partner-card {
+            padding: 1rem;
+            height: 100px;
+        }
+
+        .partner-logo {
+            max-width: 100px;
+            max-height: 70px;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>
     </main>
     <link rel="stylesheet" href="/css/footer.css">
@@ -273,7 +491,7 @@
         </details>
     </div>
     <div class="footer-content">
-        <img class="footer-logo" src="/contents/images/logo.png" alt="BSCF Logo">
+        <img class="footer-logo" src="/contents/images/logo.svg" alt="BSCF Logo">
         <div class="footer-links row">
             <div class="footer-column">
                 <h5>Main</h5>
