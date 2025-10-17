@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Mst Anika Akter</title>
+    <meta name="description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://bscf.dev/team/anika-akter/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mst Anika Akter">
+    <meta property="og:description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
+    
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="bscf.dev">
+    <meta property="twitter:url" content="https://bscf.dev/team/anika-akter/">
+    <meta name="twitter:title" content="Mst Anika Akter">
+    <meta name="twitter:description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
+    
+    
+    <!-- FONTS [JOST, TIRO] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/posts.css">
+    <link rel="icon" type="image/png" href="/contents/images/icon.png">
+</head>
+
+<body>
+    <link rel="stylesheet" href="/css/header.css">
+<header>
+    <div class="nav-title">
+        <img src="/contents/images/logo.svg" alt="BSCF Logo">
+    </div>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <ul class="nav">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/team">TEAM</a></li>
+        <li><a href="/projects">PROJECTS</a></li>
+        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/contact">CONTACT US</a></li>
+    </ul>
+</header>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav');
+        const teamLink = document.querySelector('.team-link');
+        const dropdown = document.querySelector('.dropdown');
+
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
+        });
+
+        // Team dropdown toggle on mobile
+        if (teamLink) {
+            teamLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                    teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+                }
+            });
+        }
+
+        // Close dropdown and nav when clicking a nav link on mobile
+        document.querySelectorAll('.nav a:not(.team-link)').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    nav.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    if (dropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                    if (teamLink) {
+                        teamLink.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (dropdown && !e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+                if (teamLink) {
+                    teamLink.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+    });
+</script>
+    <main>
+        
+<section id="member-details" class="content-section">
+    <div class="member-profile">
+        <div class="member-left">
+            <div class="member-header">
+                <div class="image-container">
+                    <img src="/contents/images/team/anika.jpeg" alt="Mst Anika Akter">
+                </div>
+                <div class="member-info">
+                    <h1>Mst Anika Akter</h1>
+                    <p class="role">Assistant Director</p>
+                    
+                        <p class="department">Procurement</p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="member-right">
+            <div class="bio-content">
+                <p class="bio-text">Meet Anika Akter, a motivated and detail-oriented professional with experience in customer service, event coordination, and community engagement. She currently serves as Assistant Director (Procurement) at the Bangladesh Socio-Cultural Forum (BSCF), where she supports program and event logistics, manages vendor coordination, and ensures timely procurement of materials for diverse social and educational initiatives. She has played a key role in organizing women-centric and child education programs that foster empowerment and learning. Previously, she worked as an Executive at Conscious Creative Home and Color Expression, where she coordinated client communications, vendor relations, budgeting, and event planning for cultural programs, concerts, and television projects. She also has hands-on experience in hospitality as a waitress at Masala Inn, providing excellent guest service and maintaining high operational standards. She holds both a Bachelor’s and Master’s degree in Bengali Literature from the National University of Bangladesh. Alongside her administrative and coordination expertise, she is skilled in financial handling, digital content support, barista training, and preparing traditional South Asian dishes. Fluent in Bengali, English, and conversational Hindi, Anika embodies professionalism, cultural awareness, and a passion for community-driven impact.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    #member-details {
+        padding: 2rem;
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+    }
+
+    .member-profile {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        width: 100%;
+        min-height: 500px;
+    }
+
+    .member-left {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 20px 0 0 20px;
+    }
+
+    .member-right {
+        flex: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem;
+        background: #ffffff;
+        border-radius: 0 20px 20px 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .member-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .image-container {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 6px solid #228B22;
+        box-shadow: 0 8px 25px rgba(34, 139, 34, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .image-container:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 35px rgba(34, 139, 34, 0.4);
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .member-info h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+
+    .member-info .role {
+        font-size: 1.3rem;
+        font-style: italic;
+        color: #228B22;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        background: rgba(34, 139, 34, 0.1);
+        border-radius: 25px;
+        border: 2px solid rgba(34, 139, 34, 0.2);
+    }
+
+    .member-info .department {
+        display: block;
+        font-size: 1.1rem;
+        font-style: italic;
+        color: #333;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        background: #f0f0f0;
+        border-radius: 25px;
+        border: 2px solid #ddd;
+        margin-top: 0.5rem;
+    }
+
+    .bio-content {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .bio-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #4a5568;
+        text-align: justify;
+        padding: 2rem;
+        background: rgba(248, 249, 250, 0.5);
+        border-radius: 15px;
+        border-left: 4px solid #228B22;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        white-space: pre-wrap;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .member-profile {
+            flex-direction: column;
+            max-width: 800px;
+        }
+        
+        .member-left {
+            flex: none;
+            border-radius: 20px 20px 0 0;
+            padding: 2rem 1rem;
+        }
+        
+        .member-right {
+            flex: none;
+            border-radius: 0 0 20px 20px;
+            padding: 2rem 1rem;
+        }
+
+        .image-container {
+            width: 180px;
+            height: 180px;
+        }
+
+        .member-info h1 {
+            font-size: 2rem;
+        }
+
+        .member-info .role {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        #member-details {
+            padding: 1rem;
+        }
+
+        .member-left,
+        .member-right {
+            padding: 1.5rem;
+        }
+
+        .image-container {
+            width: 150px;
+            height: 150px;
+        }
+
+        .member-info h1 {
+            font-size: 1.8rem;
+        }
+
+        .bio-text {
+            font-size: 1rem;
+            padding: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .member-info h1 {
+            font-size: 1.5rem;
+        }
+
+        .member-info .role {
+            font-size: 1rem;
+        }
+
+        .image-container {
+            width: 120px;
+            height: 120px;
+        }
+
+        .bio-text {
+            padding: 1rem;
+        }
+    }
+</style>
+    </main>
+    <link rel="stylesheet" href="/css/footer.css">
+<!-- ICONS [BOOTSTRAP] -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css?v=1.11.3">
+<link rel="stylesheet" href="/css/social-links.css">
+
+<footer class="footer-container">
+    <div class="row" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
+        <a class="icon-button" href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank">
+            <div class="circle"></div> <i class="icon bi bi-facebook large"></i>
+        </a>
+        <details class="icon-details">
+            <summary>
+                <div class="icon-button">
+                    <div class="circle"></div> <i class="icon bi bi-envelope large"></i>
+                </div>
+            </summary>
+            <ul>
+                <li>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bscf24@gmail.com">Gmail</a>
+                </li>
+                <li>
+                    <a href="https://compose.mail.yahoo.com/?to=bscf24@gmail.com">Yahoo</a>
+                </li>
+                <li>
+                    <a href="https://outlook.office.com/mail/deeplink/compose?to=bscf24@gmail.com">Outlook</a>
+                </li>
+            </ul>
+        </details>
+    </div>
+    <div class="footer-content">
+        <img class="footer-logo" src="/contents/images/logo.svg" alt="BSCF Logo">
+        <div class="footer-links row">
+            <div class="footer-column">
+                <h5>Main</h5>
+                <hr class="footer-divider" />
+                <p><a href="/">Home</a></p>
+                <p><a href="/contact">Contact Us</a></p>
+                <p><a href="/about">About Us</a></p>
+            </div>
+            <div class="footer-column">
+                <h5>Projects</h5>
+                <hr class="footer-divider" />
+                <p><a href="/projects">Projects</a></p>
+            </div>
+            <div class="footer-column">
+                <h5>Others</h5>
+                <hr class="footer-divider" />
+                <p><a href="/donate">Invest In Us</a></p>
+                <p><a href="https://logistica4u.com/">Our Corporate Wing</a></p>
+                <p><a href="#">Our Partners</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div id="footer-copyright">© 2025 All rights reserved by BSCF.</div>
+</body>
+
+</html>
