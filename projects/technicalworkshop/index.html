@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>SheSTEM Technical Workshop</title>
+    <meta name="description" content="The SheSTEM x BSCF technical workshop successfully explored bridging research gaps using digital tools, featuring valuable insights from Professor Dr Md Abu Reza and active participation from enthusiastic researchers.">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://bscf.dev/projects/technicalworkshop/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SheSTEM Technical Workshop">
+    <meta property="og:description" content="The SheSTEM x BSCF technical workshop successfully explored bridging research gaps using digital tools, featuring valuable insights from Professor Dr Md Abu Reza and active participation from enthusiastic researchers.">
+    
+    <meta property="og:image" content="https://bscf.dev/projects/technicalworkshop/1.jpg">
+    
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="bscf.dev">
+    <meta property="twitter:url" content="https://bscf.dev/projects/technicalworkshop/">
+    <meta name="twitter:title" content="SheSTEM Technical Workshop">
+    <meta name="twitter:description" content="The SheSTEM x BSCF technical workshop successfully explored bridging research gaps using digital tools, featuring valuable insights from Professor Dr Md Abu Reza and active participation from enthusiastic researchers.">
+    
+    <meta name="twitter:image" content="https://bscf.dev/projects/technicalworkshop/1.jpg">
+    
+    
+    <!-- FONTS [JOST, TIRO] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/posts.css">
+    <link rel="icon" type="image/png" href="/contents/images/icon.png">
+</head>
+
+<body>
+    <link rel="stylesheet" href="/css/header.css">
+<header>
+    <div class="nav-title">
+        <a href="/" class="logo-link">
+            <img src="/contents/images/logo.svg" alt="BSCF Logo">
+        </a>
+    </div>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <ul class="nav">
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/team">TEAM</a></li>
+        <li><a href="/projects">PROJECTS</a></li>
+        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/contact">CONTACT US</a></li>
+    </ul>
+</header>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav');
+        const teamLink = document.querySelector('.team-link');
+        const dropdown = document.querySelector('.dropdown');
+
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
+        });
+
+        // Team dropdown toggle on mobile
+        if (teamLink) {
+            teamLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                    teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+                }
+            });
+        }
+
+        // Close dropdown and nav when clicking a nav link on mobile
+        document.querySelectorAll('.nav a:not(.team-link)').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    nav.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    if (dropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                    if (teamLink) {
+                        teamLink.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (dropdown && !e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+                if (teamLink) {
+                    teamLink.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+    });
+</script>
+    <main>
+        
+<div class="project-page-wrapper">
+    
+    <div class="notion-cover">
+        <img src="/projects/technicalworkshop/1.jpg" alt="SheSTEM Technical Workshop cover" class="cover-img">
+    </div>
+    
+
+    <article class="project-content">
+        <h1 class="project-title">SheSTEM Technical Workshop</h1>
+        
+        <div class="project-body">
+            The SheSTEM BSCF Technical Workshop on Bridging the Research Gap through Digital Tools concluded successfully with strong participation from students and researchers. The session featured an insightful presentation by Professor Dr Md Abu Reza Director of IQAC at the University of Rajshahi who shared practical strategies for enhancing research quality using digital tools. Participants gained valuable knowledge on modern research methods skill development and innovation. The interactive discussion encouraged collaboration curiosity and confidence. The workshop reflected SheSTEM and BSCF commitment to empowering researchers strengthening academic skills and fostering a culture of innovation across institutions.
+        </div>
+
+        
+        
+        <section class="gallery-wrapper">
+            <div class="gallery-intro">
+                <span class="gallery-tag">Visuals</span>
+                <h2 class="gallery-heading">Gallery</h2>
+                <div class="gallery-decoration"></div>
+            </div>
+            
+            <div class="gallery-grid">
+                
+                <div class="gallery-card">
+                    <img src="/projects/technicalworkshop/2.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/projects/technicalworkshop/3.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/projects/technicalworkshop/4.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/projects/technicalworkshop/5.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/projects/technicalworkshop/6.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/projects/technicalworkshop/7.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/projects/technicalworkshop/8.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/projects/technicalworkshop/9.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+            </div>
+        </section>
+        
+    </article>
+</div>
+
+<style>
+    .project-page-wrapper {
+        background: #fff;
+    }
+
+    .notion-cover {
+        width: 100%;
+        /* Use vh so it scales with the window height */
+        height: 70vh; 
+        /* Constraints to keep it from getting too small or too huge */
+        min-height: 220px;
+        max-height: 600px; 
+        
+        overflow: hidden;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .cover-img {
+        width: 100%;
+        height: 100%;
+        /* This is the secret sauce for the Notion look */
+        object-fit: cover;
+        object-position: center; 
+    }
+
+    .project-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 24px 100px 24px;
+    }
+
+    /* 2. TITLE & LINE SECTION */
+    .project-header {
+        margin-bottom: 48px;
+    }
+
+    .project-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin: 0 0 12px 0;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+    }
+
+    .title-accent-line {
+        height: 4px;
+        width: 80px;
+        background: #000; /* Dark, professional accent */
+        border-radius: 2px;
+    }
+
+    /* 3. JUSTIFIED CONTENT */
+    .project-body {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #37352f;
+        text-align: justify;
+        hyphens: auto;
+    }
+
+    .project-body p {
+        margin-bottom: 1.6rem;
+    }
+
+    /* 4. ENHANCED GALLERY SECTION */
+    .gallery-wrapper {
+        margin-top: 80px;
+        padding-top: 40px;
+        border-top: 1px solid #eaeaea;
+    }
+
+    .gallery-intro {
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .gallery-tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #a0a0a0;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .gallery-heading {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0;
+        color: #1a1a1a;
+    }
+
+    /* Subtle vertical bar next to the gallery heading for "substance" */
+    .gallery-decoration {
+        position: absolute;
+        left: -24px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #000;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .gallery-card {
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f7f7f7;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .gallery-card img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        aspect-ratio: 3/2;
+    }
+
+    /* 5. RESPONSIVE */
+    @media (max-width: 768px) {
+        .project-title { font-size: 2.2rem; }
+        .gallery-grid { grid-template-columns: 1fr; }
+        .gallery-decoration { display: none; } /* Remove side bar on mobile */
+        .notion-cover { height: 250px; }
+        .project-body { text-align: left; } /* Better readability on mobile */
+    }
+</style>
+    </main>
+    <link rel="stylesheet" href="/css/footer.css">
+<!-- ICONS [BOOTSTRAP] -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css?v=1.11.3">
+
+<footer class="footer-container">
+    <div class="footer-main">
+        <div class="footer-about">
+            <div class="logo-container">
+                <img class="footer-logo" src="/contents/images/logo.svg" alt="BSCF Logo">
+            </div>
+            <p>BSCF is a socio-cultural forum for the youth of Bangladesh, dedicated to fostering a generation of leaders and innovators. We aim to create a vibrant community that promotes our rich cultural heritage while embracing modernity and progress.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/team">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Get Involved</h5>
+                <ul>
+                    <li><a href="/apply">Join Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/donate">Invest In Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="mailto:bscf24@gmail.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+                    <a href="https://www.linkedin.com/company/bscf-dev" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Bangladesh Socio-Cultural Forum. All Rights Reserved.</p>
+        <p>Developed & Maintained by <a href="https://github.com/BSCF-BD/bscf.dev" target="_blank">BSCF Tech Team</a></p>
+    </div>
+</footer>
+</body>
+
+</html>
