@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>News</title>
+    <meta name="description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://bscf.dev/news/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="News">
+    <meta property="og:description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
+    
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="bscf.dev">
+    <meta property="twitter:url" content="https://bscf.dev/news/">
+    <meta name="twitter:title" content="News">
+    <meta name="twitter:description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
+    
+    
+    <!-- FONTS [JOST, TIRO] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/posts.css">
+    <link rel="icon" type="image/png" href="/contents/images/icon.png">
+</head>
+
+<body>
+    <link rel="stylesheet" href="/css/header.css">
+<header>
+    <div class="nav-title">
+        <a href="/" class="logo-link">
+            <img src="/contents/images/logo.svg" alt="BSCF Logo">
+        </a>
+    </div>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav">
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/team">TEAM</a></li>
+        <li><a href="/projects">PROJECTS</a></li>
+        <li><a href="/news">NEWS</a></li>
+        <li><a href="/contact">CONTACT US</a></li>
+    </ul>
+</header>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav');
+        const teamLink = document.querySelector('.team-link');
+        const dropdown = document.querySelector('.dropdown');
+
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
+        });
+
+        // Team dropdown toggle on mobile
+        if (teamLink) {
+            teamLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                    teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+                }
+            });
+        }
+
+        // Close dropdown and nav when clicking a nav link on mobile
+        document.querySelectorAll('.nav a:not(.team-link)').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    nav.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    if (dropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                    if (teamLink) {
+                        teamLink.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (dropdown && !e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+                if (teamLink) {
+                    teamLink.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+    });
+</script>
+    <main>
+        
+<div class="archive-container">
+  <div class="archive-intro">
+    <span class="archive-tag">External Feed</span>
+    <h1 class="archive-title">News</h1>
+    <div class="archive-line"></div>
+  </div>
+
+  <div class="project-list" id="news-grid">
+    
+      <a href="https://www.tbsnews.net/economy/corporates/bscf-hosts-second-astronomy-camp-2025-1265951" class="project-card news-card" data-url="https://www.tbsnews.net/economy/corporates/bscf-hosts-second-astronomy-camp-2025-1265951" target="_blank" rel="noopener">
+        <div class="card-image-wrapper">
+          <div class="image-placeholder loading-shimmer"></div>
+          <img src="" alt="" class="preview-img" style="display:none;">
+          <div class="date-badge">2025-10-21</div>
+        </div>
+        
+        <div class="card-content">
+          <h2 class="card-title">Loading...</h2>
+          <div class="card-description-container">
+            <p class="card-description">Fetching preview...</p>
+          </div>
+          <span class="card-link">Visit Website →</span>
+        </div>
+      </a>
+    
+      <a href="https://dailyenglishtimes.com/?p=8073&amp;utm_source=ReviveOldPost&amp;utm_medium=social&amp;utm_campaign=ReviveOldPost&amp;fbclid=IwY2xjawQa6iVleHRuA2FlbQIxMQBicmlkETFROEdOblNJTWNFYzR5dXdWc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHigLVkD616wapcM4BYHEujqcu0xseZiG8gM8St91o6n5CLwmy38QE3WQcSbp_aem_CwSrRbSp9lbQjzwwuSFEHg" class="project-card news-card" data-url="https://dailyenglishtimes.com/?p=8073&amp;utm_source=ReviveOldPost&amp;utm_medium=social&amp;utm_campaign=ReviveOldPost&amp;fbclid=IwY2xjawQa6iVleHRuA2FlbQIxMQBicmlkETFROEdOblNJTWNFYzR5dXdWc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHigLVkD616wapcM4BYHEujqcu0xseZiG8gM8St91o6n5CLwmy38QE3WQcSbp_aem_CwSrRbSp9lbQjzwwuSFEHg" target="_blank" rel="noopener">
+        <div class="card-image-wrapper">
+          <div class="image-placeholder loading-shimmer"></div>
+          <img src="" alt="" class="preview-img" style="display:none;">
+          <div class="date-badge">2024-05-15</div>
+        </div>
+        
+        <div class="card-content">
+          <h2 class="card-title">Loading...</h2>
+          <div class="card-description-container">
+            <p class="card-description">Fetching preview...</p>
+          </div>
+          <span class="card-link">Visit Website →</span>
+        </div>
+      </a>
+    
+      <a href="https://www.bigganchinta.com/events/5awbnfw1ba?fbclid=IwY2xjawQatQpleHRuA2FlbQIxMQBicmlkETFGVlNXWXh4d0dQMW1XT3E5c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtBYfeicG6AagUDJJAuNEeJeIMRtOwx77jeZZvecdF03iQTZ4UdYyLbxUqb2_aem_LkVGTdYSWv_DDuGOMllEcA" class="project-card news-card" data-url="https://www.bigganchinta.com/events/5awbnfw1ba?fbclid=IwY2xjawQatQpleHRuA2FlbQIxMQBicmlkETFGVlNXWXh4d0dQMW1XT3E5c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtBYfeicG6AagUDJJAuNEeJeIMRtOwx77jeZZvecdF03iQTZ4UdYyLbxUqb2_aem_LkVGTdYSWv_DDuGOMllEcA" target="_blank" rel="noopener">
+        <div class="card-image-wrapper">
+          <div class="image-placeholder loading-shimmer"></div>
+          <img src="" alt="" class="preview-img" style="display:none;">
+          <div class="date-badge">2024-05-20</div>
+        </div>
+        
+        <div class="card-content">
+          <h2 class="card-title">Loading...</h2>
+          <div class="card-description-container">
+            <p class="card-description">Fetching preview...</p>
+          </div>
+          <span class="card-link">Visit Website →</span>
+        </div>
+      </a>
+    
+      <a href="https://thedhakadiary.com/news/5677?fbclid=IwY2xjawQaogRleHRuA2FlbQIxMQBicmlkETFNMWdEU1M0dlI4TjlwM0ZZc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjSoPVEXKe_4hKmgZpn-G30KwTG2Gb5s5OpwMTs6_lc_oaV1kWP86nJ-sUfI_aem_yRRhq2akzK1XPvg5aA9JVA" class="project-card news-card" data-url="https://thedhakadiary.com/news/5677?fbclid=IwY2xjawQaogRleHRuA2FlbQIxMQBicmlkETFNMWdEU1M0dlI4TjlwM0ZZc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjSoPVEXKe_4hKmgZpn-G30KwTG2Gb5s5OpwMTs6_lc_oaV1kWP86nJ-sUfI_aem_yRRhq2akzK1XPvg5aA9JVA" target="_blank" rel="noopener">
+        <div class="card-image-wrapper">
+          <div class="image-placeholder loading-shimmer"></div>
+          <img src="" alt="" class="preview-img" style="display:none;">
+          <div class="date-badge">2025-10-08</div>
+        </div>
+        
+        <div class="card-content">
+          <h2 class="card-title">Loading...</h2>
+          <div class="card-description-container">
+            <p class="card-description">Fetching preview...</p>
+          </div>
+          <span class="card-link">Visit Website →</span>
+        </div>
+      </a>
+    
+      <a href="https://www.somoynews.tv/news/2024-05-15/08IDw6uJ" class="project-card news-card" data-url="https://www.somoynews.tv/news/2024-05-15/08IDw6uJ" target="_blank" rel="noopener">
+        <div class="card-image-wrapper">
+          <div class="image-placeholder loading-shimmer"></div>
+          <img src="" alt="" class="preview-img" style="display:none;">
+          <div class="date-badge">2024-05-15</div>
+        </div>
+        
+        <div class="card-content">
+          <h2 class="card-title">Loading...</h2>
+          <div class="card-description-container">
+            <p class="card-description">Fetching preview...</p>
+          </div>
+          <span class="card-link">Visit Website →</span>
+        </div>
+      </a>
+    
+      <a href="https://www.tbsnews.net/economy/corporates/bscf-hosts-second-astronomy-camp-2025-1265951" class="project-card news-card" data-url="https://www.tbsnews.net/economy/corporates/bscf-hosts-second-astronomy-camp-2025-1265951" target="_blank" rel="noopener">
+        <div class="card-image-wrapper">
+          <div class="image-placeholder loading-shimmer"></div>
+          <img src="" alt="" class="preview-img" style="display:none;">
+          <div class="date-badge">2025-10-21</div>
+        </div>
+        
+        <div class="card-content">
+          <h2 class="card-title">Loading...</h2>
+          <div class="card-description-container">
+            <p class="card-description">Fetching preview...</p>
+          </div>
+          <span class="card-link">Visit Website →</span>
+        </div>
+      </a>
+    
+      <a href="https://dhakarshomoy.com/news-detail/7218?fbclid=IwY2xjawQZSyxleHRuA2FlbQIxMQBicmlkETFuZkhYUEJPZlp3bzlVazBPc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHvywu6D0uDfkLpXGTYmWDFhYAAHye3VyY61mJjtSJmwjdh2AJDU4dIr3sG6K_aem_XT23LWz7d94IJvSRZtLGSA" class="project-card news-card" data-url="https://dhakarshomoy.com/news-detail/7218?fbclid=IwY2xjawQZSyxleHRuA2FlbQIxMQBicmlkETFuZkhYUEJPZlp3bzlVazBPc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHvywu6D0uDfkLpXGTYmWDFhYAAHye3VyY61mJjtSJmwjdh2AJDU4dIr3sG6K_aem_XT23LWz7d94IJvSRZtLGSA" target="_blank" rel="noopener">
+        <div class="card-image-wrapper">
+          <div class="image-placeholder loading-shimmer"></div>
+          <img src="" alt="" class="preview-img" style="display:none;">
+          <div class="date-badge">2025-11-14</div>
+        </div>
+        
+        <div class="card-content">
+          <h2 class="card-title">Loading...</h2>
+          <div class="card-description-container">
+            <p class="card-description">Fetching preview...</p>
+          </div>
+          <span class="card-link">Visit Website →</span>
+        </div>
+      </a>
+    
+      <a href="https://spotlightnews24.com/bangladesh/872039?fbclid=IwY2xjawQZSuZleHRuA2FlbQIxMQBicmlkETFuZkhYUEJPZlp3bzlVazBPc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHiReF6kEmxfD0YxiuVV3wOK1QJy1_5-6NZlRNxopE7teNxIdNhCE0YxOg5lQ_aem_XeD_lX0MIQlktibf5sNIGQ" class="project-card news-card" data-url="https://spotlightnews24.com/bangladesh/872039?fbclid=IwY2xjawQZSuZleHRuA2FlbQIxMQBicmlkETFuZkhYUEJPZlp3bzlVazBPc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHiReF6kEmxfD0YxiuVV3wOK1QJy1_5-6NZlRNxopE7teNxIdNhCE0YxOg5lQ_aem_XeD_lX0MIQlktibf5sNIGQ" target="_blank" rel="noopener">
+        <div class="card-image-wrapper">
+          <div class="image-placeholder loading-shimmer"></div>
+          <img src="" alt="" class="preview-img" style="display:none;">
+          <div class="date-badge">2025-11-15</div>
+        </div>
+        
+        <div class="card-content">
+          <h2 class="card-title">Loading...</h2>
+          <div class="card-description-container">
+            <p class="card-description">Fetching preview...</p>
+          </div>
+          <span class="card-link">Visit Website →</span>
+        </div>
+      </a>
+    
+      <a href="https://www.bigganchinta.com/events/5a31zt4279?fbclid=IwY2xjawQZSMZleHRuA2FlbQIxMQBicmlkETFuZkhYUEJPZlp3bzlVazBPc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHmr6HiqUDEaX9XyuV2F6tLrwnkOkw1rmqV16T9mDkqLTfxA7malmVryHCnp__aem_YUKI6yUqLrLmVBy_rWULxA" class="project-card news-card" data-url="https://www.bigganchinta.com/events/5a31zt4279?fbclid=IwY2xjawQZSMZleHRuA2FlbQIxMQBicmlkETFuZkhYUEJPZlp3bzlVazBPc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHmr6HiqUDEaX9XyuV2F6tLrwnkOkw1rmqV16T9mDkqLTfxA7malmVryHCnp__aem_YUKI6yUqLrLmVBy_rWULxA" target="_blank" rel="noopener">
+        <div class="card-image-wrapper">
+          <div class="image-placeholder loading-shimmer"></div>
+          <img src="" alt="" class="preview-img" style="display:none;">
+          <div class="date-badge">2025-11-18</div>
+        </div>
+        
+        <div class="card-content">
+          <h2 class="card-title">Loading...</h2>
+          <div class="card-description-container">
+            <p class="card-description">Fetching preview...</p>
+          </div>
+          <span class="card-link">Visit Website →</span>
+        </div>
+      </a>
+    
+      <a href="https://iid.dev/to-bridge-the-knowledge-gap-in-education-national-panel-calls-for-science-education-reform-in-bangladesh/" class="project-card news-card" data-url="https://iid.dev/to-bridge-the-knowledge-gap-in-education-national-panel-calls-for-science-education-reform-in-bangladesh/" target="_blank" rel="noopener">
+        <div class="card-image-wrapper">
+          <div class="image-placeholder loading-shimmer"></div>
+          <img src="" alt="" class="preview-img" style="display:none;">
+          <div class="date-badge">2025-09-15</div>
+        </div>
+        
+        <div class="card-content">
+          <h2 class="card-title">Loading...</h2>
+          <div class="card-description-container">
+            <p class="card-description">Fetching preview...</p>
+          </div>
+          <span class="card-link">Visit Website →</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const cards = document.querySelectorAll('.news-card');
+    
+    cards.forEach(card => {
+      const url = card.getAttribute('data-url');
+      const imgTag = card.querySelector('.preview-img');
+      const titleTag = card.querySelector('.card-title');
+      const descTag = card.querySelector('.card-description');
+      const placeholder = card.querySelector('.image-placeholder');
+
+      fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`)
+        .then(response => response.json())
+        .then(res => {
+          if (res.status === 'success') {
+            const data = res.data;
+            titleTag.innerText = data.title || "Untitled Article";
+            descTag.innerText = data.description || "No description available.";
+            
+            if (data.image && data.image.url) {
+              imgTag.src = data.image.url;
+              imgTag.style.display = 'block';
+              placeholder.style.display = 'none';
+            }
+          }
+        })
+        .catch(err => {
+          titleTag.innerText = "Link Preview Unavailable";
+          console.error("Error fetching preview:", err);
+        });
+    });
+  });
+</script>
+
+<style>
+  /* GRID SETUP - Ensures all cards in a row match height */
+  .project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-auto-rows: 1fr; /* This is the secret for equal height rows */
+    gap: 2rem;
+  }
+
+  .project-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column; /* Stack image and content */
+    height: 100%; /* Fill the grid cell */
+    background: #fff;
+    border: 1px solid var(--border-color, #eee);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+  }
+
+  .card-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #f4f4f4;
+    position: relative;
+    flex-shrink: 0; /* Prevents image from squishing */
+  }
+
+  .preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .date-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+  }
+
+  .card-content {
+    padding: 1.5rem;
+    flex-grow: 1; /* Pushes the 'View Project' link to the bottom */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+    /* Limit title to 2 lines to keep things tidy */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Allows slightly more description */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-link {
+    margin-top: auto; /* Aligns link to the bottom of the card */
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent, #000);
+    opacity: 0.6;
+  }
+
+  /* LOADING ANIMATION */
+  .loading-shimmer {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+</style>
+    </main>
+    <link rel="stylesheet" href="/css/footer.css">
+<!-- ICONS [BOOTSTRAP] -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css?v=1.11.3">
+
+<footer class="footer-container">
+    <div class="footer-main">
+        <div class="footer-about">
+            <div class="logo-container">
+                <img class="footer-logo" src="/contents/images/logo.svg" alt="BSCF Logo">
+            </div>
+            <p>BSCF is a socio-cultural forum for the youth of Bangladesh, dedicated to fostering a generation of leaders and innovators. We aim to create a vibrant community that promotes our rich cultural heritage while embracing modernity and progress.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/team">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Get Involved</h5>
+                <ul>
+                    <li><a href="/apply">Join Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/donate">Invest In Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="mailto:bscf24@gmail.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+                    <a href="https://www.linkedin.com/company/bscf-dev" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Bangladesh Socio-Cultural Forum. All Rights Reserved.</p>
+        <p>Developed & Maintained by <a href="https://github.com/BSCF-BD/bscf.dev" target="_blank">BSCF Tech Team</a></p>
+    </div>
+</footer>
+</body>
+
+</html>

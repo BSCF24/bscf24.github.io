@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Fatema Tuz Jannat Noor</title>
+    <meta name="description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://bscf.dev/team/jannat-noor/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Fatema Tuz Jannat Noor">
+    <meta property="og:description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
+    
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="bscf.dev">
+    <meta property="twitter:url" content="https://bscf.dev/team/jannat-noor/">
+    <meta name="twitter:title" content="Fatema Tuz Jannat Noor">
+    <meta name="twitter:description" content="A non-profit organization dedicated to promoting Bangladeshi culture and heritage.">
+    
+    
+    <!-- FONTS [JOST, TIRO] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/posts.css">
+    <link rel="icon" type="image/png" href="/contents/images/icon.png">
+</head>
+
+<body>
+    <link rel="stylesheet" href="/css/header.css">
+<header>
+    <div class="nav-title">
+        <a href="/" class="logo-link">
+            <img src="/contents/images/logo.svg" alt="BSCF Logo">
+        </a>
+    </div>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav">
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/team">TEAM</a></li>
+        <li><a href="/projects">PROJECTS</a></li>
+        <li><a href="/news">NEWS</a></li>
+        <li><a href="/contact">CONTACT US</a></li>
+    </ul>
+</header>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav');
+        const teamLink = document.querySelector('.team-link');
+        const dropdown = document.querySelector('.dropdown');
+
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
+        });
+
+        // Team dropdown toggle on mobile
+        if (teamLink) {
+            teamLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                    teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+                }
+            });
+        }
+
+        // Close dropdown and nav when clicking a nav link on mobile
+        document.querySelectorAll('.nav a:not(.team-link)').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    nav.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    if (dropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                    if (teamLink) {
+                        teamLink.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (dropdown && !e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+                if (teamLink) {
+                    teamLink.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+    });
+</script>
+    <main>
+        
+<div class="archive-container">
+  <div class="archive-intro">
+    <span class="archive-tag">Team Member</span>
+    <h1 class="archive-title">Fatema Tuz Jannat Noor</h1>
+    <div class="archive-line"></div>
+  </div>
+
+  <section class="member-detail-grid">
+    <div class="member-meta">
+      <div class="member-image-frame">
+        <img src="/contents/images/team/noor.jpg" alt="Fatema Tuz Jannat Noor">
+      </div>
+      <div class="member-specs">
+        <p class="member-role">Executive</p>
+        
+          <p class="member-dept">Policy &amp; Programme</p>
+        
+        
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/fatematuzjannatnoor/" target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+              <span class="icon-wrapper">
+                <i class="bi bi-linkedin"></i>
+              </span>
+              <div class="social-text">
+                <span class="social-label">Connect on</span>
+                <span class="social-platform">LinkedIn</span>
+              </div>
+            </a>
+          </div>
+        
+        
+  <div class="member-social">
+    <a href="mailto:fatematuzjannat77@gmail.com " class="linkedin-link" aria-label="Send Email">
+      <span class="icon-wrapper">
+        <i class="bi bi-envelope-fill"></i>
+      </span>
+      <div class="social-text">
+        <span class="social-label">Send an</span>
+        <span class="social-platform">Email</span>
+      </div>
+    </a>
+  </div>
+
+      </div>
+    </div>
+
+    <div class="member-bio">
+        <div class="bio-content">Most. Fatema Tuz Jannat Noor is a final-year undergraduate student of Mass Communication and Journalism at Bangladesh University of Professionals (BUP) with a strong academic focus on research, policy analysis, and strategic communication. She has developed experience in interdisciplinary research and evidence-based reporting, demonstrating a keen interest in advocacy, climate discourse, and development policy.She currently serves as a Youth Fellow at the International Centre for Climate Change and Development (ICCCAD), where she participates in policy discussions and youth-led initiatives related to climate justice, development, and social inclusion. In addition, she works as a Research Associate at Lal Sabuj Society and previously contributed as a Research Assistant at Bangladesh University of Professionals, supporting faculty-led research projects and co-authoring multiple academic papers presented at international conferences. She also served as the Lead Analyst and Report Writer for the Child Situation Report 2025, producing data-driven policy recommendations.Beyond research roles, Noor has demonstrated strong communication and coordination skills through her involvement as the Public Relations and Administration Head for the Lunar Satellite Project (NASA GLEE Mission under the a2i Programme), where she led communication strategies and stakeholder engagement. Her skill set includes qualitative and quantitative research methods, report writing, media analysis, data analysis using Excel and SPSS, and bilingual communication in Bangla and English.Through conference presentations, workshops, and youth policy dialogues, she has actively contributed to discussions on climate change, media representation, social inclusion, and development challenges. Overall, she is recognized as a research-oriented and policy-focused young professional committed to using communication and evidence-based research to address social and environmental issues.</div>
+    </div>
+  </section>
+</div>
+
+<style>
+  /* GRID SYSTEM */
+  .member-detail-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* IMAGE COLUMN */
+  .member-image-frame {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f9f9f9;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+  }
+
+  .member-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .member-specs {
+    border-left: 2px solid var(--border-color);
+    padding-left: 1.5rem;
+  }
+
+  .member-role {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .member-dept {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* PROFESSIONAL SOCIAL SECTION */
+  .member-social {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color); 
+  }
+
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main); /* Uses your site's main text color */
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4; /* Neutral light gray */
+    border-radius: 6px;
+    color: #0077b5; /* Keeps the brand color only on the icon */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .social-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .social-platform {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* HOVER STATES */
+  .linkedin-link:hover .social-platform {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  
+  .bio-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    white-space: pre-wrap;
+    text-align: justify;
+    margin-top: 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    .member-detail-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .member-image-frame {
+      max-width: 340px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .member-image-frame {
+      max-width: 100%;
+    }
+  }
+</style>
+    </main>
+    <link rel="stylesheet" href="/css/footer.css">
+<!-- ICONS [BOOTSTRAP] -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css?v=1.11.3">
+
+<footer class="footer-container">
+    <div class="footer-main">
+        <div class="footer-about">
+            <div class="logo-container">
+                <img class="footer-logo" src="/contents/images/logo.svg" alt="BSCF Logo">
+            </div>
+            <p>BSCF is a socio-cultural forum for the youth of Bangladesh, dedicated to fostering a generation of leaders and innovators. We aim to create a vibrant community that promotes our rich cultural heritage while embracing modernity and progress.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/team">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Get Involved</h5>
+                <ul>
+                    <li><a href="/apply">Join Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/donate">Invest In Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="mailto:bscf24@gmail.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+                    <a href="https://www.linkedin.com/company/bscf-dev" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Bangladesh Socio-Cultural Forum. All Rights Reserved.</p>
+        <p>Developed & Maintained by <a href="https://github.com/BSCF-BD/bscf.dev" target="_blank">BSCF Tech Team</a></p>
+    </div>
+</footer>
+</body>
+
+</html>

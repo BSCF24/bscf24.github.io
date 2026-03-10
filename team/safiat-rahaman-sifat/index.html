@@ -43,12 +43,16 @@
             <img src="/contents/images/logo.svg" alt="BSCF Logo">
         </a>
     </div>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <ul class="nav">
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
-        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/news">NEWS</a></li>
         <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
@@ -115,73 +119,49 @@
   <section class="member-detail-grid">
     <div class="member-meta">
       <div class="member-image-frame">
-        <img src="/contents/images/team/sifat.jpg" alt="Safiat Rahaman Sifat">
+        <img src="/contents/images/team/sifat.jpeg" alt="Safiat Rahaman Sifat">
       </div>
       <div class="member-specs">
         <p class="member-role">Assistant Director</p>
         
           <p class="member-dept">Grassroots Coordination</p>
         
+        
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/safiat-rahaman-sifat/" target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+              <span class="icon-wrapper">
+                <i class="bi bi-linkedin"></i>
+              </span>
+              <div class="social-text">
+                <span class="social-label">Connect on</span>
+                <span class="social-platform">LinkedIn</span>
+              </div>
+            </a>
+          </div>
+        
+        
+  <div class="member-social">
+    <a href="mailto:safiatrahaman777@gmail.com" class="linkedin-link" aria-label="Send Email">
+      <span class="icon-wrapper">
+        <i class="bi bi-envelope-fill"></i>
+      </span>
+      <div class="social-text">
+        <span class="social-label">Send an</span>
+        <span class="social-platform">Email</span>
+      </div>
+    </a>
+  </div>
+
       </div>
     </div>
 
     <div class="member-bio">
-        <div class="bio-content">Meet Safiat Rahaman (Sifat), a dynamic communications and policy professional with strong leadership in youth-led NGOs, think tanks, and CSR efforts from Dhaka, Bangladesh. He is enrolling in a Bachelor of Science at North South University in Fall 2025. Skilled in grassroots operations, strategic partnerships, and program design, Safiat co-founded Bangladesh Socio-Cultural Forum (BSCF) and seeks remote roles to drive communication, leadership, and policy change.
-
-From 2023 to March 2025 at Youth School for Social Entrepreneurship (YSSE), he advanced from Intern to Senior Associate in Communications, managing 134 interns, designing competitions like ThinkTank and National Case Competition, and creating content for visibility. He earned Best Intern for three months and a Gold/Star Badge. As Co-Founder and Chief of Grassroots at BSCF since 2024, he launched the Future STEM Leaders Programme (Cohort-1 with 36 interns), built corporate partnerships, and directed volunteer mobilization, events, and outreach. At Youth Policy Forum (YPF) as Youth Engagement Lead and Policy Associate since 2023, he contributed to policy dialogues, edited a behavioral economics paper, organized youth events, and won Best Contributor for engagement.
-
-Safiat leads the YED Project at Rajbari Socio-Cultural Club (RSCF) since 2023, one of 16 organizations in a major initiative, organizing debates, workshops, and National Bangla Utsab for three years. Since 2025, he develops content and mentors at Gamephone Academy and LCOY Bangladesh, focusing on digital learning, climate training, and UNFCCC policy dialogues. As Vice President of Communications at Debating Club of Rouf College from 2022 to 2024, he onboarded over 550 members and coordinated festivals.
-
-In education and facilitation, he created English content for platforms like 10 Minute School and British Council, delivered workshops for IDLC Finance Olympiad (150,000 participants), and tutored in Biology and English.</div>
+        <div class="bio-content">Safiat Rahaman Sifat is a communications and policy-oriented youth leader with extensive experience in grassroots initiatives, program development, and youth engagement. Known for his strong leadership in youth-led organizations and policy platforms, he has worked across NGOs, think tanks, and civic initiatives to promote community participation, policy dialogue, and youth empowerment. He is the Co-Founder and Chief of Grassroots at the Bangladesh Socio-Cultural Forum (BSCF), where he leads volunteer mobilization, partnership development, and community outreach programs. In addition, he serves as a Policy Associate at the Youth Policy Forum (YPF), contributing to national policy discussions, youth dialogues, and behavioral economics research initiatives. He has also been involved with the Youth Engagement in Democracy (YED) Project under the Rajbari Socio-Cultural Club, where he led district-level workshops, regional debate summits, and youth engagement programs. Previously, he worked with the Youth School for Social Entrepreneurship (YSSE), where he progressed from an intern to a senior associate in communications, managing large intern cohorts and leading high-impact projects such as national case competitions and strategic communication campaigns. He also contributes as a Content Developer and Youth Mentor for initiatives under Grameenphone Academy and LCOY Bangladesh, supporting climate dialogue and digital learning programs for young leaders. Academically, he completed his SSC and HSC with outstanding results in the science stream and has received several recognitions for leadership and participation in national and international initiatives. His experience spans youth policy advocacy, program management, communication strategy, and community-driven development, reflecting his commitment to empowering young people and creating meaningful social impact.</div>
     </div>
   </section>
 </div>
 
 <style>
-  :root {
-    --border-color: #eaeaea;
-    --text-main: #1a1a1a;
-    --text-muted: #666;
-    --accent: #000;
-    --max-width: 1148px;
-  }
-
-  .archive-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 80px 24px;
-    text-align: left;
-  }
-
-  /* HEADER SECTION */
-  .archive-intro {
-    margin-bottom: 60px;
-  }
-
-  .archive-tag {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #a0a0a0;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .archive-title {
-    font-size: clamp(2.5rem, 5vw, 3.2rem);
-    font-weight: 800;
-    margin: 0 0 20px 0;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-  }
-
-  .archive-line {
-    height: 4px;
-    width: 60px;
-    background: var(--accent);
-  }
-
   /* GRID SYSTEM */
   .member-detail-grid {
     display: grid;
@@ -227,7 +207,60 @@ In education and facilitation, he created English content for platforms like 10 
     font-style: italic;
   }
 
+  /* PROFESSIONAL SOCIAL SECTION */
+  .member-social {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color); 
+  }
 
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main); /* Uses your site's main text color */
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4; /* Neutral light gray */
+    border-radius: 6px;
+    color: #0077b5; /* Keeps the brand color only on the icon */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .social-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .social-platform {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* HOVER STATES */
+  .linkedin-link:hover .social-platform {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  
   .bio-content {
     font-size: 1.1rem;
     line-height: 1.8;
@@ -250,14 +283,6 @@ In education and facilitation, he created English content for platforms like 10 
   }
 
   @media (max-width: 768px) {
-    .archive-container {
-      padding: 40px 20px;
-    }
-    
-    .archive-intro {
-      margin-bottom: 40px;
-    }
-    
     .member-image-frame {
       max-width: 100%;
     }

@@ -43,12 +43,16 @@
             <img src="/contents/images/logo.svg" alt="BSCF Logo">
         </a>
     </div>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <ul class="nav">
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
-        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/news">NEWS</a></li>
         <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
@@ -122,64 +126,42 @@
         
           <p class="member-dept">Business Development</p>
         
+        
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/ahnaf-tahsin-monmoy-6303a2283/" target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+              <span class="icon-wrapper">
+                <i class="bi bi-linkedin"></i>
+              </span>
+              <div class="social-text">
+                <span class="social-label">Connect on</span>
+                <span class="social-platform">LinkedIn</span>
+              </div>
+            </a>
+          </div>
+        
+        
+  <div class="member-social">
+    <a href="mailto:hasinfarhan16@gmail.com" class="linkedin-link" aria-label="Send Email">
+      <span class="icon-wrapper">
+        <i class="bi bi-envelope-fill"></i>
+      </span>
+      <div class="social-text">
+        <span class="social-label">Send an</span>
+        <span class="social-platform">Email</span>
+      </div>
+    </a>
+  </div>
+
       </div>
     </div>
 
     <div class="member-bio">
-        <div class="bio-content">Meet Ahnaf Tahsin Monmoy, a dedicated undergraduate student in Accounting and Information Systems at the University of Rajshahi. With a strong passion for blending technology with finance, Ahnaf focuses on using innovative tools to improve financial reporting, decision-making, and data-driven solutions. His analytical mindset and problem-solving skills drive his interest in data analytics, financial modeling, and tech-enhanced business processes.
-
-As Founder and CEO of Brogotflix, a streaming service, since June 2022, Ahnaf leads operations in digital media management. He also co-founded Mobile Guru, a shop at Jamuna Future Park, in May 2022, where he applies his financial management expertise.
-
-Ahnaf is an associate member of the Bangladesh Socio-Cultural Forum since October 2023 and the Rajshahi University Professional Development Club since November 2023. His skills include teamwork, leadership, effective communication, critical thinking, MS Office proficiency, graphic design, and digital media management. Fluent in English and native in Bangla, he aims to contribute at the intersection of technology, accounting, and business to optimize processes and drive innovation.</div>
+        <div class="bio-content">Ahnaf Tahsin Monmoy is an undergraduate student at the University of Rajshahi pursuing a Bachelor of Business Administration (BBA) in Accounting and Information Systems. He is known for his analytical mindset and strong interest in integrating technology with financial and accounting practices to support data-driven decision-making and efficient financial management.Alongside his academic studies, he has demonstrated entrepreneurial initiative as the Founder and CEO of Brogotflix, a streaming service platform, and as the Co-Founder of Mobile Guru, a business operating at Jamuna Future Park. Through these roles, he has gained practical experience in business management, digital media, and financial operations.  Ahnaf is also actively engaged in extracurricular and professional communities. He serves as an Associate Member of the Bangladesh Socio-Cultural Forum (BSCF) and the Rajshahi University Professional Development Club, where he participates in leadership and professional development activities. His technical and professional skills include financial management, graphic design, digital media management, and proficiency in Microsoft Office tools.Overall, he aspires to build a career at the intersection of finance, technology, and business innovation, leveraging analytical thinking and technological tools to contribute to the evolving field of accounting and financial systems.</div>
     </div>
   </section>
 </div>
 
 <style>
-  :root {
-    --border-color: #eaeaea;
-    --text-main: #1a1a1a;
-    --text-muted: #666;
-    --accent: #000;
-    --max-width: 1148px;
-  }
-
-  .archive-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 80px 24px;
-    text-align: left;
-  }
-
-  /* HEADER SECTION */
-  .archive-intro {
-    margin-bottom: 60px;
-  }
-
-  .archive-tag {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #a0a0a0;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .archive-title {
-    font-size: clamp(2.5rem, 5vw, 3.2rem);
-    font-weight: 800;
-    margin: 0 0 20px 0;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-  }
-
-  .archive-line {
-    height: 4px;
-    width: 60px;
-    background: var(--accent);
-  }
-
   /* GRID SYSTEM */
   .member-detail-grid {
     display: grid;
@@ -225,7 +207,60 @@ Ahnaf is an associate member of the Bangladesh Socio-Cultural Forum since Octobe
     font-style: italic;
   }
 
+  /* PROFESSIONAL SOCIAL SECTION */
+  .member-social {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color); 
+  }
 
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main); /* Uses your site's main text color */
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4; /* Neutral light gray */
+    border-radius: 6px;
+    color: #0077b5; /* Keeps the brand color only on the icon */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .social-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .social-platform {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* HOVER STATES */
+  .linkedin-link:hover .social-platform {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  
   .bio-content {
     font-size: 1.1rem;
     line-height: 1.8;
@@ -248,14 +283,6 @@ Ahnaf is an associate member of the Bangladesh Socio-Cultural Forum since Octobe
   }
 
   @media (max-width: 768px) {
-    .archive-container {
-      padding: 40px 20px;
-    }
-    
-    .archive-intro {
-      margin-bottom: 40px;
-    }
-    
     .member-image-frame {
       max-width: 100%;
     }

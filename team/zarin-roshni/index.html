@@ -43,12 +43,16 @@
             <img src="/contents/images/logo.svg" alt="BSCF Logo">
         </a>
     </div>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <ul class="nav">
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
-        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/news">NEWS</a></li>
         <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
@@ -115,71 +119,49 @@
   <section class="member-detail-grid">
     <div class="member-meta">
       <div class="member-image-frame">
-        <img src="/contents/images/team/zarin.jpeg" alt="Zarin Roshni">
+        <img src="/contents/images/team/zarin.jpg" alt="Zarin Roshni">
       </div>
       <div class="member-specs">
         <p class="member-role">Assistant Director</p>
         
-          <p class="member-dept">Branding</p>
+          <p class="member-dept">Branding &amp; Communication</p>
         
+        
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/zarin-roshni-82b542283/" target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+              <span class="icon-wrapper">
+                <i class="bi bi-linkedin"></i>
+              </span>
+              <div class="social-text">
+                <span class="social-label">Connect on</span>
+                <span class="social-platform">LinkedIn</span>
+              </div>
+            </a>
+          </div>
+        
+        
+  <div class="member-social">
+    <a href="mailto:roshnizarin8@gmail.com" class="linkedin-link" aria-label="Send Email">
+      <span class="icon-wrapper">
+        <i class="bi bi-envelope-fill"></i>
+      </span>
+      <div class="social-text">
+        <span class="social-label">Send an</span>
+        <span class="social-platform">Email</span>
+      </div>
+    </a>
+  </div>
+
       </div>
     </div>
 
     <div class="member-bio">
-        <div class="bio-content">Meet Zarin Roshni, a motivated student and emerging leader in communication and education from Rajshahi, Bangladesh. Zarin seeks opportunities in project management to apply her organizational and leadership skills for team success.
-
-Since July 2025, she serves as Assistant Director in the Communication Department at Bangladesh Socio-Cultural Forum (BSCF), a non-profit focused on promoting science, culture, and social awareness. There, she engages students in leadership, research, and community activities. From October 2021 to December 2022, Zarin worked as a journalist for Duronto Shishu-Kishor Potrika, a children&#39;s magazine that uncovers young talents, inspires creativity, and showcases the nation through kids&#39; perspectives. In early 2024, she was a Poetry Instructor and Early Childhood Educator at Alo Academy, using play-based methods to teach dance, music, recitation, and art for holistic child development.
-
-She participated in BSCF&#39;s Astronomy Camp, involving observational astronomy, scientific talks, and team space research. She looks to build on her experience in fostering creativity and community impact.</div>
+        <div class="bio-content">Zarin Roshni is a Philosophy student at the University of Rajshahi with a growing interest in leadership, communication, and project management. She aims to apply her organizational and leadership abilities in collaborative environments where she can contribute to team success and community-focused initiatives. She currently serves as the Assistant Director of the Communication Department at the Bangladesh Socio-Cultural Forum (BSCF), a non-profit organization dedicated to promoting science, culture, and social awareness among youth. Through this role, she contributes to communication initiatives and student engagement activities. She has also worked as a journalist for the children’s magazine Duronto Shishu-Kishor Potrika, where she contributed to creative and youth-oriented publications. Additionally, she has experience as a poetry instructor and early childhood educator at Alo Academy of Art, where she supported young learners through creative and play-based educational activities. Academically, she is pursuing a BA in Philosophy at the University of Rajshahi, after completing her HSC and SSC with excellent academic results from institutions in Khulna. Her skills include communication, team management, branding and promotion, leadership, and presentation. Alongside her academic and professional engagements, she actively participates in social and educational initiatives, including the BSCF Astronomy Camp, reflecting her enthusiasm for learning, teamwork, and community involvement.</div>
     </div>
   </section>
 </div>
 
 <style>
-  :root {
-    --border-color: #eaeaea;
-    --text-main: #1a1a1a;
-    --text-muted: #666;
-    --accent: #000;
-    --max-width: 1148px;
-  }
-
-  .archive-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 80px 24px;
-    text-align: left;
-  }
-
-  /* HEADER SECTION */
-  .archive-intro {
-    margin-bottom: 60px;
-  }
-
-  .archive-tag {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #a0a0a0;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .archive-title {
-    font-size: clamp(2.5rem, 5vw, 3.2rem);
-    font-weight: 800;
-    margin: 0 0 20px 0;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-  }
-
-  .archive-line {
-    height: 4px;
-    width: 60px;
-    background: var(--accent);
-  }
-
   /* GRID SYSTEM */
   .member-detail-grid {
     display: grid;
@@ -225,7 +207,60 @@ She participated in BSCF&#39;s Astronomy Camp, involving observational astronomy
     font-style: italic;
   }
 
+  /* PROFESSIONAL SOCIAL SECTION */
+  .member-social {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color); 
+  }
 
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main); /* Uses your site's main text color */
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4; /* Neutral light gray */
+    border-radius: 6px;
+    color: #0077b5; /* Keeps the brand color only on the icon */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .social-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .social-platform {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* HOVER STATES */
+  .linkedin-link:hover .social-platform {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  
   .bio-content {
     font-size: 1.1rem;
     line-height: 1.8;
@@ -248,14 +283,6 @@ She participated in BSCF&#39;s Astronomy Camp, involving observational astronomy
   }
 
   @media (max-width: 768px) {
-    .archive-container {
-      padding: 40px 20px;
-    }
-    
-    .archive-intro {
-      margin-bottom: 40px;
-    }
-    
     .member-image-frame {
       max-width: 100%;
     }

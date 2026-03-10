@@ -1,49 +1,64 @@
 :root {
-    --header-height: 50px;
-}
-
-body {
-    padding-top: var(--header-height);
+    --brand-white: #FFFFFF;
+    --brand-dark: #1A202C;
+    --brand-border: #2D3748;
 }
 
 header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: 1000;
+    inset: 0 0 auto 0;
+    height: var(--header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 10px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #ddd;
-    height: var(--header-height);
-    box-sizing: border-box;
+    padding: 0 24px;
+    z-index: 1000;
+    background-color: var(--brand-dark); /* Main background */
+    border-bottom: 1px solid var(--brand-border);
+}
+
+/* The White Block behind the logo */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 120px; /* Adjust this to fit your logo width */
+    background-color: var(--brand-white);
+    z-index: -1; /* Keeps it behind the logo/text */
+}
+.nav-title {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    background: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
 }
 
 .nav-title img {
-    height: 40px;
+    height: 24px;
+    width: auto;
+    display: block;
 }
 
-.hamburger {
-    display: none;
-    font-size: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #333;
-    padding: 5px;
-    margin-left: 10px;
+.nav-title a:hover {
+    transform: scale(1.05);
 }
 
 .nav {
     display: flex;
     list-style: none;
-    gap: 10px;
-    flex-wrap: wrap;
-    max-width: 100%;
+    gap: 26px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav li {
@@ -52,47 +67,78 @@ header {
 
 .nav a {
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 8px;
+    color: #A0AEC0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 8px 0;
     display: block;
-    white-space: nowrap;
+    transition: color 0.3s ease;
 }
 
-.dropdown {
-    display: none;
+.nav a::after {
+    content: '';
     position: absolute;
-    top: 100%;
+    bottom: 4px;
     left: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    list-style: none;
-    min-width: 200px;
-    z-index: 1000;
+    width: 0;
+    height: 1px;
+    background-color: #FFFFFF;
+    transition: width 0.3s ease;
 }
 
-.dropdown.active {
-    display: block;
+.nav a:hover {
+    color: #FFFFFF;
 }
 
-.dropdown li a {
+.nav a:hover::after {
+    width: 100%;
+}
+
+/* HAMBURGER ICON */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
     padding: 8px;
-    font-weight: normal;
+    width: 36px;
+    height: 36px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
 }
 
-.dropdown li a:hover {
-    background-color: #f0f0f0;
+.hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: #A0AEC0;
+    transition: 0.3s ease;
 }
 
+.hamburger:hover span {
+    background-color: #FFFFFF;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* MOBILE NAV */
 @media (max-width: 767px) {
     .hamburger {
-        display: block;
-        order: 2;
-    }
-
-    .nav-title {
-        flex-grow: 1;
-        order: 1;
+        display: flex;
     }
 
     .nav {
@@ -102,32 +148,25 @@ header {
         top: var(--header-height);
         left: 0;
         right: 0;
-        background-color: #fff;
-        border-bottom: 1px solid #ddd;
-        z-index: 999;
+        background-color: #1A202C;
+        padding: 60px 24px;
+        gap: 32px;
+        text-align: center;
+        border-bottom: 1px solid #2D3748;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        height: auto;
     }
 
     .nav.active {
         display: flex;
     }
 
-    .nav li {
-        width: 100%;
+    .nav a {
+        font-size: 1.1rem;
+        letter-spacing: 0.2em;
     }
-
-    .dropdown {
-        position: static;
-        border: none;
-        background-color: #f8f8f8;
-    }
-
-    .dropdown li a {
-        padding-left: 20px;
-    }
-}
-
-@media (min-width: 768px) {
-    .team-item:hover .dropdown {
-        display: block;
+    
+    .nav a::after {
+        display: none;
     }
 }

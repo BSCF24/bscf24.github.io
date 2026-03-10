@@ -43,12 +43,16 @@
             <img src="/contents/images/logo.svg" alt="BSCF Logo">
         </a>
     </div>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <ul class="nav">
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
-        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/news">NEWS</a></li>
         <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
@@ -120,62 +124,44 @@
       <div class="member-specs">
         <p class="member-role">Director</p>
         
-          <p class="member-dept">Policy &amp; Legal Affaires</p>
+          <p class="member-dept">Policy &amp; Legal Affairs</p>
         
+        
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/aurit-ahsan/" target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+              <span class="icon-wrapper">
+                <i class="bi bi-linkedin"></i>
+              </span>
+              <div class="social-text">
+                <span class="social-label">Connect on</span>
+                <span class="social-platform">LinkedIn</span>
+              </div>
+            </a>
+          </div>
+        
+        
+  <div class="member-social">
+    <a href="mailto:ahsanaurit@gmail.com" class="linkedin-link" aria-label="Send Email">
+      <span class="icon-wrapper">
+        <i class="bi bi-envelope-fill"></i>
+      </span>
+      <div class="social-text">
+        <span class="social-label">Send an</span>
+        <span class="social-platform">Email</span>
+      </div>
+    </a>
+  </div>
+
       </div>
     </div>
 
     <div class="member-bio">
-        <div class="bio-content">Meet Aurit Ahsan, a passionate and driven law graduate with a focus on leadership, policy discourse, and advocacy for human rights, liberty, and social change from Rajshahi, Bangladesh. He holds a Bachelor of Laws (LL.B. Honors) from the Department of Law at the University of Rajshahi. As Local Coordinator for South Asia at Students for Liberty since 2025, he leads the largest international pro-liberty student organization, selected from over 1,500 applicants in Bangladesh. He is also a Fellow in the Commonwealth Asia Youth Alliance Advocacy Fellowship since 2025, chosen from over 1,000 applicants across Asia. Aurit participated in the UMSAILS-UAP Spring School 2024 on forced displacement and volunteered as Head of Communication for the International Conference on Human Rights and Social Justice 2023, coordinating teams and hundreds of participants. As Senior Vice-President of Rajshahi University Debating Organization since 2023, he has conducted numerous events. His achievements include acceptance into Cohort 4 of the 2025 Aspire Leadership Program by Harvard University, winning the Best Ad-hoc Committee award at the NILS-LEB National Model Legislative Assembly 2025, selection for the Youth Policy Summit 2024, and a full scholarship for the UMSAILS-UAP Spring School. With interests in debating, advocacy, youth activism, graphics designing, event management, volunteerism, and motorsports, Aurit brings a globally aware perspective to advance human rights through legal research and youth initiatives.</div>
+        <div class="bio-content">Aurit Ahsan is a law graduate from the University of Rajshahi with a strong academic foundation and an active engagement in youth leadership, policy discourse, and human rights advocacy. With a background in legal studies and public engagement, he has developed a reputation as a motivated and forward-thinking individual committed to promoting liberty, social justice, and meaningful social change. He has gained practical experience through an internship at the Office of the Attorney-General for Bangladesh under the AGO-UNDP Internship Program and serves as the Local Coordinator (South Asia) for Students for Liberty, where he contributes to regional youth initiatives and leadership development. Additionally, he has been involved in international and regional programs such as the CAYA Advocacy Fellowship and the UMSAILS-UAP Spring School on Forced Displacement, reflecting his growing engagement with global legal and policy discussions. Aurit has also demonstrated leadership within the University of Rajshahi community as the Senior Vice-President of the Rajshahi University Debating Organization (RUDO) and previously served as Head of Communication for an international conference on Human Rights and Social Justice. His achievements include recognition at the NILS-LEB National Model Legislative Assembly and participation in the Youth Policy Summit 2024. Alongside his legal interests, he possesses skills in digital tools, graphic design, and event management, and remains actively engaged in debating, youth activism, and advocacy initiatives.</div>
     </div>
   </section>
 </div>
 
 <style>
-  :root {
-    --border-color: #eaeaea;
-    --text-main: #1a1a1a;
-    --text-muted: #666;
-    --accent: #000;
-    --max-width: 1148px;
-  }
-
-  .archive-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 80px 24px;
-    text-align: left;
-  }
-
-  /* HEADER SECTION */
-  .archive-intro {
-    margin-bottom: 60px;
-  }
-
-  .archive-tag {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #a0a0a0;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .archive-title {
-    font-size: clamp(2.5rem, 5vw, 3.2rem);
-    font-weight: 800;
-    margin: 0 0 20px 0;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-  }
-
-  .archive-line {
-    height: 4px;
-    width: 60px;
-    background: var(--accent);
-  }
-
   /* GRID SYSTEM */
   .member-detail-grid {
     display: grid;
@@ -221,7 +207,60 @@
     font-style: italic;
   }
 
+  /* PROFESSIONAL SOCIAL SECTION */
+  .member-social {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color); 
+  }
 
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main); /* Uses your site's main text color */
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4; /* Neutral light gray */
+    border-radius: 6px;
+    color: #0077b5; /* Keeps the brand color only on the icon */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .social-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .social-platform {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* HOVER STATES */
+  .linkedin-link:hover .social-platform {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  
   .bio-content {
     font-size: 1.1rem;
     line-height: 1.8;
@@ -244,14 +283,6 @@
   }
 
   @media (max-width: 768px) {
-    .archive-container {
-      padding: 40px 20px;
-    }
-    
-    .archive-intro {
-      margin-bottom: 40px;
-    }
-    
     .member-image-frame {
       max-width: 100%;
     }

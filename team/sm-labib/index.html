@@ -43,12 +43,16 @@
             <img src="/contents/images/logo.svg" alt="BSCF Logo">
         </a>
     </div>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <ul class="nav">
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
-        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/news">NEWS</a></li>
         <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
@@ -122,60 +126,42 @@
         
           <p class="member-dept">Creative</p>
         
+        
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/smlabib/" target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+              <span class="icon-wrapper">
+                <i class="bi bi-linkedin"></i>
+              </span>
+              <div class="social-text">
+                <span class="social-label">Connect on</span>
+                <span class="social-platform">LinkedIn</span>
+              </div>
+            </a>
+          </div>
+        
+        
+  <div class="member-social">
+    <a href="mailto:ahmmedlabib629@gmail.com" class="linkedin-link" aria-label="Send Email">
+      <span class="icon-wrapper">
+        <i class="bi bi-envelope-fill"></i>
+      </span>
+      <div class="social-text">
+        <span class="social-label">Send an</span>
+        <span class="social-platform">Email</span>
+      </div>
+    </a>
+  </div>
+
       </div>
     </div>
 
     <div class="member-bio">
-        <div class="bio-content">Meet S.M. Labib, a skilled graphic and UI/UX designer from Dhaka, Bangladesh. With over two years of experience, he founded a creative agency and serves as Assistant Director of the Creative Team at Bangladesh Socio-Cultural Forum (BSCF). There, he works to engage young people in social, cultural, and service-oriented activities to build an environmentally conscious, skilled, and resilient generation. From 2023 to 2024, as Junior UX Designer at Rajbari Socio-Cultural Forum (RSCF), he contributed to sustainable development by involving youth in social, cultural, and educational activities. Between 2020 and 2022, Labib was a Graphic Designer at Career Club of Rajbari (CCR), helping raise career awareness among Rajbari students. He is studying a Bachelor&#39;s at Shanto Marium University of Creative Technology since 2023, after earning his Higher Secondary Certificate from Rajbari Govt College. Proficient in Photoshop, Figma, Illustrator, and After Effects, Labib helps startups, agencies, and coaches bring ideas to life through cinematic visuals, smooth UI animations, and high-impact explainer videos.</div>
+        <div class="bio-content">Labib Ahmed is an emerging Graphic Design and Multimedia professional currently pursuing a Bachelor of Honours in Graphic Design &amp; Multimedia at Shanto-Mariam University of Creative Technology. He is actively involved in the creative industry and currently serves as the Assistant Creative Director at BSCF in Dhaka, Bangladesh. In this role, he contributes to branding initiatives, social media campaigns, and the development of high-quality visual content while collaborating with cross-functional teams and mentoring junior designers. He possesses strong expertise in digital design tools and multimedia production, including Adobe Photoshop, Adobe Illustrator, Adobe After Effects, and Adobe Premiere Pro. His professional interests focus on logo design, branding, social media visuals, video editing, typography, layout design, and motion graphics. Known for his creativity and passion for visual storytelling, he aims to deliver impactful digital media solutions that effectively communicate ideas and strengthen brand identity.</div>
     </div>
   </section>
 </div>
 
 <style>
-  :root {
-    --border-color: #eaeaea;
-    --text-main: #1a1a1a;
-    --text-muted: #666;
-    --accent: #000;
-    --max-width: 1148px;
-  }
-
-  .archive-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 80px 24px;
-    text-align: left;
-  }
-
-  /* HEADER SECTION */
-  .archive-intro {
-    margin-bottom: 60px;
-  }
-
-  .archive-tag {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #a0a0a0;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .archive-title {
-    font-size: clamp(2.5rem, 5vw, 3.2rem);
-    font-weight: 800;
-    margin: 0 0 20px 0;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-  }
-
-  .archive-line {
-    height: 4px;
-    width: 60px;
-    background: var(--accent);
-  }
-
   /* GRID SYSTEM */
   .member-detail-grid {
     display: grid;
@@ -221,7 +207,60 @@
     font-style: italic;
   }
 
+  /* PROFESSIONAL SOCIAL SECTION */
+  .member-social {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color); 
+  }
 
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main); /* Uses your site's main text color */
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4; /* Neutral light gray */
+    border-radius: 6px;
+    color: #0077b5; /* Keeps the brand color only on the icon */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .social-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .social-platform {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* HOVER STATES */
+  .linkedin-link:hover .social-platform {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  
   .bio-content {
     font-size: 1.1rem;
     line-height: 1.8;
@@ -244,14 +283,6 @@
   }
 
   @media (max-width: 768px) {
-    .archive-container {
-      padding: 40px 20px;
-    }
-    
-    .archive-intro {
-      margin-bottom: 40px;
-    }
-    
     .member-image-frame {
       max-width: 100%;
     }

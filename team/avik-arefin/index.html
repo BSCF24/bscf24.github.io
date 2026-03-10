@@ -43,12 +43,16 @@
             <img src="/contents/images/logo.svg" alt="BSCF Logo">
         </a>
     </div>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <ul class="nav">
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
-        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/news">NEWS</a></li>
         <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
@@ -122,68 +126,45 @@
         
           <p class="member-dept">IT &amp; Logistics</p>
         
+        
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/avik-arefin/" target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+              <span class="icon-wrapper">
+                <i class="bi bi-linkedin"></i>
+              </span>
+              <div class="social-text">
+                <span class="social-label">Connect on</span>
+                <span class="social-platform">LinkedIn</span>
+              </div>
+            </a>
+          </div>
+        
+        
+  <div class="member-social">
+    <a href="mailto:avikarefin5@gmail.com" class="linkedin-link" aria-label="Send Email">
+      <span class="icon-wrapper">
+        <i class="bi bi-envelope-fill"></i>
+      </span>
+      <div class="social-text">
+        <span class="social-label">Send an</span>
+        <span class="social-platform">Email</span>
+      </div>
+    </a>
+  </div>
+
       </div>
     </div>
 
     <div class="member-bio">
-        <div class="bio-content">Meet Avik Arefin, a skilled mechatronics engineering student from Bangladesh. He is pursuing a BSc in Mechatronics Engineering at Rajshahi University of Engineering and Technology. 
+        <div class="bio-content">Avik Arefin is a Mechatronics Engineer from Rajshahi University of Engineering and Technology (RUET), recognized for his ability to integrate complex hardware systems with scalable software solutions. His technical portfolio is defined by international success, most notably as a lead member of Team Cortex Robotics. Under his technical contribution, the team secured 1st Place in Bangladesh, and 4th Place Worldwide for the 2025 JAXA-NASA Kibo Robot Challenge. His expertise also extends to machine learning and global tech advocacy, evidenced by his selection as a finalist in Huawei’s Seeds for the Future and his Top 10 finish at the Tech4Good competition in China.
+In the commercial sector, Avik bridges the gap between engineering theory and consumer-ready products. He currently spearheads the development of the Armor Gold Secure Locker App for the US-based Aethes Corporation. His versatility as a developer is further demonstrated by the successful launch of diverse web platforms, including logistica4u.com and bscf.dev. Under his belt he experience includes, including industrial training at Forbes Marshall and a certification in Supervised Machine Learning from Stanford/DeepLearning AI.
 
-Avik works on exciting projects that mix software, robotics, and real-world tech. For Aethes Corporation in the USA, he builds the Armor Gold Secure Locker App using Flutter. He has also launched websites like rupsa.club, bscf.dev, and logistica4u.com.
-
-In competitions, Avik shines with his team Cortex Robotics. They took first place in Bangladesh for the 2025 JAXA-NASA Kibo Robot Challenge and second in 2024. He was a finalist in Huawei&#39;s Seeds for the Future Bangladesh 2024 and helped Team Bangladesh reach top 10 in the Tech4Good event in China. He joins many university and national tech and business contests.
-
-He is an assistant director at Bangladesh Socio-Cultural Forum, he is involved with Logistica at logistica4u.com, and Cortex Technologies at cortexrobotics.net. His certifications cover Supervised Machine Learning from Andrew Ng on Coursera, top 10 in Huawei Seeds for the Future 2024, and industrial training at Forbes Marshall in March 2024.
-
-Avik aims to blend engineering, coding, and innovation to solve problems in real life and consumer focused tech.</div>
+Beyond his technical roles, he is serving as an Assistant Director at the Bangladesh Socio-Cultural Forum. Driven by a goal to solve real-world problems, Avik is focused on developing the next generation of consumer-centric technology that addresses both local and global challenges.</div>
     </div>
   </section>
 </div>
 
 <style>
-  :root {
-    --border-color: #eaeaea;
-    --text-main: #1a1a1a;
-    --text-muted: #666;
-    --accent: #000;
-    --max-width: 1148px;
-  }
-
-  .archive-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 80px 24px;
-    text-align: left;
-  }
-
-  /* HEADER SECTION */
-  .archive-intro {
-    margin-bottom: 60px;
-  }
-
-  .archive-tag {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #a0a0a0;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .archive-title {
-    font-size: clamp(2.5rem, 5vw, 3.2rem);
-    font-weight: 800;
-    margin: 0 0 20px 0;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-  }
-
-  .archive-line {
-    height: 4px;
-    width: 60px;
-    background: var(--accent);
-  }
-
   /* GRID SYSTEM */
   .member-detail-grid {
     display: grid;
@@ -229,7 +210,60 @@ Avik aims to blend engineering, coding, and innovation to solve problems in real
     font-style: italic;
   }
 
+  /* PROFESSIONAL SOCIAL SECTION */
+  .member-social {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color); 
+  }
 
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main); /* Uses your site's main text color */
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4; /* Neutral light gray */
+    border-radius: 6px;
+    color: #0077b5; /* Keeps the brand color only on the icon */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .social-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .social-platform {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* HOVER STATES */
+  .linkedin-link:hover .social-platform {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  
   .bio-content {
     font-size: 1.1rem;
     line-height: 1.8;
@@ -252,14 +286,6 @@ Avik aims to blend engineering, coding, and innovation to solve problems in real
   }
 
   @media (max-width: 768px) {
-    .archive-container {
-      padding: 40px 20px;
-    }
-    
-    .archive-intro {
-      margin-bottom: 40px;
-    }
-    
     .member-image-frame {
       max-width: 100%;
     }

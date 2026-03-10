@@ -1,6 +1,17 @@
+:root {
+    --border-color: #eaeaea;
+    --text-main: #1a1a1a;
+    --text-muted: #666;
+    --accent: #000;
+    --max-width: 1148px;
+    --bg-main: #f9f9f9;
+    --header-height: 50px;
+}
+
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     list-style-type: none;
     font-family: "Jost", serif;
     font-optical-sizing: auto;
@@ -8,12 +19,81 @@
     font-style: normal;
 }
 
+body {
+    padding-top: var(--header-height);
+}
+
 main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f9f9f9;
-    /* Ensure body takes full viewport height */
-    /* Offset for fixed header */
+    background-color: var(--bg-main);
 }
 
+/* COMMON ARCHIVE/PAGE HEADER STYLES */
+.archive-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 80px 24px;
+    text-align: left;
+}
+
+.archive-intro {
+    margin-bottom: 60px;
+}
+
+.archive-intro.centered {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.archive-tag {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #a0a0a0;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.archive-title {
+    font-size: clamp(2.5rem, 5vw, 3.2rem);
+    font-weight: 800;
+    margin: 0 0 24px 0;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--text-main);
+}
+
+.archive-line {
+    height: 4px;
+    width: 60px;
+    background: var(--accent);
+    margin-bottom: 32px;
+}
+
+.archive-lead {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-main);
+    text-align: justify;
+    max-width: 800px;
+}
+
+.archive-intro.centered .archive-lead {
+    text-align: center;
+}
+
+/* RESPONSIVE COMMON STYLES */
+@media (max-width: 768px) {
+    .archive-container {
+        padding: 40px 20px;
+    }
+    .archive-intro {
+        margin-bottom: 40px;
+    }
+}

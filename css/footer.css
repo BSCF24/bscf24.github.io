@@ -1,8 +1,7 @@
 .footer-container {
     background-color: #1A202C; /* A darker, more modern slate gray */
-    color: #A0AEC0; /* Lighter gray for text for good contrast */
+    color: #A0AEC0;
     padding: 3rem 2rem;
-    font-family: sans-serif;
 }
 
 .footer-main {
@@ -17,6 +16,7 @@
 }
 
 .footer-about {
+    /* background: white; */
     flex: 2;
     min-width: 250px;
     margin-right: 2rem; /* Add some space between about and links */
@@ -24,8 +24,6 @@
 
 .logo-container {
     background: white;
-    padding: 0.5rem;
-    border-radius: 8px;
     margin-bottom: 1rem;
     display: inline-block;
 }
@@ -36,6 +34,8 @@
 }
 
 .footer-about p {
+    /* padding: 10px; */
+    text-align: justify;
     font-size: 0.9rem;
     line-height: 1.6;
 }

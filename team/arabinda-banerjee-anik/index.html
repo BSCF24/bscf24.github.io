@@ -43,12 +43,16 @@
             <img src="/contents/images/logo.svg" alt="BSCF Logo">
         </a>
     </div>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <ul class="nav">
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
-        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/news">NEWS</a></li>
         <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
@@ -115,73 +119,49 @@
   <section class="member-detail-grid">
     <div class="member-meta">
       <div class="member-image-frame">
-        <img src="/contents/images/team/arabinda.jpg" alt="Arabinda Banerjee Anik">
+        <img src="/contents/images/team/arabinda.jpeg" alt="Arabinda Banerjee Anik">
       </div>
       <div class="member-specs">
         <p class="member-role">Assistant Director</p>
         
-          <p class="member-dept">Finance</p>
+          <p class="member-dept">Finance &amp; Program</p>
         
+        
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/arabinda-banerjee-anik/" target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+              <span class="icon-wrapper">
+                <i class="bi bi-linkedin"></i>
+              </span>
+              <div class="social-text">
+                <span class="social-label">Connect on</span>
+                <span class="social-platform">LinkedIn</span>
+              </div>
+            </a>
+          </div>
+        
+        
+  <div class="member-social">
+    <a href="mailto:arabinda21181@gmail.com" class="linkedin-link" aria-label="Send Email">
+      <span class="icon-wrapper">
+        <i class="bi bi-envelope-fill"></i>
+      </span>
+      <div class="social-text">
+        <span class="social-label">Send an</span>
+        <span class="social-platform">Email</span>
+      </div>
+    </a>
+  </div>
+
       </div>
     </div>
 
     <div class="member-bio">
-        <div class="bio-content">Meet Arabinda Banerjee, an undergraduate physics student and active volunteer in social and policy initiatives from Rajshahi, Bangladesh.
-
-For about eight months, Arabinda has been Assistant Director of Finance at Bangladesh Socio-Cultural Forum (BSCF), where he managed finances, organized events, planned workshops on case solving, directed the Divisional Astronomy Camp 2024, led a fundraising team for flood relief, and handled sponsorships for the Future STEM Leaders Program Cohort-1. As Volunteer Coordinator for Youth For Policy-Rajshahi Division for around ten months, he formed an Anti-Sexual Harassment Committee at Rajshahi University School, created a documentary for International Mother Language Day, organized a Gender Equality session at Rajshahi University of Engineering &amp; Technology, and helped with the Youth Policy Summit at Dhaka University.
-
-Professionally, he managed trainer enrollments at Kore Search in Dhaka from November 2024 to June 2025. As Campus Ambassador for SheSTEM for one month, he advanced women&#39;s careers by collecting CVs, placing candidates in jobs and internships, and signed an MOU between SheSTEM and BSCF for programs like the Future STEM Leaders and Divisional Astronomy Camp 2025. 
-
-Passionate about cricket, debate, and case competitions, he broke into the top 16 in RUDF Fresher&#39;s Championship, reached semifinals in BrandEdge 2025 and Sellsation 2023, and was a semifinalist in an interdepartmental debate on Free Market Environmentalism. Arabinda enjoys music, business, books, and friends, aiming to grow in business and social impact.</div>
+        <div class="bio-content">Arabinda Banerjee is a Physics undergraduate at University of Rajshahi, currently pursuing his Bachelor of Science degree with a strong interest in leadership, organizational management, and strategic program execution. Alongside his academic journey, he has actively engaged in various leadership and operational roles, including serving as the Director (Branding &amp; Promotions) at the Rajshahi University Business Club, where he coordinates administrative activities and supports the execution of large-scale programs. He is also the District Lead for Youth For Policy in Rajshahi, overseeing volunteer coordination and stakeholder engagement across district initiatives. As a Founding Member and Assistant Director of Finance at Bangladesh Socio-Cultural Forum (BSCF), he contributes to budgeting, sponsorship management, and financial planning for organizational programs and community campaigns. Arabinda has also worked as a Trainer Management Associate at Kore Search and currently serves as a Campus Ambassador for SheSTEM, supporting recruitment and partnership coordination. Recognized for his involvement in competitions and leadership activities, he has been a finalist and semifinalist in several national case competitions and debates. With skills in financial coordination, stakeholder engagement, and digital tools such as Microsoft Excel, PowerPoint, Canva, and Adobe Premiere Pro, he aims to develop a career that combines analytical thinking, leadership, and impactful organizational work.</div>
     </div>
   </section>
 </div>
 
 <style>
-  :root {
-    --border-color: #eaeaea;
-    --text-main: #1a1a1a;
-    --text-muted: #666;
-    --accent: #000;
-    --max-width: 1148px;
-  }
-
-  .archive-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 80px 24px;
-    text-align: left;
-  }
-
-  /* HEADER SECTION */
-  .archive-intro {
-    margin-bottom: 60px;
-  }
-
-  .archive-tag {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #a0a0a0;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .archive-title {
-    font-size: clamp(2.5rem, 5vw, 3.2rem);
-    font-weight: 800;
-    margin: 0 0 20px 0;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-  }
-
-  .archive-line {
-    height: 4px;
-    width: 60px;
-    background: var(--accent);
-  }
-
   /* GRID SYSTEM */
   .member-detail-grid {
     display: grid;
@@ -227,7 +207,60 @@ Passionate about cricket, debate, and case competitions, he broke into the top 1
     font-style: italic;
   }
 
+  /* PROFESSIONAL SOCIAL SECTION */
+  .member-social {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color); 
+  }
 
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main); /* Uses your site's main text color */
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4; /* Neutral light gray */
+    border-radius: 6px;
+    color: #0077b5; /* Keeps the brand color only on the icon */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .social-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .social-platform {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* HOVER STATES */
+  .linkedin-link:hover .social-platform {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  
   .bio-content {
     font-size: 1.1rem;
     line-height: 1.8;
@@ -250,14 +283,6 @@ Passionate about cricket, debate, and case competitions, he broke into the top 1
   }
 
   @media (max-width: 768px) {
-    .archive-container {
-      padding: 40px 20px;
-    }
-    
-    .archive-intro {
-      margin-bottom: 40px;
-    }
-    
     .member-image-frame {
       max-width: 100%;
     }

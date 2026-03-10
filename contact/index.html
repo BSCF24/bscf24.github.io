@@ -43,12 +43,16 @@
             <img src="/contents/images/logo.svg" alt="BSCF Logo">
         </a>
     </div>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <ul class="nav">
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
-        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/news">NEWS</a></li>
         <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
@@ -137,7 +141,7 @@
         <div class="icon-wrapper"><i class="bi bi-envelope"></i></div>
         <h2 class="card-title">Email</h2>
         <p class="card-description">For official inquiries.</p>
-        <a id="email-link" href="" class="card-link accent-text"></a>
+        <a id="email-link" href="#" class="card-link accent-text">Loading...</a>
       </div>
     </div>
 
@@ -146,39 +150,37 @@
         <div class="icon-wrapper"><i class="bi bi-phone"></i></div>
         <h2 class="card-title">Events</h2>
         <p class="card-description">Redwan Ahmed<br>Director - Events</p>
-        <a id="phone-link" href="" class="card-link accent-text"></a>
+        <a id="phone-link" href="#" class="card-link accent-text">Loading...</a>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-    const email = 'YnNjZjI0QGdtYWlsLmNvbQ==';
-    const phone = 'MDE3MTQ3OTMwMzI=';
+    document.addEventListener('DOMContentLoaded', () => {
+        const email = 'YnNjZjI0QGdtYWlsLmNvbQ==';
+        const phone = 'MDE3MTQ3OTMwMzI=';
 
-    const emailLink = document.getElementById('email-link');
-    emailLink.href = 'mailto:' + atob(email);
-    emailLink.textContent = atob(email);
+        const emailLink = document.getElementById('email-link');
+        if (emailLink) {
+            emailLink.href = 'mailto:' + atob(email);
+            emailLink.textContent = atob(email);
+        }
 
-    const phoneLink = document.getElementById('phone-link');
-    phoneLink.href = 'tel:' + atob(phone);
-    phoneLink.textContent = atob(phone);
+        const phoneLink = document.getElementById('phone-link');
+        if (phoneLink) {
+            phoneLink.href = 'tel:' + atob(phone);
+            phoneLink.textContent = atob(phone);
+        }
+    });
 </script>
 
 <style>
-:root {
-    --border-color: #eaeaea;
-    --text-main: #1a1a1a;
-    --text-muted: #666;
-    --accent: #000;
-    --max-width: 1148px; /* Changed from 1200px to match Recruitments */
-  }
-
   .archive-container {
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 80px 24px;
-    text-align: left; /* Strict left alignment */
+    text-align: left;
   }
 
   .archive-intro {
@@ -287,20 +289,20 @@
       text-transform: none;
       letter-spacing: 0;
       font-size: 0.95rem;
-      word-break: break-all; /* Prevents long emails from breaking the grid */
+      word-break: break-all;
   }
 
   /* RESPONSIVE BREAKPOINTS */
   @media (max-width: 1024px) {
     .contact-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2x2 Break */
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 600px) {
     .archive-container { padding: 40px 20px; }
     .contact-grid {
-      grid-template-columns: 1fr; /* Single column for mobile */
+      grid-template-columns: 1fr;
     }
   }
 </style>

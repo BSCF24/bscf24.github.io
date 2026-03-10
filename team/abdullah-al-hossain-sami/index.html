@@ -43,12 +43,16 @@
             <img src="/contents/images/logo.svg" alt="BSCF Logo">
         </a>
     </div>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <ul class="nav">
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/team">TEAM</a></li>
         <li><a href="/projects">PROJECTS</a></li>
-        <li><a href="/apply">APPLY</a></li>
+        <li><a href="/news">NEWS</a></li>
         <li><a href="/contact">CONTACT US</a></li>
     </ul>
 </header>
@@ -115,67 +119,49 @@
   <section class="member-detail-grid">
     <div class="member-meta">
       <div class="member-image-frame">
-        <img src="/contents/images/team/sami.jpeg" alt="Abdullah Al Hossain Sami">
+        <img src="/contents/images/team/sami.png" alt="Abdullah Al Hossain Sami">
       </div>
       <div class="member-specs">
         <p class="member-role">Assistant Director</p>
         
-          <p class="member-dept">Cultural Affairs</p>
+          <p class="member-dept">Programme &amp; Partnership</p>
         
+        
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/abdullah-al-hossain-sami-715764251/" target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+              <span class="icon-wrapper">
+                <i class="bi bi-linkedin"></i>
+              </span>
+              <div class="social-text">
+                <span class="social-label">Connect on</span>
+                <span class="social-platform">LinkedIn</span>
+              </div>
+            </a>
+          </div>
+        
+        
+  <div class="member-social">
+    <a href="mailto:abhossainsami10@gmail.com" class="linkedin-link" aria-label="Send Email">
+      <span class="icon-wrapper">
+        <i class="bi bi-envelope-fill"></i>
+      </span>
+      <div class="social-text">
+        <span class="social-label">Send an</span>
+        <span class="social-platform">Email</span>
+      </div>
+    </a>
+  </div>
+
       </div>
     </div>
 
     <div class="member-bio">
-        <div class="bio-content">Meet Abdullah Al Hossain Sami, a motivated and creative student with a passion for music, cultural activities, and leadership from Rajshahi, Bangladesh. He is pursuing a BBA in Accounting and Information Systems at the University of Rajshahi. Since 2025, as assistant director of the cultural sub-committee at Bangladesh Socio-Cultural Forum, he plans and coordinates programs, guides teams, organizes workshops, and promotes student engagement. As lead guitarist for Hermes The Band since 2021, he contributes to performances, music composition, and event coordination. He also serves as composer and lead guitarist for Isle Of Bones since 2021, creating original music and leading rehearsals for live events. From 2020 to 2021, he was project management officer at Cultural Aethetes, organizing programs focused on students&#39; co-curricular activities and creativity. Skilled in team coordination, event management, public speaking, music composition, photography, and content creation, Sami aims to grow through socio-cultural initiatives that enhance personal development and community involvement.</div>
+        <div class="bio-content">Abdullah Al Hossain Sami is a student of the University of Rajshahi currently pursuing a Bachelor of Business Administration (BBA) in Accounting and Information Systems. He is an enthusiastic and creative individual with a strong interest in music, cultural activities, leadership, and student engagement. Through his academic and extracurricular involvement, he has developed skills in communication, teamwork, and program coordination. He currently serves as the Assistant Director (Cultural) at the Bangladesh Socio-Cultural Forum (BSCF), where he contributes to planning and executing cultural programs at institutional and national levels. In this role, he supports team coordination, organizes workshops and performances, and promotes creative participation among students. Earlier, he worked as a Project Management Officer at Cultural Aethetes, where he helped organize cultural and educational programs aimed at enhancing student creativity and co-curricular engagement. Sami has also taken leadership roles in several projects and events. He served as the Convener of the Coordination Committee for the BSCF 2nd Astronomy Camp 2025, overseeing planning, logistics, and cross-team communication. Additionally, he worked as the Project In-Charge for the SkinCafe Youth Carnival – Rajshahi Chapter, successfully coordinating the event across eight districts of the Rajshahi Division. Alongside these roles, he gained field experience as a Field Officer with ICAN-ICARE (PalNetwork) Bangladesh, where he conducted field assessments and data collection related to foundational learning initiatives. His technical and creative skills include Microsoft Office, Tally ERP basics, poster and visual design, public speaking, music composition, photography, and content creation. Overall, he demonstrates a strong commitment to cultural development, youth engagement, and leadership within student communities.</div>
     </div>
   </section>
 </div>
 
 <style>
-  :root {
-    --border-color: #eaeaea;
-    --text-main: #1a1a1a;
-    --text-muted: #666;
-    --accent: #000;
-    --max-width: 1148px;
-  }
-
-  .archive-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 80px 24px;
-    text-align: left;
-  }
-
-  /* HEADER SECTION */
-  .archive-intro {
-    margin-bottom: 60px;
-  }
-
-  .archive-tag {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #a0a0a0;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .archive-title {
-    font-size: clamp(2.5rem, 5vw, 3.2rem);
-    font-weight: 800;
-    margin: 0 0 20px 0;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-  }
-
-  .archive-line {
-    height: 4px;
-    width: 60px;
-    background: var(--accent);
-  }
-
   /* GRID SYSTEM */
   .member-detail-grid {
     display: grid;
@@ -221,7 +207,60 @@
     font-style: italic;
   }
 
+  /* PROFESSIONAL SOCIAL SECTION */
+  .member-social {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color); 
+  }
 
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main); /* Uses your site's main text color */
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4; /* Neutral light gray */
+    border-radius: 6px;
+    color: #0077b5; /* Keeps the brand color only on the icon */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .social-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .social-platform {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* HOVER STATES */
+  .linkedin-link:hover .social-platform {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  
   .bio-content {
     font-size: 1.1rem;
     line-height: 1.8;
@@ -244,14 +283,6 @@
   }
 
   @media (max-width: 768px) {
-    .archive-container {
-      padding: 40px 20px;
-    }
-    
-    .archive-intro {
-      margin-bottom: 40px;
-    }
-    
     .member-image-frame {
       max-width: 100%;
     }
