@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Women in STEM</title>
+    <meta name="description" content="Under the She-STEM Internship Programme, an engaging session on Women in STEM was conducted by Oishi Jyoti. Participants explored the importance of equal representation in STEM fields and were inspired to overcome barriers, fostering an inclusive and empowering environment for future changemakers.">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://bscf.dev/initiatives/women_in_stem/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Women in STEM">
+    <meta property="og:description" content="Under the She-STEM Internship Programme, an engaging session on Women in STEM was conducted by Oishi Jyoti. Participants explored the importance of equal representation in STEM fields and were inspired to overcome barriers, fostering an inclusive and empowering environment for future changemakers.">
+    
+    <meta property="og:image" content="https://bscf.dev/initiatives/women_in_stem/1.jpg">
+    
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="bscf.dev">
+    <meta property="twitter:url" content="https://bscf.dev/initiatives/women_in_stem/">
+    <meta name="twitter:title" content="Women in STEM">
+    <meta name="twitter:description" content="Under the She-STEM Internship Programme, an engaging session on Women in STEM was conducted by Oishi Jyoti. Participants explored the importance of equal representation in STEM fields and were inspired to overcome barriers, fostering an inclusive and empowering environment for future changemakers.">
+    
+    <meta name="twitter:image" content="https://bscf.dev/initiatives/women_in_stem/1.jpg">
+    
+    
+    <!-- FONTS [JOST, TIRO] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/posts.css">
+    <link rel="icon" type="image/png" href="/contents/images/icon.png">
+</head>
+
+<body>
+    <link rel="stylesheet" href="/css/header.css">
+<header>
+    <div class="nav-title">
+        <a href="/" class="logo-link">
+            <img src="/contents/images/logo.svg" alt="BSCF Logo">
+        </a>
+    </div>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav">
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/team">TEAM</a></li>
+        <li><a href="/initiatives">INITIATIVES</a></li>
+        <li><a href="/news">NEWS</a></li>
+        <li><a href="/contact">CONTACT US</a></li>
+    </ul>
+</header>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav');
+        const teamLink = document.querySelector('.team-link');
+        const dropdown = document.querySelector('.dropdown');
+
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
+        });
+
+        // Team dropdown toggle on mobile
+        if (teamLink) {
+            teamLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                    teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+                }
+            });
+        }
+
+        // Close dropdown and nav when clicking a nav link on mobile
+        document.querySelectorAll('.nav a:not(.team-link)').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    nav.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    if (dropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                    if (teamLink) {
+                        teamLink.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (dropdown && !e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+                if (teamLink) {
+                    teamLink.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+    });
+</script>
+    <main>
+        
+<div class="project-page-wrapper">
+    
+    <div class="notion-cover">
+        <img src="/initiatives/women_in_stem/1.jpg" alt="Women in STEM cover" class="cover-img">
+    </div>
+    
+
+    <article class="project-content">
+        <h1 class="project-title">Women in STEM</h1>
+        <div class="title-accent-line"></div>
+
+        
+        <div class="share-container">
+            <span class="share-label">Share:</span>
+            <div class="share-buttons">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://bscf.dev/initiatives/women_in_stem/" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://bscf.dev/initiatives/women_in_stem/" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="https://api.whatsapp.com/send?text=Women in STEM%20https://bscf.dev/initiatives/women_in_stem/" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 9 6.9Z"></path></svg>
+                </a>
+                <button onclick="copyToClipboard()" id="copyBtn" aria-label="Copy Link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        
+        <div class="project-body">
+            As part of the She-STEM Internship Programme under the BSCF Future STEM Leaders Programme 2025 Cohort 1, an inspiring session on Women in STEM was conducted by Oishi Jyoti. The session highlighted the significance of equal representation across science, technology, engineering, and mathematics, encouraging participants to break barriers and pursue excellence in their chosen fields. Oishi Jyoti shared personal insights, experiences, and strategies for overcoming challenges faced by women in STEM, emphasizing resilience, leadership, and creativity. The interactive session motivated young participants to develop confidence, ambition, and collaborative skills, while fostering an inclusive mindset essential for modern scientific and professional environments. This initiative reflects the programme’s goal of empowering young minds, nurturing leadership potential, and preparing the next generation of changemakers. Attendees left inspired, equipped with knowledge, and motivated to contribute meaningfully to STEM fields while promoting diversity and equity.
+
+        </div>
+
+        
+        
+        <section class="gallery-wrapper">
+            <div class="gallery-intro">
+                <span class="gallery-tag">Visuals</span>
+                <h2 class="gallery-heading">Gallery</h2>
+                <div class="gallery-decoration"></div>
+            </div>
+            
+            <div class="gallery-grid">
+                
+                <div class="gallery-card">
+                    <img src="/initiatives/women_in_stem/2.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/initiatives/women_in_stem/3.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/initiatives/women_in_stem/4.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/initiatives/women_in_stem/5.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/initiatives/women_in_stem/6.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/initiatives/women_in_stem/7.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/initiatives/women_in_stem/8.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="/initiatives/women_in_stem/9.jpg" alt="Project gallery image" loading="lazy">
+                </div>
+                
+            </div>
+        </section>
+        
+    </article>
+</div>
+
+<script>
+    function copyToClipboard() {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            const btn = document.getElementById('copyBtn');
+            const originalInner = btn.innerHTML;
+            btn.style.color = "#00b894"; // Visual feedback (green)
+            setTimeout(() => {
+                btn.style.color = ""; 
+            }, 2000);
+        });
+    }
+</script>
+
+<style>
+    .project-page-wrapper {
+        background: #fff;
+    }
+
+    .notion-cover {
+        width: 100%;
+        height: 70vh; 
+        min-height: 220px;
+        max-height: 600px; 
+        overflow: hidden;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .cover-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center; 
+    }
+
+    .project-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 24px 100px 24px;
+    }
+
+    .project-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin: 0 0 12px 0;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+    }
+
+    .title-accent-line {
+        height: 4px;
+        width: 80px;
+        background: #000;
+        border-radius: 2px;
+        margin-bottom: 24px;
+    }
+
+    /* SHARE BUTTONS STYLING */
+    .share-container {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 32px;
+    }
+
+    .share-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #a0a0a0;
+        letter-spacing: 0.05em;
+    }
+
+    .share-buttons {
+        display: flex;
+        gap: 16px;
+    }
+
+    .share-buttons a, .share-buttons button {
+        color: #37352f;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .share-buttons a:hover, .share-buttons button:hover {
+        opacity: 0.6;
+        transform: translateY(-2px);
+    }
+
+    /* 3. JUSTIFIED CONTENT */
+    .project-body {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #37352f;
+        text-align: justify;
+        hyphens: auto;
+    }
+
+    .project-body p {
+        margin-bottom: 1.6rem;
+    }
+
+    /* 4. ENHANCED GALLERY SECTION */
+    .gallery-wrapper {
+        margin-top: 80px;
+        padding-top: 40px;
+        border-top: 1px solid #eaeaea;
+    }
+
+    .gallery-intro {
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .gallery-tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #a0a0a0;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .gallery-heading {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0;
+        color: #1a1a1a;
+    }
+
+    .gallery-decoration {
+        position: absolute;
+        left: -24px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #000;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .gallery-card {
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f7f7f7;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .gallery-card img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        aspect-ratio: 3/2;
+    }
+
+    /* 5. RESPONSIVE */
+    @media (max-width: 768px) {
+        .project-title { font-size: 2.2rem; }
+        .gallery-grid { grid-template-columns: 1fr; }
+        .gallery-decoration { display: none; }
+        .notion-cover { height: 250px; }
+        .project-body { text-align: left; }
+        .share-container { margin-bottom: 24px; }
+    }
+</style>
+    </main>
+    <link rel="stylesheet" href="/css/footer.css">
+<!-- ICONS [BOOTSTRAP] -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css?v=1.11.3">
+
+<footer class="footer-container">
+    <div class="footer-main">
+        <div class="footer-about">
+            <div class="logo-container">
+                <img class="footer-logo" src="/contents/images/logo.svg" alt="BSCF Logo">
+            </div>
+            <p>BSCF is a socio-cultural forum for the youth of Bangladesh, dedicated to fostering a generation of leaders and innovators. We aim to create a vibrant community that promotes our rich cultural heritage while embracing modernity and progress.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/team">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Get Involved</h5>
+                <ul>
+                    <li><a href="/apply">Join Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/donate">Invest In Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Policies</h5>
+                <ul>
+                    <li><a href="/contents/pdfs/Anti-Corruption Policy BSCF.pdf" target="_blank">Anti-Corruption</a></li>
+                    <li><a href="/contents/pdfs/Anti-Sexual Harassment Policy BSCF.pdf" target="_blank">Anti-Sexual Harassment</a></li>
+                    <li><a href="/contents/pdfs/Child Protection Policy BSCF.pdf" target="_blank">Child Protection</a></li>
+                    <li><a href="/contents/pdfs/Conflict of Interest Policy & Declaration BSCF.pdf" target="_blank">Conflict of Interest</a></li>
+                    <li><a href="/contents/pdfs/Data Protection Policy BSCF.pdf" target="_blank">Data Protection</a></li>
+                    <li><a href="/contents/pdfs/Financial Management Policy BSCF.pdf" target="_blank">Financial Management</a></li>
+                    <li><a href="/contents/pdfs/Gender Equality Policy BSCF.pdf" target="_blank">Gender Equality</a></li>
+                    <li><a href="/contents/pdfs/HR Policy BSCF.pdf" target="_blank">HR Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="mailto:bscf24@gmail.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+                    <a href="https://www.linkedin.com/company/bscf-dev" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Bangladesh Socio-Cultural Forum. All Rights Reserved.</p>
+        <p>Developed & Maintained by <a href="https://github.com/BSCF-BD/bscf.dev" target="_blank">BSCF Tech Team</a></p>
+    </div>
+</footer>
+</body>
+
+</html>
