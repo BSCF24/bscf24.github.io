@@ -39,14 +39,12 @@ coordinator:
     image: "/contents/images/youth-network/tanvir.jpg"
 ---
 
-<section class="cover"></section>
-
-<section class="section">
-  <div class="container">
-    <p class="section-subtitle">OUR COMMUNITY</p>
-    <h2 class="section-main-title">Youth Network</h2>
-    <div class="title-underline"></div>
-    <p class="intro-text">
+<section class="cover">
+  <div class="cover-content">
+    <p class="cover-subtitle">OUR COMMUNITY</p>
+    <h1 class="cover-title">Youth<br>Network</h1>
+    <div class="cover-underline"></div>
+    <p class="cover-intro">
 The Youth Network is a vibrant platform that empowers young people to build leadership skills, engage in cultural activities, and promote environmental consciousness. It connects individuals from all backgrounds to drive positive social change and personal growth through volunteerism.
     </p>
   </div>
@@ -178,7 +176,8 @@ The Youth Network is a vibrant platform that empowers young people to build lead
    1. COVER SECTION
    ======================================= */
 .cover {
-  height: 60vh;
+  height: 100vh;
+  min-height: 600px;
   background: url(/contents/images/youth-network/youth-network.jpg) center/cover no-repeat;
   display: flex;
   align-items: center;
@@ -190,7 +189,47 @@ The Youth Network is a vibrant platform that empowers young people to build lead
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.cover-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0 24px;
+  max-width: 900px;
+}
+
+.cover-subtitle {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.cover-title {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 400;
+  margin: 0 0 60px 0;
+  line-height: 1.1;
+}
+
+.cover-underline {
+  width: 80px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 0 auto 60px auto;
+}
+
+.cover-intro {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: 400;
 }
 
 /* =======================================

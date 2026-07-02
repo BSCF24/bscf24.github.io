@@ -6,37 +6,35 @@
 
 header {
     position: fixed;
-    inset: 0 0 auto 0;
+    top: 16px;
+    left: 24px;
+    right: 24px;
     height: var(--header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 24px;
+    padding: 0 24px 0 12px;
     z-index: 1000;
-    background-color: var(--brand-dark); /* Main background */
-    border-bottom: 1px solid var(--brand-border);
+    background-color: var(--brand-dark);
+    /* Main background */
+    border: 1px solid var(--brand-border);
+    border-radius: 12px;
 }
 
-/* The White Block behind the logo */
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 120px; /* Adjust this to fit your logo width */
-    background-color: var(--brand-white);
-    z-index: -1; /* Keeps it behind the logo/text */
-}
+
+
 .nav-title {
     display: flex;
     align-items: center;
+    background-color: var(--brand-white);
+    margin-left: -12px;
+    padding: 0 16px;
+    align-self: stretch;
+    border-top-left-radius: 11px;
+    border-bottom-left-radius: 11px;
 }
 
 .logo-link {
-    background: white;
-    padding: 4px 8px;
-    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,13 +42,9 @@ header::before {
 }
 
 .nav-title img {
-    height: 24px;
+    height: 48px;
     width: auto;
     display: block;
-}
-
-.nav-title a:hover {
-    transform: scale(1.05);
 }
 
 .nav {
@@ -96,6 +90,10 @@ header::before {
     width: 100%;
 }
 
+.mobile-only {
+    display: none;
+}
+
 /* HAMBURGER ICON */
 .hamburger {
     display: none;
@@ -137,24 +135,34 @@ header::before {
 
 /* MOBILE NAV */
 @media (max-width: 767px) {
+    .mobile-only {
+        display: block;
+    }
+
     .hamburger {
         display: flex;
+        z-index: 1001;
+        /* Keep above nav */
     }
 
     .nav {
         display: none;
         flex-direction: column;
+        justify-content: center;
         position: fixed;
-        top: var(--header-height);
+        top: 0;
         left: 0;
         right: 0;
-        background-color: #1A202C;
-        padding: 60px 24px;
+        bottom: 0;
+        background-color: rgba(26, 32, 44, 0.95);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        padding: 80px 24px 40px 24px;
         gap: 32px;
         text-align: center;
-        border-bottom: 1px solid #2D3748;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        height: auto;
+        border: none;
+        height: 100vh;
+        z-index: 1000;
     }
 
     .nav.active {
@@ -162,10 +170,10 @@ header::before {
     }
 
     .nav a {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         letter-spacing: 0.2em;
     }
-    
+
     .nav a::after {
         display: none;
     }

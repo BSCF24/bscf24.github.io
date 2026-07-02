@@ -17,11 +17,12 @@ title: BSCF
 
   <div class="hero-container">
     <div class="archive-intro hero-content">
-  <h1 class="hero-title">Empowering Youth for a <br>Sustainable Future</h1>
-  <p class="hero-subtitle">An independent platform dedicated to the socio-cultural and educational development of Bangladeshi youth.</p>
-  
-  <div class="archive-line gold"></div> <span class="archive-tag light">Bangladesh Socio-Cultural Forum</span>
-</div>
+      <span class="archive-tag light">Bangladesh Socio-Cultural Forum</span>
+      <h1 class="hero-title">Empowering Youth for a <br>Sustainable Future</h1>
+      <div class="archive-line gold"></div> 
+      <p class="hero-subtitle">An independent platform dedicated to the socio-cultural and educational development of Bangladeshi youth.</p>
+    </div>
+  </div>
 
 </section>
 
@@ -96,12 +97,12 @@ title: BSCF
 
 .hero-header {
   position: relative;
-  height: 90vh;
+  height: 100vh;
   min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   overflow: hidden;
 }
 
@@ -122,11 +123,13 @@ title: BSCF
   height:100%;
   object-fit:cover;
   opacity:0;
-  transition:opacity 1.5s ease;
+  transform: scale(1);
+  transition: opacity 1.5s ease, transform 8s ease-out;
 }
 
 .slide.active{
   opacity:1;
+  transform: scale(1.05);
 }
 
 /* KEEP YOUR ORIGINAL CODE */
@@ -157,58 +160,36 @@ title: BSCF
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:flex-start;
-  padding-top:40px;
+  justify-content:center;
+  padding-top:40px; /* Slight offset from dead center if desired */
 }
 
 /* TOP TAG (Bangladesh Socio-Cultural Forum) */
-.archive-line.gold {
-  position: absolute;
-  /* Adjust this percentage or pixel value to hit the green zone exactly */
-  top: 170px; 
-  left: 50%;
-  transform: translateX(-50%);
-  
-  /* Line styling */
-  width: 80px;
-  height: 2px;
-  background-color: #fff;
-  z-index: 5; /* Ensures it stays above the background image */
+.archive-tag.light{
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 /* TITLE (below the tag) */
 .hero-title{
-  position:absolute;
-  top:70px;
-  left:50%;
-  transform:translateX(-50%);
   text-align:center;
-  color:#fff;
+  color: rgba(255, 255, 255, 0.9);
+  font-size:clamp(2.2rem, 8vw, 3.8rem);
+  width:100%;
+  margin-bottom: 65px;
 }
 
-.archive-tag.light{
-  order:2;
-  margin-top:10px;
-}
-
-.hero-title{
-  order:1;
-}
-
-.hero-subtitle{
-  position:absolute;
-  bottom:40px;
-  left:50%;
-  transform:translateX(-50%);
-  text-align:center;
+.archive-line.gold {
+  /* Line styling */
+  width: 80px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 5; /* Ensures it stays above the background image */
+  margin-bottom: 65px;
 }
 
 /* SUBTITLE (lower middle) */
 .hero-subtitle{
-  position:absolute;
-  bottom:30px;   /* smaller value = lower position */
-  left:50%;
-  transform:translateX(-50%);
   text-align:center;
   max-width:900px;
   font-size:1.25rem;
@@ -350,7 +331,6 @@ title: BSCF
 }
 
 @media (max-width:600px){
-  .hero-header { text-align:left; height:auto; padding:120px 0; }
   .hero-actions { flex-direction:column; }
   .partners-grid { grid-template-columns:1fr; }
 }

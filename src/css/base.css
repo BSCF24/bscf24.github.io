@@ -19,10 +19,6 @@
     font-style: normal;
 }
 
-body {
-    padding-top: var(--header-height);
-}
-
 main {
     display: flex;
     flex-direction: column;
@@ -34,8 +30,9 @@ main {
 .archive-container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 80px 24px;
+    padding: 130px 24px;
     text-align: left;
+    width: 100%;
 }
 
 .archive-intro {
@@ -91,7 +88,7 @@ main {
 /* RESPONSIVE COMMON STYLES */
 @media (max-width: 768px) {
     .archive-container {
-        padding: 40px 20px;
+        padding: 100px 20px;
     }
     .archive-intro {
         margin-bottom: 40px;
