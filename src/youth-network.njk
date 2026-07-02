@@ -1,0 +1,383 @@
+---
+layout: base.njk
+title: Youth Network
+coordinator:
+  - name: "Priyanka Adhikary"
+    slug: "priyanka-adhikary"
+    designation: "Chief Co-ordinator"
+    area: "Central Management"
+    image: "/contents/images/youth-network/priyanka.jpg"
+  - name: "Md Istarad Hossain Ilham"
+    slug: "md-istarad-hossain-ilham"
+    designation: "Co-ordinator"
+    area: ""
+    image: "/contents/images/youth-network/ilham.jpg"
+  - name: "Purnota Kabir"
+    slug: "purnota-kabir"
+    designation: "Co-ordinator"
+    area: ""
+    image: "/contents/images/youth-network/purnota.jpg"
+  - name: "Marzuakh Talukder Nawer"
+    slug: "marzuakh-talukder-nawer"
+    designation: "Co-ordinator"
+    area: ""
+    image: "/contents/images/youth-network/marzukah.jpeg"
+  - name: "Anamika Azad"
+    slug: "anamika-azad"
+    designation: "Co-ordinator"
+    area: ""
+    image: "/contents/images/youth-network/anamika.jpg"
+  - name: "Siam Sazzad"
+    slug: "siam-sazzad"
+    designation: "Co-ordinator"
+    area: ""
+    image: "/contents/images/youth-network/siam.jpg"
+  - name: "Farhan Bin Ashraf"
+    slug: "farhan-bin-ashraf"
+    designation: "Co-ordinator"
+    area: ""
+    image: "/contents/images/youth-network/tanvir.jpg"
+---
+
+<section class="cover"></section>
+
+<section class="section">
+  <div class="container">
+    <p class="section-subtitle">OUR COMMUNITY</p>
+    <h2 class="section-main-title">Youth Network</h2>
+    <div class="title-underline"></div>
+    <p class="intro-text">
+The Youth Network is a vibrant platform that empowers young people to build leadership skills, engage in cultural activities, and promote environmental consciousness. It connects individuals from all backgrounds to drive positive social change and personal growth through volunteerism.
+    </p>
+  </div>
+</section>
+
+<section class="coordinator-group-section">
+  <div class="container">
+    <h3 class="group-heading">Chief Coordinator</h3>
+    <div class="chief-container">
+      {% for item in coordinator %}
+        {% if "chief" in item.designation | lower %}
+        <div class="youth-network-card-wrap single-chief">
+          <div class="youth-network-member">
+            <div class="image-container">
+              <img src="{{ item.image }}" alt="{{ item.name }}">
+            </div>
+            <div class="member-details">
+              <h4>{{ item.name }}</h4>
+              <p class="role">{{ item.designation }}</p>
+              {% if item.area %}
+                <p class="department">({{ item.area }})</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="coordinator-group-section backend-grid-spacing">
+  <div class="container">
+    <h3 class="group-heading">Coordinators</h3>
+    <div class="youth-network-grid">
+      {% for item in coordinator %}
+        {% if "ordinator" in item.designation | lower and not ("chief" in item.designation | lower) %}
+        <div class="youth-network-card-wrap">
+          <div class="youth-network-member">
+            <div class="image-container">
+              <img src="{{ item.image }}" alt="{{ item.name }}">
+            </div>
+            <div class="member-details">
+              <h4>{{ item.name }}</h4>
+              <p class="role">{{ item.designation }}</p>
+              {% if item.area %}
+                <p class="department">({{ item.area }})</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="action-section">
+  <div class="container">
+    <div class="action-card-premium">
+      <div class="action-badge">OPPORTUNITY</div>
+      <h2>Join Our Youth Network</h2>
+      <p>Ready to make an impact? Build meaningful relationships, develop core leadership skills, and collaborate with passionate change-makers across Bangladesh.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeHrxN3-CjoA-d8p3svH_rTQgQMp9_o7r-BRzhgx3eCjAVbdg/viewform" target="_blank" class="btn btn-premium">
+        Join Now <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* =======================================
+   GENERAL & TYPOGRAPHY STYLES (From 4.PNG)
+   ======================================= */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 60px 20px 20px 20px;
+}
+
+.section-subtitle {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #a0aec0;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.section-main-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin: 0 0 15px 0;
+}
+
+.title-underline {
+  width: 50px;
+  height: 4px;
+  background-color: #1a202c;
+  margin: 0 auto 30px auto;
+}
+
+.intro-text {
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: #2d3748;
+  max-width: 800px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+.group-heading {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 35px;
+}
+
+/* =======================================
+   1. COVER SECTION
+   ======================================= */
+.cover {
+  height: 60vh;
+  background: url(/contents/images/youth-network/youth-network.jpg) center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* =======================================
+   2. COORDINATOR DISPLAY LAYOUTS
+   ======================================= */
+.coordinator-group-section {
+  padding: 40px 20px;
+  background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);
+  border-top: 1px solid #e2e8f0;
+}
+
+.backend-grid-spacing {
+  padding-top: 10px;
+  padding-bottom: 60px;
+  background: #ffffff;
+}
+
+.chief-container {
+  display: flex;
+  justify-content: center;
+}
+
+.single-chief {
+  width: 260px;
+}
+
+.youth-network-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+/* =======================================
+   3. CARDS & IMAGES (From Layout References)
+   ======================================= */
+.youth-network-card-wrap {
+  display: block;
+  cursor: default; /* Removes clickable cursor cue */
+}
+
+.youth-network-member {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 35px 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f0f0f0;
+  text-align: center;
+  height: 100%;
+  box-sizing: border-box;
+  /* Retains pop transition framework */
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+}
+
+/* Pure CSS Pop Up Interaction Effect */
+.youth-network-card-wrap:hover .youth-network-member {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+}
+
+.image-container {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 25px auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #1a202c;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =======================================
+   4. CARD TYPOGRAPHY 
+   ======================================= */
+.member-details h4 {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #2d3748;
+  margin: 0 0 6px 0;
+}
+
+.member-details .role {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #718096;
+  margin: 0 0 6px 0;
+}
+
+.member-details .department {
+  font-size: 0.85rem;
+  color: #a0aec0;
+  margin: 0;
+}
+
+/* =======================================
+   5. ATTRACTIVE PREMIUM ACTION SECTION
+   ======================================= */
+.action-section {
+  padding: 80px 20px;
+  background-color: #fafbfe;
+}
+
+.action-card-premium {
+  max-width: 750px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #ffffff 0%, #f4f8ff 100%);
+  border: 1px solid #e1ebf9;
+  border-radius: 20px;
+  padding: 50px 40px;
+  box-shadow: 0 15px 40px rgba(0, 123, 255, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.action-badge {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: rgba(0, 123, 255, 0.08);
+  color: #007BFF;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.action-card-premium h2 {
+  font-family: 'Jost', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 15px;
+}
+
+.action-card-premium p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #5a6578;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-premium {
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-size: 1.05rem;
+  background-color: #007BFF;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.25);
+}
+
+.btn-premium:hover {
+  background-color: #0056b3;
+  box-shadow: 0 10px 24px rgba(0, 86, 179, 0.35);
+}
+
+.btn-premium .arrow {
+  display: inline-block;
+  margin-left: 6px;
+  transition: transform 0.2s ease;
+}
+
+.btn-premium:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* =======================================
+   6. GLOBAL BUTTON BASE RULES
+   ======================================= */
+.btn {
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+</style>

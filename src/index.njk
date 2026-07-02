@@ -262,13 +262,15 @@ title: BSCF
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  transition:all 0.3s ease;
+  transition:all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .partner-item:hover {
-  background:#fafafa;
+  background:#ffffff;
   z-index:1;
   outline:1px solid #ccc;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
 .partner-img-wrapper {
@@ -281,14 +283,13 @@ title: BSCF
   width:100%;
   height:100%;
   object-fit:contain;
-  filter:grayscale(100%);
-  opacity:0.6;
-  transition:0.3s;
+  filter: grayscale(0%);
+  opacity: 1;
+  transition: transform 0.3s ease;
 }
 
 .partner-item:hover img {
-  filter:grayscale(0%);
-  opacity:1;
+  transform: scale(1.05);
 }
 
 .partner-name {
