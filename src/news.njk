@@ -13,17 +13,32 @@ permalink: /news/
 
   <div class="project-list" id="news-grid">
     {% for item in news %}
-      <a href="{{ item.url }}" class="project-card news-card" data-url="{{ item.url }}" target="_blank" rel="noopener">
+      <a href="{{ item.url }}" class="project-card news-card" target="_blank" rel="noopener">
         <div class="card-image-wrapper">
-          <div class="image-placeholder loading-shimmer"></div>
-          <img src="" alt="" class="preview-img" style="display:none;">
+          {% if item.preview and item.preview.image and (item.preview.image.localUrl or item.preview.image.url) %}
+            <img src="{{ item.preview.image.localUrl if item.preview.image.localUrl else item.preview.image.url }}" alt="{{ item.preview.title }}" class="preview-img">
+          {% else %}
+            <div class="image-placeholder loading-shimmer"></div>
+          {% endif %}
           <div class="date-badge">{{ item.date }}</div>
         </div>
         
         <div class="card-content">
-          <h2 class="card-title">Loading...</h2>
+          <h2 class="card-title">
+            {% if item.preview and item.preview.title %}
+              {{ item.preview.title }}
+            {% else %}
+              Untitled Article
+            {% endif %}
+          </h2>
           <div class="card-description-container">
-            <p class="card-description">Fetching preview...</p>
+            <p class="card-description">
+              {% if item.preview and item.preview.description %}
+                {{ item.preview.description }}
+              {% else %}
+                No description available.
+              {% endif %}
+            </p>
           </div>
           <span class="card-link">Visit Website →</span>
         </div>
@@ -31,40 +46,6 @@ permalink: /news/
     {% endfor %}
   </div>
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const cards = document.querySelectorAll('.news-card');
-    
-    cards.forEach(card => {
-      const url = card.getAttribute('data-url');
-      const imgTag = card.querySelector('.preview-img');
-      const titleTag = card.querySelector('.card-title');
-      const descTag = card.querySelector('.card-description');
-      const placeholder = card.querySelector('.image-placeholder');
-
-      fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`)
-        .then(response => response.json())
-        .then(res => {
-          if (res.status === 'success') {
-            const data = res.data;
-            titleTag.innerText = data.title || "Untitled Article";
-            descTag.innerText = data.description || "No description available.";
-            
-            if (data.image && data.image.url) {
-              imgTag.src = data.image.url;
-              imgTag.style.display = 'block';
-              placeholder.style.display = 'none';
-            }
-          }
-        })
-        .catch(err => {
-          titleTag.innerText = "Link Preview Unavailable";
-          console.error("Error fetching preview:", err);
-        });
-    });
-  });
-</script>
 
 <style>
   /* GRID SETUP - Ensures all cards in a row match height */
