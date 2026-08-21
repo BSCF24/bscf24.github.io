@@ -1,0 +1,23 @@
+{
+  "name": "bscf",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "astro": "^7.2.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^26.2.0",
+    "cheerio": "^1.0.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}

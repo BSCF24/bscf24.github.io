@@ -1,0 +1,377 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import hero1 from '../assets/images/front.jpg';
+import hero2 from '../assets/images/front2.jpg';
+import hero3 from '../assets/images/front3.jpg';
+import hero4 from '../assets/images/front4.jpg';
+import hero5 from '../assets/images/front5.jpg';
+
+const heroSlides = [
+  { img: hero1, alt: "BSCF Hero Slide 1", class: "slide active", loading: "eager" as const },
+  { img: hero2, alt: "BSCF Hero Slide 2", class: "slide", loading: "eager" as const },
+  { img: hero3, alt: "BSCF Hero Slide 3", class: "slide", loading: "eager" as const },
+  { img: hero4, alt: "BSCF Hero Slide 4", class: "slide", loading: "eager" as const },
+  { img: hero5, alt: "BSCF Hero Slide 5", class: "slide", loading: "eager" as const },
+];
+
+const partnerImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/pc/*');
+
+const partnerData = [
+  { name: "Government", img: "16.png" },
+  { name: "ZILA Parishad", img: "13.png" },
+  { name: "Novo Theater", img: "15.png" },
+  { name: "RCC", img: "12.png" },
+  { name: "RCCI", img: "11.png" },
+  { name: "Skincafe", img: "9.png" },
+  { name: "Shajgoj", img: "shajgoj.png" },
+  { name: "Lightcastle", img: "lightcastle.svg" },
+  { name: "SheSTEM", img: "shestem.svg" },
+  { name: "Youth for Policy", img: "yfp.svg" },
+  { name: "IID", img: "3.png" },
+  { name: "Jamuna", img: "6.png" },
+  { name: "The Daily Star", img: "5.png" },
+  { name: "Shomokal", img: "shomokal.svg" },
+  { name: "Nabil Group", img: "8.png" },
+  { name: "Mobile Guru", img: "17.png" }
+];
+
+const partners = await Promise.all(partnerData.map(async (partner) => {
+  const imageMod = partnerImages[`/src/assets/images/pc/${partner.img}`];
+  const image = imageMod ? (await imageMod()).default : null;
+  return { ...partner, image };
+}));
+---
+
+<Base title="BSCF">
+  <section class="hero-header">
+    <div class="hero-slider">
+      {heroSlides.map((slide) => (
+        <Image src={slide.img} class={slide.class} alt={slide.alt} loading={slide.loading} />
+      ))}
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-container">
+      <div class="archive-intro hero-content">
+        <span class="archive-tag light">Bangladesh Socio-Cultural Forum</span>
+        <h1 class="hero-title">Empowering Youth for a <br />Sustainable Future</h1>
+        <div class="archive-line gold"></div> 
+        <p class="hero-subtitle">An independent platform dedicated to the socio-cultural and educational development of Bangladeshi youth.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="partners-section">
+    <div class="archive-container">
+      <div class="archive-intro">
+        <span class="archive-tag">Network</span>
+        <h2 class="archive-title">Our Partners</h2>
+        <div class="archive-line"></div>
+      </div>
+
+      <div class="partners-grid">
+        {partners.map(partner => (
+          <div class="partner-item">
+            <div class="partner-img-wrapper">
+              {partner.image ? (
+                <Image src={partner.image} alt={partner.name} loading="lazy" />
+              ) : (
+                <img src={`/contents/images/pc/${partner.img}`} alt={partner.name} loading="lazy" />
+              )}
+            </div>
+            <span class="partner-name">{partner.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="home-about">
+    <div class="archive-container">
+      <div class="about-split">
+        <div class="about-text">
+          <div class="archive-intro">
+            <span class="archive-tag">About Us</span>
+            <h2 class="archive-title">What is BSCF?</h2>
+            <div class="archive-line"></div>
+          </div>
+          <p class="about-lead">BSCF is an independent, non-political platform fostering personal growth and environmental awareness among youth.</p>
+          <p class="about-body">We envision a Bangladesh where youth empowerment ensures an influential voice in national development, advocating for a tolerant and socially responsible nation.</p>
+          <a href="/about/" class="text-link">Read our full vision →</a>
+        </div>
+        <div class="about-image">
+          <div class="image-frame">
+            <Image src={hero1} alt="BSCF Youth Empowerment" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+.archive-tag.light { color: rgba(255,255,255,0.8); }
+.archive-line.gold { background: #fff; }
+
+/* HERO SECTION */
+
+.hero-header {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+/* NEW SLIDER CODE */
+
+.hero-slider{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+}
+
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transform: scale(1);
+  transition: opacity 1.5s ease, transform 8s ease-out;
+}
+
+.slide.active{
+  opacity:1;
+  transform: scale(1.05);
+}
+
+/* KEEP YOUR ORIGINAL CODE */
+
+.hero-overlay {
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background: rgba(0,0,0,0.4);
+  z-index:1;
+}
+
+.hero-container {
+  position: relative;
+  z-index:2;
+  width:100%;
+  max-width: var(--max-width);
+  margin:0 auto;
+  padding:0 24px;
+}
+
+.hero-content{
+  position:relative;
+  width:100%;
+  height:80vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding-top:40px; /* Slight offset from dead center if desired */
+}
+
+/* TOP TAG (Bangladesh Socio-Cultural Forum) */
+.archive-tag.light{
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* TITLE (below the tag) */
+.hero-title{
+  text-align:center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size:clamp(2.2rem, 8vw, 3.8rem);
+  width:100%;
+  margin-bottom: 65px;
+}
+
+.archive-line.gold {
+  /* Line styling */
+  width: 80px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 5; /* Ensures it stays above the background image */
+  margin-bottom: 65px;
+}
+
+/* SUBTITLE (lower middle) */
+.hero-subtitle{
+  text-align:center;
+  max-width:900px;
+  font-size:1.25rem;
+  line-height:1.6;
+}
+
+.hero-actions {
+  display:flex;
+  gap:1rem;
+}
+
+.btn-primary {
+  background:#fff;
+  color:#000;
+  padding:1rem 2rem;
+  text-decoration:none;
+  font-weight:700;
+  border-radius:4px;
+  transition:0.3s;
+}
+
+.btn-secondary {
+  border:1px solid #fff;
+  color:#fff;
+  padding:1rem 2rem;
+  text-decoration:none;
+  font-weight:700;
+  border-radius:4px;
+  transition:0.3s;
+}
+
+.btn-primary:hover {
+  background:var(--accent);
+  color:#fff;
+}
+
+/* PARTNERS GRID */
+
+.partners-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--border-color);
+  border:1px solid var(--border-color);
+}
+
+.partner-item {
+  background:#fff;
+  padding:3rem 2rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.partner-item:hover {
+  background:#ffffff;
+  z-index:1;
+  outline:1px solid #ccc;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.partner-img-wrapper {
+  height:60px;
+  width:100%;
+  margin-bottom:1rem;
+}
+
+.partner-img-wrapper img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter: grayscale(0%);
+  opacity: 1;
+  transition: transform 0.3s ease;
+}
+
+.partner-item:hover img {
+  transform: scale(1.05);
+}
+
+.partner-name {
+  font-size:0.7rem;
+  font-weight:700;
+  text-transform:uppercase;
+  color:#aaa;
+  letter-spacing:0.05em;
+}
+
+/* ABOUT SECTION */
+
+.about-split {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  text-align:justify;
+}
+
+.about-lead {
+  font-size:1.4rem;
+  font-weight:500;
+  margin-bottom:1.5rem;
+  line-height:1.4;
+}
+
+.about-body {
+  color:var(--text-muted);
+  line-height:1.8;
+  margin-bottom:2rem;
+}
+
+.text-link {
+  color:var(--accent);
+  font-weight:700;
+  text-decoration:none;
+}
+
+.image-frame {
+  aspect-ratio:4 / 3;
+  overflow:hidden;
+  border-radius:12px;
+  box-shadow:20px 20px 0px #f0f0f0;
+}
+
+.image-frame img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* RESPONSIVE */
+
+@media (max-width:1024px){
+  .partners-grid { grid-template-columns:repeat(2,1fr); }
+  .about-split { grid-template-columns:1fr; gap:40px; }
+  .partner-img-wrapper img { filter:grayscale(0%); opacity:1; }
+}
+
+@media (max-width:600px){
+  .hero-actions { flex-direction:column; }
+  .partners-grid { grid-template-columns:1fr; }
+}
+</style>
+
+<script is:inline>
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function changeSlide(){
+  if (slides.length > 0) {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+  }
+}
+
+if (slides.length > 1) {
+  setInterval(changeSlide, 4000);
+}
+</script>

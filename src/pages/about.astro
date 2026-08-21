@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About Us">
+  <div class="archive-container">
+    <div class="archive-intro">
+      <span class="archive-tag">Our Story</span>
+      <h1 class="archive-title">About BSCF</h1>
+      <div class="archive-line"></div>
+      <p class="archive-lead">
+        Bangladesh Socio-Cultural Forum (BSCF) is an independent, non-political, and non-profit platform 
+        dedicated to the socio-cultural and educational development of Bangladeshi youth.
+      </p>
+    </div>
+
+    <section class="about-content">
+      <div class="main-description">
+        <p>We focus on enhancing social skills, encouraging participation in cultural activities, promoting environmental awareness, and fostering tolerance and personal growth.</p>
+      </div>
+
+      <div class="vision-mission-grid">
+        <div class="info-block">
+          <h2 class="block-title">Our Vision</h2>
+          <p class="block-text">
+            BSCF envisions a Bangladesh where youth empowerment is paramount, ensuring their active 
+            participation and influential voice in national development. We advocate for a tolerant 
+            nation, emphasizing empathy and respect for diverse religions, perspectives, and beliefs.
+          </p>
+          <p class="block-text">
+            Our goal is to cultivate socially responsible, environmentally conscious citizens with 
+            cultural proficiency and a global mindset.
+          </p>
+        </div>
+
+        <div class="info-block">
+          <h2 class="block-title">Our Mission</h2>
+          <p class="block-text">
+            BSCF engages youth from diverse backgrounds—villages, urban areas, grassroots, and 
+            underprivileged regions—offering tangible behavioral skills, social responsibility, mental 
+            health awareness, and cultural exchange opportunities.
+          </p>
+          <p class="block-text">
+            We empower youth through volunteerism, fostering an environment where they emerge as 
+            non-communal, respectful, humble, and tolerant global citizens advocating for sustainable development.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  /* CONTENT STYLING */
+  .main-description {
+    margin-bottom: 80px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 40px;
+  }
+
+  .main-description p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 800px;
+  }
+
+  /* VISION & MISSION GRID */
+  .vision-mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: justify;
+    gap: 4rem;
+  }
+
+  .block-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+  }
+
+  .block-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    .vision-mission-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+</style>

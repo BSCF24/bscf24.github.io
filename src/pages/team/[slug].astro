@@ -1,0 +1,32 @@
+---
+import MemberPage from '../../layouts/MemberPage.astro';
+import team from '../../data/team.json';
+
+export async function getStaticPaths() {
+  const allMembers = [team.founder, ...team.coreTeam];
+  return allMembers.map(member => ({
+    params: { slug: member.slug },
+    props: { member }
+  }));
+}
+
+interface MemberType {
+  name: string;
+  slug: string;
+  role: string;
+  department?: string;
+  image: string;
+  linkedin?: string;
+  gmail?: string;
+  short_bio?: string;
+  bio: string;
+}
+
+interface Props {
+  member: MemberType;
+}
+
+const { member } = Astro.props;
+---
+
+<MemberPage member={member} />

@@ -1,0 +1,159 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Contact Us">
+  <div class="archive-container">
+    <div class="archive-intro">
+      <span class="archive-tag">Get in Touch</span>
+      <h1 class="archive-title">Contact Us</h1>
+      <div class="archive-line"></div>
+      <p class="archive-lead">If you have any questions, feel free to reach out to us through any of the following channels.</p>
+    </div>
+
+    <div class="contact-grid">
+      <a href="https://www.facebook.com/profile.php?id=61556581893985" target="_blank" class="contact-card">
+        <div class="card-content">
+          <div class="icon-wrapper"><i class="bi bi-facebook"></i></div>
+          <h2 class="card-title">Facebook</h2>
+          <p class="card-description">Follow our community news.</p>
+          <span class="card-link">Visit Profile →</span>
+        </div>
+      </a>
+
+      <a href="https://www.linkedin.com/company/bscf-dev" target="_blank" class="contact-card">
+        <div class="card-content">
+          <div class="icon-wrapper"><i class="bi bi-linkedin"></i></div>
+          <h2 class="card-title">LinkedIn</h2>
+          <p class="card-description">Connect with our network.</p>
+          <span class="card-link">Connect →</span>
+        </div>
+      </a>
+
+      <div class="contact-card no-hover">
+        <div class="card-content">
+          <div class="icon-wrapper"><i class="bi bi-envelope"></i></div>
+          <h2 class="card-title">Email</h2>
+          <p class="card-description">For official inquiries.</p>
+          <a id="email-link" href="#" class="card-link accent-text">Loading...</a>
+        </div>
+      </div>
+
+      <div class="contact-card no-hover">
+        <div class="card-content">
+          <div class="icon-wrapper"><i class="bi bi-phone"></i></div>
+          <h2 class="card-title">Events</h2>
+          <p class="card-description">Redwan Ahmed<br />Director - Events</p>
+          <a id="phone-link" href="#" class="card-link accent-text">Loading...</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+        const email = 'YnNjZjI0QGdtYWlsLmNvbQ==';
+        const phone = 'MDE3MTQ3OTMwMzI=';
+
+        const emailLink = document.getElementById('email-link');
+        if (emailLink) {
+            emailLink.href = 'mailto:' + atob(email);
+            emailLink.textContent = atob(email);
+        }
+
+        const phoneLink = document.getElementById('phone-link');
+        if (phoneLink) {
+            phoneLink.href = 'tel:' + atob(phone);
+            phoneLink.textContent = atob(phone);
+        }
+    });
+</script>
+
+<style>
+  /* GRID SYSTEM: 4 columns by default */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* CARD STYLING */
+  .contact-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+  }
+
+  .contact-card:not(.no-hover):hover {
+    transform: translateY(-8px);
+    border-color: #d1d1d1;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+  }
+
+  .icon-wrapper {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-main);
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .card-link {
+    margin-top: auto;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    text-decoration: none;
+  }
+
+  .accent-text {
+      opacity: 1;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.95rem;
+      word-break: break-all;
+  }
+
+  /* RESPONSIVE BREAKPOINTS */
+  @media (max-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,209 @@
+---
+import { Image } from 'astro:assets';
+import Base from './Base.astro';
+import { getImageAsset } from '../utils/images';
+
+interface Member {
+  name: string;
+  slug: string;
+  role: string;
+  department?: string;
+  image: string;
+  linkedin?: string;
+  gmail?: string;
+  short_bio?: string;
+  bio: string;
+}
+
+interface Props {
+  member: Member;
+}
+
+const { member } = Astro.props;
+const resolvedImage = await getImageAsset(member.image);
+---
+
+<Base title={member.name}>
+  <div class="archive-container">
+    <div class="archive-intro">
+      <span class="archive-tag">Team Member</span>
+      <h1 class="archive-title">{member.name}</h1>
+      <div class="archive-line"></div>
+    </div>
+
+    <section class="member-detail-grid">
+      <div class="member-meta">
+        <div class="member-image-frame">
+          {resolvedImage ? (
+            <Image src={resolvedImage} alt={member.name} width={600} height={600} loading="eager" />
+          ) : (
+            <img src={member.image} alt={member.name} loading="eager" />
+          )}
+        </div>
+        <div class="member-specs">
+          <p class="member-role">{member.role}</p>
+          {member.department && (
+            <p class="member-dept">{member.department}</p>
+          )}
+          {member.linkedin && (
+            <div class="member-social">
+              <a href={member.linkedin} target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+                <span class="icon-wrapper">
+                  <i class="bi bi-linkedin"></i>
+                </span>
+                <div class="social-text">
+                  <span class="social-label">Connect on</span>
+                  <span class="social-platform">LinkedIn</span>
+                </div>
+              </a>
+            </div>
+          )}
+          {member.gmail && (
+            <div class="member-social">
+              <a href={`mailto:${member.gmail.trim()}`} class="linkedin-link" aria-label="Send Email">
+                <span class="icon-wrapper">
+                  <i class="bi bi-envelope-fill"></i>
+                </span>
+                <div class="social-text">
+                  <span class="social-label">Send an</span>
+                  <span class="social-platform">Email</span>
+                </div>
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div class="member-bio">
+        <div class="bio-content">{member.bio}</div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  /* GRID SYSTEM */
+  .member-detail-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* IMAGE COLUMN */
+  .member-image-frame {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f9f9f9;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+  }
+
+  .member-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .member-specs {
+    border-left: 2px solid var(--border-color);
+    padding-left: 1.5rem;
+  }
+
+  .member-role {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .member-dept {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* PROFESSIONAL SOCIAL SECTION */
+  .member-social {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color); 
+  }
+
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4;
+    border-radius: 6px;
+    color: #0077b5;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .social-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .social-platform {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* HOVER STATES */
+  .linkedin-link:hover .social-platform {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  .bio-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    white-space: pre-wrap;
+    text-align: justify;
+    margin-top: 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    .member-detail-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .member-image-frame {
+      max-width: 340px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .member-image-frame {
+      max-width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import logoSvg from '../assets/images/logo.svg';
+import '../styles/header.css';
+---
+<header>
+    <div class="nav-title">
+        <a href="/" class="logo-link">
+            <Image src={logoSvg} alt="BSCF Logo" width={64} height={64} loading="eager" />
+        </a>
+    </div>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav">
+        <li class="mobile-only"><a href="/">HOME</a></li>
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/team">TEAM</a></li>
+        <li><a href="/initiatives">INITIATIVES</a></li>
+        <li><a href="/news">NEWS</a></li>
+        <li><a href="/youth-network">YOUTH NETWORK</a></li>
+        <li><a href="/contact">CONTACT US</a></li>
+    </ul>
+</header>
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav');
+        const teamLink = document.querySelector('.team-link');
+        const dropdown = document.querySelector('.dropdown');
+
+        if (hamburger && nav) {
+            // Hamburger menu toggle
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
+            });
+        }
+
+        // Team dropdown toggle on mobile
+        if (teamLink && dropdown) {
+            teamLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                    teamLink.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+                }
+            });
+        }
+
+        // Close dropdown and nav when clicking a nav link on mobile
+        document.querySelectorAll('.nav a:not(.team-link)').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    if (nav) nav.classList.remove('active');
+                    if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+                    if (dropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                    if (teamLink) {
+                        teamLink.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (dropdown && !e.target.closest('.team-item') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+                if (teamLink) {
+                    teamLink.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+    });
+</script>

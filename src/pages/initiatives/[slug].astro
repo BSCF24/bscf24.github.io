@@ -1,0 +1,28 @@
+---
+import Initiative from '../../layouts/Initiative.astro';
+import { getInitiatives, type InitiativeItem } from '../../data/initiatives';
+
+export async function getStaticPaths() {
+  const initiatives = getInitiatives();
+  return initiatives.map(initiative => ({
+    params: { slug: initiative.slug },
+    props: { initiative }
+  }));
+}
+
+interface Props {
+  initiative: InitiativeItem;
+}
+
+const { initiative } = Astro.props;
+---
+
+<Initiative 
+  title={initiative.title} 
+  description={initiative.description} 
+  featured={initiative.featured} 
+  images={initiative.images}
+  pageUrl={`/initiatives/${initiative.slug}/`}
+>
+  <Fragment set:html={initiative.body} />
+</Initiative>

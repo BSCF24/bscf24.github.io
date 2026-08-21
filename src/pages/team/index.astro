@@ -1,0 +1,208 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import team from '../../data/team.json';
+import { getImageAsset } from '../../utils/images';
+
+const founderImage = await getImageAsset(team.founder.image);
+const coreTeamWithImages = await Promise.all(
+  team.coreTeam.map(async (member) => ({
+    ...member,
+    resolvedImage: await getImageAsset(member.image)
+  }))
+);
+---
+
+<Base title="TEAM - BSCF">
+  <div class="archive-container">
+    <div class="archive-intro centered">
+      <span class="archive-tag">Our Organization</span>
+      <h1 class="archive-title">Our Team</h1>
+      <div class="archive-line"></div>
+      <p class="archive-lead">Meet the dedicated individuals driving the vision and mission of BSCF forward. Our team is committed to empowering Bangladeshi youth and fostering a sustainable, inclusive future.</p>
+    </div>
+
+    <div class="team-section-wrapper">
+      <h3 class="section-label">Founder</h3>
+      <div class="founder-centered-wrapper">
+        <a href={`/team/${team.founder.slug}/`} class="team-member-link">
+          <div class="team-member founder-special">
+            <div class="image-container">
+              {founderImage ? (
+                <Image src={founderImage} alt={team.founder.name} width={400} height={400} loading="eager" />
+              ) : (
+                <img src={team.founder.image} alt={team.founder.name} loading="eager" />
+              )}
+            </div>
+            <div class="member-details">
+              <h4>{team.founder.name}</h4>
+              <p class="role">{team.founder.role}</p>
+              <p class="founder-bio">{team.founder.short_bio}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="team-section-wrapper">
+      <h3 class="section-label">Core Team</h3>
+      <div class="members-grid">
+        {coreTeamWithImages.map(member => (
+          <a href={`/team/${member.slug}/`} class="team-member-link">
+            <div class="team-member">
+              <div class="image-container">
+                {member.resolvedImage ? (
+                  <Image src={member.resolvedImage} alt={member.name} width={300} height={300} loading="lazy" />
+                ) : (
+                  <img src={member.image} alt={member.name} loading="lazy" />
+                )}
+              </div>
+              <div class="member-details">
+                <h4>{member.name}</h4>
+                <p class="role">{member.role}</p>
+                {member.department && (
+                  <p class="department">({member.department})</p>
+                )}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  /* SECTION LABELS */
+  .section-label {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+  }
+
+  .team-section-wrapper {
+    margin-bottom: 100px;
+  }
+
+  /* GRID LOGIC - 4 COLUMNS ON DESKTOP */
+  .members-grid {
+    display: grid;
+    /* Responsive auto-fill: 200px min ensures we get 4 columns on desktop */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  @media (min-width: 1024px) {
+    .members-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* CARD STYLING */
+  .team-member-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+  }
+
+  .team-member {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem 1rem; /* Slightly tighter padding for 4-column layout */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid var(--border-color);
+  }
+
+  .team-member:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Updated Image Size for 4-column layout */
+  .image-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.2rem auto;
+    border: 3px solid var(--accent);
+    flex-shrink: 0;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .member-details h4 {
+    font-size: 1.15rem; /* Balanced for 4 columns */
+    color: #333;
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+
+  .role {
+    font-size: 0.9rem;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 0.4rem;
+  }
+
+  .department {
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  /* FOUNDER CENTERED LOOK */
+  .founder-centered-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .founder-special {
+    max-width: 600px;
+  }
+
+  .founder-bio {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-top: 1rem;
+  }
+
+  /* Tablet / Mobile Adjustments */
+  @media (min-width: 768px) {
+    .founder-special {
+      flex-direction: row;
+      text-align: left;
+      padding: 3rem;
+      gap: 2.5rem;
+    }
+    .founder-special .image-container {
+      margin: 0;
+      width: 150px; /* Keep founder image larger */
+      height: 150px;
+    }
+  }
+
+  @media (max-width: 1023px) and (min-width: 600px) {
+    .members-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 per row on small tablets */
+    }
+  }
+
+  @media (max-width: 599px) {
+    .members-grid { grid-template-columns: 1fr; }
+  }
+</style>

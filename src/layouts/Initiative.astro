@@ -1,0 +1,286 @@
+---
+import { Image } from 'astro:assets';
+import Base from './Base.astro';
+import metadata from '../data/metadata.json';
+import { getImageAsset } from '../utils/images';
+
+interface Props {
+  title: string;
+  description?: string;
+  featured?: string;
+  images?: string[];
+  pageUrl?: string;
+}
+
+const {
+  title,
+  description,
+  featured,
+  images = [],
+  pageUrl = Astro.url.pathname
+} = Astro.props;
+
+const resolvedFeatured = featured ? await getImageAsset(featured) : null;
+const resolvedGalleryImages = await Promise.all(
+  images.map(async (img) => ({
+    original: img,
+    resolved: await getImageAsset(img)
+  }))
+);
+
+const shareUrl = `${metadata.url}${pageUrl}`;
+const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${shareUrl}`;
+const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
+---
+
+<Base title={title} description={description} featured={featured ? [featured] : undefined} pageUrl={pageUrl}>
+  <div class="project-page-wrapper">
+    {featured && (
+      <div class="notion-cover">
+        {resolvedFeatured ? (
+          <Image src={resolvedFeatured} alt={`${title} cover`} class="cover-img" loading="eager" />
+        ) : (
+          <img src={featured} alt={`${title} cover`} class="cover-img" />
+        )}
+      </div>
+    )}
+
+    <article class="project-content">
+      <h1 class="project-title">{title}</h1>
+      <div class="title-accent-line"></div>
+
+      <!-- Share Buttons Section -->
+      <div class="share-container">
+        <span class="share-label">Share:</span>
+        <div class="share-buttons">
+          <a href={facebookShareUrl} target="_blank" rel="noopener" aria-label="Share on Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href={linkedinShareUrl} target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href={whatsappShareUrl} target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 9 6.9Z"></path></svg>
+          </a>
+          <button onclick="copyToClipboard()" id="copyBtn" aria-label="Copy Link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Justified Body Content -->
+      <div class="project-body">
+        <slot />
+      </div>
+
+      <!-- Refined Gallery Section -->
+      {images && images.length > 0 && (
+        <section class="gallery-wrapper">
+          <div class="gallery-intro">
+            <span class="gallery-tag">Visuals</span>
+            <h2 class="gallery-heading">Gallery</h2>
+            <div class="gallery-decoration"></div>
+          </div>
+          
+          <div class="gallery-grid">
+            {resolvedGalleryImages.map(item => (
+              <div class="gallery-card">
+                {item.resolved ? (
+                  <Image src={item.resolved} alt="Project gallery image" loading="lazy" width={600} height={400} />
+                ) : (
+                  <img src={item.original} alt="Project gallery image" loading="lazy" />
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </article>
+  </div>
+</Base>
+
+<script is:inline>
+    function copyToClipboard() {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            const btn = document.getElementById('copyBtn');
+            if (btn) {
+                btn.style.color = "#00b894"; // Visual feedback (green)
+                setTimeout(() => {
+                    btn.style.color = ""; 
+                }, 2000);
+            }
+        });
+    }
+</script>
+
+<style>
+    .project-page-wrapper {
+        background: #fff;
+    }
+
+    .notion-cover {
+        width: 100%;
+        height: 70vh; 
+        min-height: 220px;
+        max-height: 600px; 
+        overflow: hidden;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .cover-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center; 
+    }
+
+    .project-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 24px 100px 24px;
+    }
+
+    .project-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin: 0 0 12px 0;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+    }
+
+    .title-accent-line {
+        height: 4px;
+        width: 80px;
+        background: #000;
+        border-radius: 2px;
+        margin-bottom: 24px;
+    }
+
+    /* SHARE BUTTONS STYLING */
+    .share-container {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 32px;
+    }
+
+    .share-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #a0a0a0;
+        letter-spacing: 0.05em;
+    }
+
+    .share-buttons {
+        display: flex;
+        gap: 16px;
+    }
+
+    .share-buttons a, .share-buttons button {
+        color: #37352f;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .share-buttons a:hover, .share-buttons button:hover {
+        opacity: 0.6;
+        transform: translateY(-2px);
+    }
+
+    /* 3. JUSTIFIED CONTENT */
+    .project-body {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #37352f;
+        text-align: justify;
+        hyphens: auto;
+    }
+
+    .project-body p {
+        margin-bottom: 1.6rem;
+    }
+
+    /* 4. ENHANCED GALLERY SECTION */
+    .gallery-wrapper {
+        margin-top: 80px;
+        padding-top: 40px;
+        border-top: 1px solid #eaeaea;
+    }
+
+    .gallery-intro {
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .gallery-tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #a0a0a0;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .gallery-heading {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0;
+        color: #1a1a1a;
+    }
+
+    .gallery-decoration {
+        position: absolute;
+        left: -24px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #000;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .gallery-card {
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f7f7f7;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .gallery-card img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        aspect-ratio: 3/2;
+    }
+
+    /* 5. RESPONSIVE */
+    @media (max-width: 768px) {
+        .project-title { font-size: 2.2rem; }
+        .gallery-grid { grid-template-columns: 1fr; }
+        .gallery-decoration { display: none; }
+        .notion-cover { height: 250px; }
+        .project-body { text-align: left; }
+        .share-container { margin-bottom: 24px; }
+    }
+</style>
