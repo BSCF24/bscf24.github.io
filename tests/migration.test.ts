@@ -113,6 +113,7 @@ describe('Astro Migration Parity Tests', () => {
 
   describe('Common Elements Across All 53 Pages', () => {
     function getHtmlFiles(dir: string, base = ''): string[] {
+      if (!fs.existsSync(dir)) return [];
       let results: string[] = [];
       const list = fs.readdirSync(dir, { withFileTypes: true });
       for (const item of list) {
