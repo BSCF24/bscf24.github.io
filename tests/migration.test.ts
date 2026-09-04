@@ -305,14 +305,14 @@ describe('Astro Migration Parity Tests', () => {
   });
 
   describe('Youth Network (/youth-network/)', () => {
-    it('should render cover, Chief Coordinator, 6 Coordinators, and Join CTA', () => {
+    it('should render cover, Chief Coordinator, 5 Coordinators, and Join CTA', () => {
       const html = fs.readFileSync(path.join(astroDistDir, 'youth-network', 'index.html'), 'utf8');
       const $ = cheerio.load(html);
 
       expect($('.cover-title').text()).toContain('Youth');
       expect($('.single-chief').length).toBe(1);
       expect($('.single-chief h4').text()).toBe('Priyanka Adhikary');
-      expect($('.youth-network-grid .youth-network-card-wrap').length).toBe(6);
+      expect($('.youth-network-grid .youth-network-card-wrap').length).toBe(5);
       expect($('.btn-premium').attr('href')).toContain('docs.google.com/forms');
     });
   });

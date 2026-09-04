@@ -32,9 +32,10 @@ const shareUrl = `${metadata.url}${pageUrl}`;
 const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${shareUrl}`;
 const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
 const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
+const ogImageUrl = resolvedFeatured ? resolvedFeatured.src : featured;
 ---
 
-<Base title={title} description={description} featured={featured ? [featured] : undefined} pageUrl={pageUrl}>
+<Base title={title} description={description} featured={ogImageUrl} pageUrl={pageUrl}>
   <div class="project-page-wrapper">
     {featured && (
       <div class="notion-cover">

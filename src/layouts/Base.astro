@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import metadata from '../data/metadata.json';
+import defaultBanner from '../assets/images/front.jpg';
 import '../styles/base.css';
 import '../styles/posts.css';
 
@@ -20,7 +21,8 @@ const {
 } = Astro.props;
 
 const featuredImage = Array.isArray(featured) ? featured[0] : featured;
-const ogImage = featuredImage ? `${metadata.url}${featuredImage}` : undefined;
+const rawOgPath = featuredImage || defaultBanner.src;
+const ogImage = rawOgPath.startsWith('http') ? rawOgPath : `${metadata.url}${rawOgPath.startsWith('/') ? '' : '/'}${rawOgPath}`;
 const currentUrl = `${metadata.url}${pageUrl}`;
 ---
 <!DOCTYPE html>
