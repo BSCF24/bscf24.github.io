@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { Buffer } from 'node:buffer';
+import prebuiltPreviews from './news-previews.json';
 
 export async function getNews() {
   const newsItems = [
@@ -70,6 +71,7 @@ export async function getNews() {
 
     try {
       const res = await fetch(url, {
+        signal: AbortSignal.timeout(4000),
         headers: {
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
           'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
@@ -110,7 +112,9 @@ export async function getNews() {
 
     let previewData = null;
 
-    if (fs.existsSync(cacheFile)) {
+    if (prebuiltPreviews && prebuiltPreviews[cacheKey]) {
+      previewData = prebuiltPreviews[cacheKey];
+    } else if (fs.existsSync(cacheFile)) {
       try {
         previewData = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
       } catch (e) { }
@@ -120,7 +124,7 @@ export async function getNews() {
       try {
         await delay(800);
         let apiReq = `https://api.microlink.io?url=${encodeURIComponent(cleanUrl)}`;
-        let response = await fetch(apiReq);
+        let response = await fetch(apiReq, { signal: AbortSignal.timeout(4000) });
         let res = await response.json();
 
         if (res.status === 'success') {
