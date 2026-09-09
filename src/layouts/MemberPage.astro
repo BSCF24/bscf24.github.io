@@ -46,27 +46,27 @@ const resolvedImage = await getImageAsset(member.image);
             <p class="member-dept">{member.department}</p>
           )}
           {member.linkedin && (
-            <div class="member-social">
-              <a href={member.linkedin} target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+            <div class="member-contact-item">
+              <a href={member.linkedin} target="_blank" class="contact-action-link" aria-label="LinkedIn Profile">
                 <span class="icon-wrapper">
                   <i class="bi bi-linkedin"></i>
                 </span>
-                <div class="social-text">
-                  <span class="social-label">Connect on</span>
-                  <span class="social-platform">LinkedIn</span>
+                <div class="contact-action-text">
+                  <span class="contact-action-label">Connect on</span>
+                  <span class="contact-action-platform">LinkedIn</span>
                 </div>
               </a>
             </div>
           )}
           {member.gmail && (
-            <div class="member-social">
-              <a href={`mailto:${member.gmail.trim()}`} class="linkedin-link" aria-label="Send Email">
+            <div class="member-contact-item">
+              <a href={`mailto:${member.gmail.trim()}`} class="contact-action-link" aria-label="Send Email">
                 <span class="icon-wrapper">
                   <i class="bi bi-envelope-fill"></i>
                 </span>
-                <div class="social-text">
-                  <span class="social-label">Send an</span>
-                  <span class="social-platform">Email</span>
+                <div class="contact-action-text">
+                  <span class="contact-action-label">Send an</span>
+                  <span class="contact-action-platform">Email</span>
                 </div>
               </a>
             </div>
@@ -127,14 +127,14 @@ const resolvedImage = await getImageAsset(member.image);
     font-style: italic;
   }
 
-  /* PROFESSIONAL SOCIAL SECTION */
-  .member-social {
+  /* PROFESSIONAL CONTACT SECTION */
+  .member-contact-item {
     margin-top: 0.5rem;
     padding-top: 0.75rem;
     border-top: 1px solid var(--border-color); 
   }
 
-  .linkedin-link {
+  .contact-action-link {
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -156,26 +156,26 @@ const resolvedImage = await getImageAsset(member.image);
     transition: all 0.3s ease;
   }
 
-  .social-text {
+  .contact-action-text {
     display: flex;
     flex-direction: column;
     line-height: 1.2;
   }
 
-  .social-label {
+  .contact-action-label {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-muted);
   }
 
-  .social-platform {
+  .contact-action-platform {
     font-size: 0.95rem;
     font-weight: 600;
   }
 
   /* HOVER STATES */
-  .linkedin-link:hover .social-platform {
+  .contact-action-link:hover .contact-action-platform {
     text-decoration: underline;
     text-underline-offset: 4px;
   }
