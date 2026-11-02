@@ -253,7 +253,7 @@ describe("BSCF Site Regression & Build Tests", () => {
       expect($(".cover-title").text()).toContain("Youth");
       expect($(".single-chief").length).toBe(1);
       expect($(".single-chief h4").text()).toBe("Priyanka Adhikary");
-      expect($(".youth-network-grid .youth-network-card-wrap").length).toBe(5);
+      expect($(".youth-network-grid .youth-network-card-wrap").length).toBe(6);
       expect($(".btn-premium").attr("href")).toContain("docs.google.com/forms");
     });
   });
