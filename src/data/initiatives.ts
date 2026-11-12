@@ -1,5 +1,19 @@
 import initiativesData from './initiatives.json';
 
+export interface ProjectVideoItem {
+  id: string;
+  category: 'reel' | 'ovc' | 'podcast';
+  title: string;
+  theme: string;
+  duration: string;
+  date: string;
+  description: string;
+  youtube?: string;
+  facebook?: string;
+  instagram?: string;
+  linkedin?: string;
+}
+
 export interface InitiativeItem {
   slug: string;
   title: string;
@@ -11,13 +25,18 @@ export interface InitiativeItem {
   body: string;
   rawBody: string;
   fileType: string;
+  video?: string;
+  videos?: ProjectVideoItem[];
 }
+
+export { getVideoEmbedInfo, getYouTubeEmbedUrl, type VideoEmbedInfo } from '../utils/video';
 
 // Specific ordered list matching the exact 11ty collection order
 const slugOrder: string[] = [
   "heritage_hiking",
   "utsobe_sobai",
   "telescope_innovation_session",
+  "democracy-in-reels",
   "technicalworkshop",
   "stem_telescope_observation",
   "stem-online-session",

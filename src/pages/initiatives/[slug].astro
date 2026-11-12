@@ -23,6 +23,9 @@ const { initiative } = Astro.props;
   featured={initiative.featured} 
   images={initiative.images}
   pageUrl={`/initiatives/${initiative.slug}/`}
+  tag={initiative.tag}
+  video={initiative.video}
+  videos={initiative.videos}
 >
   <Fragment set:html={initiative.body} />
 </Initiative>

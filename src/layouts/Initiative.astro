@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import Base from './Base.astro';
 import metadata from '../data/metadata.json';
 import { getImageAsset } from '../utils/images';
+import { getVideoEmbedInfo, getYouTubeEmbedUrl } from '../utils/video';
+import type { ProjectVideoItem } from '../data/initiatives';
 
 interface Props {
   title: string;
@@ -10,6 +12,9 @@ interface Props {
   featured?: string;
   images?: string[];
   pageUrl?: string;
+  tag?: string;
+  video?: string;
+  videos?: ProjectVideoItem[];
 }
 
 const {
@@ -17,9 +22,13 @@ const {
   description,
   featured,
   images = [],
-  pageUrl = Astro.url.pathname
+  pageUrl = Astro.url.pathname,
+  tag,
+  video,
+  videos = []
 } = Astro.props;
 
+const videoInfo = video ? getVideoEmbedInfo(video) : null;
 const resolvedFeatured = featured ? await getImageAsset(featured) : null;
 const resolvedGalleryImages = await Promise.all(
   images.map(async (img) => ({
@@ -33,6 +42,11 @@ const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
 const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
 const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
 const ogImageUrl = resolvedFeatured ? resolvedFeatured.src : featured;
+
+const hasVideos = videos && videos.length > 0;
+const reels = hasVideos ? videos.filter(v => v.category === 'reel') : [];
+const ovcs = hasVideos ? videos.filter(v => v.category === 'ovc') : [];
+const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
 ---
 
 <Base title={title} description={description} featured={ogImageUrl} pageUrl={pageUrl}>
@@ -47,9 +61,22 @@ const ogImageUrl = resolvedFeatured ? resolvedFeatured.src : featured;
       </div>
     )}
 
-    <article class="project-content">
-      <h1 class="project-title">{title}</h1>
-      <div class="title-accent-line"></div>
+    <article class:list={['project-content', { 'has-series': hasVideos, 'no-cover': !featured }]}>
+      <div class="detail-hero-header">
+        {tag && (
+          <div class="project-badge-wrap">
+            <span class="project-category-badge">{tag}</span>
+          </div>
+        )}
+        <h1 class="project-title">{title}</h1>
+        {hasVideos && (
+          <div class="project-campaign-tagline">
+            <span class="campaign-tagline-pill">Flagship Campaign</span>
+            <span class="campaign-tagline-title">Democracy in Reels</span>
+          </div>
+        )}
+        <div class="title-accent-line"></div>
+      </div>
 
       <!-- Share Buttons Section -->
       <div class="share-container">
@@ -75,27 +102,188 @@ const ogImageUrl = resolvedFeatured ? resolvedFeatured.src : featured;
         <slot />
       </div>
 
-      <!-- Refined Gallery Section -->
-      {images && images.length > 0 && (
-        <section class="gallery-wrapper">
-          <div class="gallery-intro">
-            <span class="gallery-tag">Visuals</span>
-            <h2 class="gallery-heading">Gallery</h2>
-            <div class="gallery-decoration"></div>
+      <!-- Grant Context Card -->
+      {hasVideos && (
+        <div class="grant-context-card">
+          <div class="grant-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Digital Democracy Initiative • Sub-Grant No. DDIBAN015
           </div>
-          
-          <div class="gallery-grid">
-            {resolvedGalleryImages.map(item => (
-              <div class="gallery-card">
-                {item.resolved ? (
-                  <Image src={item.resolved} alt="Project gallery image" loading="lazy" width={600} height={400} />
-                ) : (
-                  <img src={item.original} alt="Project gallery image" loading="lazy" />
-                )}
-              </div>
-            ))}
+          <div class="grant-details-grid">
+            <div class="grant-detail">
+              <span class="detail-label">Program</span>
+              <span class="detail-value">Digital Democracy Initiative (DDI)</span>
+            </div>
+            <div class="grant-detail">
+              <span class="detail-label">Flagship Campaign</span>
+              <span class="detail-value">Democracy in Reels</span>
+            </div>
+            <div class="grant-detail">
+              <span class="detail-label">Implemented By</span>
+              <span class="detail-value">Bangladesh Socio-Cultural Forum (BSCF)</span>
+            </div>
+            <div class="grant-detail">
+              <span class="detail-label">Media Scope</span>
+              <span class="detail-value">30 Productions (20 Reels, 5 OVCs, 5 Podcasts)</span>
+            </div>
+            <div class="grant-detail">
+              <span class="detail-label">Distribution</span>
+              <span class="detail-value">Facebook, Instagram, YouTube, LinkedIn</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <!-- Media Section: Series Archive vs Single Video vs Gallery -->
+      {hasVideos ? (
+        <section class="video-series-section">
+          <div class="series-header">
+            <div class="gallery-intro">
+              <span class="gallery-tag">Civic Media Archive</span>
+              <h2 class="gallery-heading">All 30 Video Productions</h2>
+              <div class="gallery-decoration"></div>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="series-filter-tabs">
+              <button class="series-tab-btn active" data-vfilter="all">
+                All Videos <span class="tab-count">{videos.length}</span>
+              </button>
+              <button class="series-tab-btn" data-vfilter="reel">
+                Civic Reels <span class="tab-count">{reels.length}</span>
+              </button>
+              <button class="series-tab-btn" data-vfilter="ovc">
+                OVCs <span class="tab-count">{ovcs.length}</span>
+              </button>
+              <button class="series-tab-btn" data-vfilter="podcast">
+                Podcasts <span class="tab-count">{podcasts.length}</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Video Cards Grid -->
+          <div class="series-cards-grid">
+            {videos.map(v => {
+              const ytEmbed = getYouTubeEmbedUrl(v.youtube);
+              const isReel = v.category === 'reel';
+              return (
+                <div class:list={['series-card', `category-${v.category}`, { 'is-vertical': isReel }]} data-vcategory={v.category}>
+                  <div class:list={['card-media-wrapper', isReel ? 'aspect-9-16' : 'aspect-16-9']}>
+                    {ytEmbed ? (
+                      <iframe
+                        src={ytEmbed}
+                        title={v.title}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                      ></iframe>
+                    ) : (
+                      <div class="card-video-placeholder">
+                        <div class="placeholder-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <span class="placeholder-title">Social Exclusive Video</span>
+                        <span class="placeholder-note">Watch directly on Facebook</span>
+                        {v.facebook && (
+                          <a href={v.facebook} target="_blank" rel="noopener noreferrer" class="btn-direct-watch">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg>
+                            Watch on Facebook
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  <div class="card-details">
+                    <div class="card-tags-row">
+                      <span class:list={['id-tag', `tag-${v.category}`]}>{v.id}</span>
+                      <span class="duration-tag">⏱ {v.duration}</span>
+                      <span class="date-tag">{v.date}</span>
+                    </div>
+
+                    <h3 class="card-video-title">{v.title}</h3>
+                    <div class="card-theme-line">
+                      <span class="theme-label">Theme:</span> {v.theme}
+                    </div>
+                    <p class="card-video-desc">{v.description}</p>
+
+                    <div class="card-social-footer">
+                      <span class="footer-label">Watch on:</span>
+                      <div class="social-icon-links">
+                        {v.youtube && (
+                          <a href={v.youtube} target="_blank" rel="noopener noreferrer" class="social-icon-btn yt" title="Watch on YouTube" aria-label="Watch on YouTube">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.022.26-.01.104c-.048.519-.119 1.023-.22 1.402a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>
+                          </a>
+                        )}
+                        {v.facebook && (
+                          <a href={v.facebook} target="_blank" rel="noopener noreferrer" class="social-icon-btn fb" title="Watch on Facebook" aria-label="Watch on Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg>
+                          </a>
+                        )}
+                        {v.instagram && (
+                          <a href={v.instagram} target="_blank" rel="noopener noreferrer" class="social-icon-btn ig" title="Watch on Instagram" aria-label="Watch on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
+                          </a>
+                        )}
+                        {v.linkedin && (
+                          <a href={v.linkedin} target="_blank" rel="noopener noreferrer" class="social-icon-btn li" title="Watch on LinkedIn" aria-label="Watch on LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
+      ) : videoInfo ? (
+        <section class="video-wrapper">
+          <div class="video-intro">
+            <span class="video-tag">Media</span>
+            <h2 class="video-heading">Project Video</h2>
+            <div class="video-decoration"></div>
+          </div>
+          <div class="video-container">
+            {videoInfo.type === 'iframe' ? (
+              <iframe
+                src={videoInfo.src}
+                title={`${title} video`}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            ) : (
+              <video controls preload="metadata">
+                <source src={videoInfo.src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
+          </div>
+        </section>
+      ) : (
+        images && images.length > 0 && (
+          <section class="gallery-wrapper">
+            <div class="gallery-intro">
+              <span class="gallery-tag">Visuals</span>
+              <h2 class="gallery-heading">Gallery</h2>
+              <div class="gallery-decoration"></div>
+            </div>
+            
+            <div class="gallery-grid">
+              {resolvedGalleryImages.map(item => (
+                <div class="gallery-card">
+                  {item.resolved ? (
+                    <Image src={item.resolved} alt="Project gallery image" loading="lazy" width={600} height={400} />
+                  ) : (
+                    <img src={item.original} alt="Project gallery image" loading="lazy" />
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )
       )}
     </article>
   </div>
@@ -114,21 +302,44 @@ const ogImageUrl = resolvedFeatured ? resolvedFeatured.src : featured;
             }
         });
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabButtons = document.querySelectorAll('.series-tab-btn');
+        const cards = document.querySelectorAll('.series-card');
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-vfilter');
+                cards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-vcategory') === filter) {
+                        card.classList.remove('hidden-card');
+                    } else {
+                        card.classList.add('hidden-card');
+                    }
+                });
+            });
+        });
+    });
 </script>
 
 <style>
     .project-page-wrapper {
         background: #fff;
+        padding-top: 96px;
     }
 
     .notion-cover {
         width: 100%;
-        height: 70vh; 
-        min-height: 220px;
-        max-height: 600px; 
+        height: 60vh; 
+        min-height: 240px;
+        max-height: 520px; 
         overflow: hidden;
-        margin-bottom: 40px;
+        margin-bottom: 36px;
         position: relative;
+        background: #f8fafc;
     }
 
     .cover-img {
@@ -142,6 +353,60 @@ const ogImageUrl = resolvedFeatured ? resolvedFeatured.src : featured;
         max-width: 800px;
         margin: 0 auto;
         padding: 0 24px 100px 24px;
+    }
+
+    .project-content.no-cover .detail-hero-header {
+        padding-top: 24px;
+    }
+
+    .detail-hero-header {
+        margin-bottom: 20px;
+    }
+
+    .project-badge-wrap {
+        margin-bottom: 12px;
+    }
+
+    .project-category-badge {
+        display: inline-block;
+        padding: 4px 14px;
+        background: #f1f5f9;
+        color: #0f172a;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: capitalize;
+        border-radius: 9999px;
+        border: 1px solid #cbd5e1;
+    }
+
+    .project-campaign-tagline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 4px 0 16px 0;
+        padding: 6px 14px;
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-radius: 8px;
+        font-size: 0.92rem;
+    }
+
+    .campaign-tagline-pill {
+        display: inline-block;
+        padding: 2px 8px;
+        background: #16a34a;
+        color: #ffffff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        border-radius: 4px;
+    }
+
+    .campaign-tagline-title {
+        color: #166534;
+        font-weight: 700;
     }
 
     .project-title {
@@ -211,6 +476,64 @@ const ogImageUrl = resolvedFeatured ? resolvedFeatured.src : featured;
         margin-bottom: 1.6rem;
     }
 
+    /* VIDEO SECTION */
+    .video-wrapper {
+        margin-top: 80px;
+        padding-top: 40px;
+        border-top: 1px solid #eaeaea;
+    }
+
+    .video-intro {
+        margin-bottom: 24px;
+        position: relative;
+    }
+
+    .video-tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #a0a0a0;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .video-heading {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0;
+        color: #1a1a1a;
+    }
+
+    .video-decoration {
+        position: absolute;
+        left: -24px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #000;
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #000;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .video-container iframe,
+    .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
     /* 4. ENHANCED GALLERY SECTION */
     .gallery-wrapper {
         margin-top: 80px;
@@ -275,13 +598,358 @@ const ogImageUrl = resolvedFeatured ? resolvedFeatured.src : featured;
         aspect-ratio: 3/2;
     }
 
-    /* 5. RESPONSIVE */
+    /* 5. VIDEO SERIES & GRANT CONTEXT */
+    .project-content.has-series {
+        max-width: 1200px;
+    }
+
+    .project-content.has-series .project-body {
+        max-width: 860px;
+        margin-bottom: 32px;
+    }
+
+    .grant-context-card {
+        background: #fbfbfb;
+        border: 1px solid #e5e5e5;
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 48px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .grant-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #0984e3;
+        background: rgba(9, 132, 227, 0.08);
+        padding: 6px 14px;
+        border-radius: 50px;
+        margin-bottom: 18px;
+    }
+
+    .grant-details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+    }
+
+    .grant-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .grant-detail .detail-label {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #888;
+        font-weight: 600;
+    }
+
+    .grant-detail .detail-value {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #222;
+        line-height: 1.4;
+    }
+
+    .video-series-section {
+        margin-top: 60px;
+        padding-top: 40px;
+        border-top: 1px solid #eaeaea;
+    }
+
+    .series-header {
+        margin-bottom: 36px;
+    }
+
+    .series-filter-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+    }
+
+    .series-tab-btn {
+        background: #fff;
+        border: 1px solid #dcdde1;
+        border-radius: 50px;
+        padding: 8px 18px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #555;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .series-tab-btn:hover {
+        border-color: #000;
+        color: #000;
+    }
+
+    .series-tab-btn.active {
+        background: #000;
+        border-color: #000;
+        color: #fff;
+    }
+
+    .series-tab-btn .tab-count {
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 20px;
+        background: rgba(0,0,0,0.06);
+    }
+
+    .series-tab-btn.active .tab-count {
+        background: rgba(255,255,255,0.25);
+        color: #fff;
+    }
+
+    .series-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 28px;
+    }
+
+    .series-card {
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .series-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    }
+
+    .series-card.hidden-card {
+        display: none !important;
+    }
+
+    .card-media-wrapper {
+        position: relative;
+        background: #0a0a0a;
+        overflow: hidden;
+    }
+
+    .card-media-wrapper.aspect-9-16 {
+        aspect-ratio: 9 / 16;
+        width: 100%;
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+    .card-media-wrapper.aspect-16-9 {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+    }
+
+    .card-media-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .card-video-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 24px;
+        background: linear-gradient(135deg, #1e272e 0%, #2f3640 100%);
+        color: #fff;
+        gap: 8px;
+    }
+
+    .placeholder-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #00d2d3;
+        margin-bottom: 4px;
+    }
+
+    .placeholder-title {
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    .placeholder-note {
+        font-size: 0.8rem;
+        color: #dcdde1;
+        margin-bottom: 8px;
+    }
+
+    .btn-direct-watch {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #1877f2;
+        color: #fff;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .btn-direct-watch:hover {
+        opacity: 0.9;
+    }
+
+    .card-details {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .card-tags-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+
+    .id-tag {
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .id-tag.tag-reel {
+        background: #ffeaa7;
+        color: #d63031;
+    }
+
+    .id-tag.tag-ovc {
+        background: #81ecec;
+        color: #0984e3;
+    }
+
+    .id-tag.tag-podcast {
+        background: #e056fd;
+        color: #fff;
+    }
+
+    .duration-tag, .date-tag {
+        font-size: 0.75rem;
+        color: #718093;
+        font-weight: 600;
+    }
+
+    .card-video-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0 0 8px 0;
+        line-height: 1.35;
+    }
+
+    .card-theme-line {
+        font-size: 0.82rem;
+        color: #636e72;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+
+    .theme-label {
+        font-weight: 700;
+        color: #2d3436;
+    }
+
+    .card-video-desc {
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: #555;
+        margin-bottom: 20px;
+        flex-grow: 1;
+    }
+
+    .card-social-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 14px;
+        border-top: 1px solid #f0f0f0;
+        margin-top: auto;
+    }
+
+    .footer-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .social-icon-links {
+        display: flex;
+        gap: 8px;
+    }
+
+    .social-icon-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f1f2f6;
+        color: #57606f;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .social-icon-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .social-icon-btn.yt:hover { background: #ff0000; color: #fff; }
+    .social-icon-btn.fb:hover { background: #1877f2; color: #fff; }
+    .social-icon-btn.ig:hover { background: #e1306c; color: #fff; }
+    .social-icon-btn.li:hover { background: #0a66c2; color: #fff; }
+
+    /* 6. RESPONSIVE */
     @media (max-width: 768px) {
+        .project-page-wrapper { padding-top: 82px; }
         .project-title { font-size: 2.2rem; }
+        .project-campaign-tagline { flex-wrap: wrap; }
         .gallery-grid { grid-template-columns: 1fr; }
-        .gallery-decoration { display: none; }
+        .gallery-decoration, .video-decoration { display: none; }
         .notion-cover { height: 250px; }
         .project-body { text-align: left; }
         .share-container { margin-bottom: 24px; }
+        .series-cards-grid { grid-template-columns: 1fr; }
+        .grant-details-grid { grid-template-columns: 1fr; }
     }
 </style>
