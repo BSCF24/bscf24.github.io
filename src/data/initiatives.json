@@ -477,16 +477,16 @@
   },
   {
     "slug": "democracy-in-reels",
-    "title": "Digital Democracy Initiative",
+    "title": "Democracy in Reels",
     "date": "2026-09-10",
     "tag": "projects",
-    "description": "The Digital Democracy Initiative (Sub-grant No. DDIBAN015) is a youth-led civic education program by Bangladesh Socio-Cultural Forum (BSCF). Through its flagship 'Democracy in Reels' campaign, the project produced 20 civic reels, 5 online video contents (OVCs), and 5 long-form podcasts on governance, digital rights, and democratic participation.",
+    "description": "Implemented by Bangladesh Socio-Cultural Forum (BSCF) and supported by the Digital Democracy Initiative (DDIBAN015), Democracy in Reels empowered Bangladeshi youth to communicate democratic values, civic awareness, and accountability through 20 short reels, 5 OVCs, 5 podcasts, and campus dialogues—reaching over 573,211 people online.",
     "featured": "/images/DDI.png",
     "images": [
       "/images/DDI.png"
     ],
-    "body": "The Digital Democracy Initiative (Sub-grant No. DDIBAN015) is a civic awareness and digital media project implemented by the Bangladesh Socio-Cultural Forum (BSCF). Designed to make democratic values, constitutional rights, and public accountability accessible to Bangladeshi youth, its flagship 'Democracy in Reels' campaign produced and published 20 short-form civic reels, 5 explanatory Online Video Contents (OVCs), and 5 in-depth podcast episodes across Facebook, Instagram, YouTube, and LinkedIn.",
-    "rawBody": "The Digital Democracy Initiative (Sub-grant No. DDIBAN015) is a civic awareness and digital media project implemented by the Bangladesh Socio-Cultural Forum (BSCF). Designed to make democratic values, constitutional rights, and public accountability accessible to Bangladeshi youth, its flagship 'Democracy in Reels' campaign produced and published 20 short-form civic reels, 5 explanatory Online Video Contents (OVCs), and 5 in-depth podcast episodes across Facebook, Instagram, YouTube, and LinkedIn.",
+    "body": "Implemented by the Bangladesh Socio-Cultural Forum (BSCF) from 25 June to 31 August 2026 with support from the Digital Democracy Initiative (Project Reference: DDIBAN015), Democracy in Reels made democratic values, civic participation, freedom of expression, and public accountability accessible to young people through digital storytelling and participatory dialogue.\n\nCombining online campaigns across Facebook, Instagram, YouTube, and LinkedIn with four in-person engagement events—a Youth Workshop on Democracy Through Reels, two Campus Screening and Democracy Dialogue events, and a Policy Roundtable—the project achieved a digital campaign reach of 573,211 (exceeding its 500,000 target), directly engaged 120 community members in person, and saw 85% of participants report increased confidence to advocate for civic issues.",
+    "rawBody": "Implemented by the Bangladesh Socio-Cultural Forum (BSCF) from 25 June to 31 August 2026 with support from the Digital Democracy Initiative (Project Reference: DDIBAN015), Democracy in Reels made democratic values, civic participation, freedom of expression, and public accountability accessible to young people through digital storytelling and participatory dialogue.\n\nCombining online campaigns across Facebook, Instagram, YouTube, and LinkedIn with four in-person engagement events—a Youth Workshop on Democracy Through Reels, two Campus Screening and Democracy Dialogue events, and a Policy Roundtable—the project achieved a digital campaign reach of 573,211 (exceeding its 500,000 target), directly engaged 120 community members in person, and saw 85% of participants report increased confidence to advocate for civic issues.",
     "fileType": ".njk",
     "videos": [
       {
@@ -878,6 +878,40 @@
         "facebook": "https://www.facebook.com/share/v/14q6iXmRLaS/",
         "instagram": "https://www.instagram.com/reel/Dcv8t2CydTr/",
         "linkedin": "https://www.linkedin.com/feed/update/urn:li:activity:7500570342290231296"
+      }
+    ],
+    "publications": [
+      {
+        "id": "PUB-01",
+        "type": "Policy Brief",
+        "title": "Strengthening Civic Awareness and Youth Participation Through Digital Storytelling",
+        "subtitle": "Policy Brief • Submitted to The Administrator, Rajshahi City Corporation | November 2026",
+        "date": "November 2026",
+        "organization": "Rajshahi City Corporation",
+        "summary": "Submitted by BSCF to the Administrator of Rajshahi City Corporation, this policy brief translates the outcomes of Democracy in Reels (573,211 digital reach and 85% participant advocacy confidence) into a practical 90-day pilot proposal. It outlines six actionable recommendations—including a regular Bangla civic video series on municipal services (waste management, drainage, road maintenance, citizen complaints), youth creator partnerships, and transparent two-way civic communication.",
+        "tags": [
+          "Policy Brief",
+          "Rajshahi City Corporation",
+          "Civic Engagement",
+          "Municipal Governance"
+        ],
+        "image": "/initiatives/democracy-in-reels/rcc-handover.jpeg",
+        "imageCaption": "BSCF delegation submitting the Policy Brief to Dr. Dewan Muhammad Humayun Kabir, Administrator of Rajshahi City Corporation."
+      },
+      {
+        "id": "PUB-02",
+        "type": "Case Study",
+        "title": "From Participant to Digital Democracy Advocate: How One Young Person's Journey Through Democracy in Reels Inspired a New Wave of Digital Civic Engagement in Rajshahi",
+        "subtitle": "Case Study • Sayeed Al Hasnat, Senior Youth Associate (BSCF) | October 2026",
+        "date": "October 2026",
+        "organization": "BSCF Youth Leadership",
+        "summary": "Documents how Senior Youth Associate Sayeed Al Hasnat built on his participation in Democracy in Reels to independently produce democracy-focused social media videos after the project ended. His youth-led civic content resonated across Bangladesh—particularly in Rajshahi—and caught the attention of the Rajshahi City Corporation Administrator in late October 2026, opening pathways for institutional collaboration on civic video production.",
+        "tags": [
+          "Case Study",
+          "Youth Leadership",
+          "Civic Advocacy",
+          "Rajshahi"
+        ]
       }
     ]
   },

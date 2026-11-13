@@ -14,6 +14,19 @@ export interface ProjectVideoItem {
   linkedin?: string;
 }
 
+export interface ProjectPublicationItem {
+  id: string;
+  type: string;
+  title: string;
+  subtitle: string;
+  date: string;
+  organization?: string;
+  summary: string;
+  tags?: string[];
+  image?: string;
+  imageCaption?: string;
+}
+
 export interface InitiativeItem {
   slug: string;
   title: string;
@@ -27,6 +40,7 @@ export interface InitiativeItem {
   fileType: string;
   video?: string;
   videos?: ProjectVideoItem[];
+  publications?: ProjectPublicationItem[];
 }
 
 export { getVideoEmbedInfo, getYouTubeEmbedUrl, type VideoEmbedInfo } from '../utils/video';

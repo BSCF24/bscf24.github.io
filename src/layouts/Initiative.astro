@@ -4,7 +4,7 @@ import Base from './Base.astro';
 import metadata from '../data/metadata.json';
 import { getImageAsset } from '../utils/images';
 import { getVideoEmbedInfo, getYouTubeEmbedUrl } from '../utils/video';
-import type { ProjectVideoItem } from '../data/initiatives';
+import type { ProjectVideoItem, ProjectPublicationItem } from '../data/initiatives';
 
 interface Props {
   title: string;
@@ -15,6 +15,7 @@ interface Props {
   tag?: string;
   video?: string;
   videos?: ProjectVideoItem[];
+  publications?: ProjectPublicationItem[];
 }
 
 const {
@@ -25,7 +26,8 @@ const {
   pageUrl = Astro.url.pathname,
   tag,
   video,
-  videos = []
+  videos = [],
+  publications = []
 } = Astro.props;
 
 const videoInfo = video ? getVideoEmbedInfo(video) : null;
@@ -34,6 +36,13 @@ const resolvedGalleryImages = await Promise.all(
   images.map(async (img) => ({
     original: img,
     resolved: await getImageAsset(img)
+  }))
+);
+
+const resolvedPublications = await Promise.all(
+  publications.map(async (pub) => ({
+    ...pub,
+    resolvedImage: pub.image ? await getImageAsset(pub.image) : null
   }))
 );
 
@@ -71,8 +80,8 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
         <h1 class="project-title">{title}</h1>
         {hasVideos && (
           <div class="project-campaign-tagline">
-            <span class="campaign-tagline-pill">Flagship Campaign</span>
-            <span class="campaign-tagline-title">Democracy in Reels</span>
+            <span class="campaign-tagline-pill">Supported By</span>
+            <span class="campaign-tagline-title">Digital Democracy Initiative • Sub-Grant No. DDIBAN015</span>
           </div>
         )}
         <div class="title-accent-line"></div>
@@ -111,27 +120,104 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
           </div>
           <div class="grant-details-grid">
             <div class="grant-detail">
-              <span class="detail-label">Program</span>
-              <span class="detail-value">Digital Democracy Initiative (DDI)</span>
-            </div>
-            <div class="grant-detail">
-              <span class="detail-label">Flagship Campaign</span>
+              <span class="detail-label">Project</span>
               <span class="detail-value">Democracy in Reels</span>
             </div>
             <div class="grant-detail">
-              <span class="detail-label">Implemented By</span>
-              <span class="detail-value">Bangladesh Socio-Cultural Forum (BSCF)</span>
+              <span class="detail-label">Timeline</span>
+              <span class="detail-value">25 June – 31 August 2026</span>
             </div>
             <div class="grant-detail">
-              <span class="detail-label">Media Scope</span>
+              <span class="detail-label">Digital Reach</span>
+              <span class="detail-value">573,211 Online (Target: 500,000)</span>
+            </div>
+            <div class="grant-detail">
+              <span class="detail-label">Civic Media Scope</span>
               <span class="detail-value">30 Productions (20 Reels, 5 OVCs, 5 Podcasts)</span>
-            </div>
-            <div class="grant-detail">
-              <span class="detail-label">Distribution</span>
-              <span class="detail-value">Facebook, Instagram, YouTube, LinkedIn</span>
             </div>
           </div>
         </div>
+      )}
+
+      <!-- Dedicated Publications & Civic Impact Section -->
+      {resolvedPublications && resolvedPublications.length > 0 && (
+        <section class="publications-section">
+          <div class="publications-intro">
+            <span class="gallery-tag">Policy Engagement & Impact</span>
+            <h2 class="gallery-heading">Publications & Civic Impact</h2>
+            <div class="gallery-decoration"></div>
+            <p class="publications-lead">
+              Translating digital civic storytelling and youth engagement into municipal policy proposals and institutional partnerships.
+            </p>
+          </div>
+
+          <div class="publications-grid">
+            {resolvedPublications.map((pub) => (
+              <article class="publication-card" id={pub.id}>
+                {pub.resolvedImage ? (
+                  <div class="pub-card-layout with-visual">
+                    <div class="pub-visual-col">
+                      <Image 
+                        src={pub.resolvedImage} 
+                        alt={pub.title} 
+                        class="pub-photo" 
+                        width={700} 
+                        height={480} 
+                        loading="lazy" 
+                      />
+                      {pub.imageCaption && (
+                        <p class="pub-photo-caption">
+                          <span class="caption-icon">📷</span> {pub.imageCaption}
+                        </p>
+                      )}
+                    </div>
+                    <div class="pub-details-col">
+                      <div class="pub-meta-row">
+                        <span class="pub-type-badge">{pub.type}</span>
+                        {pub.organization && (
+                          <span class="pub-org-badge">{pub.organization}</span>
+                        )}
+                        <span class="pub-date-badge">📅 {pub.date}</span>
+                      </div>
+                      <h3 class="pub-item-title">{pub.title}</h3>
+                      <p class="pub-item-subtitle">{pub.subtitle}</p>
+                      <p class="pub-item-summary">{pub.summary}</p>
+                      {pub.tags && pub.tags.length > 0 && (
+                        <div class="pub-tags-list">
+                          {pub.tags.map(t => (
+                            <span class="pub-tag-pill">{t}</span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <div class="pub-card-layout standalone-text">
+                    <div class="pub-details-col">
+                      <div class="pub-meta-row">
+                        <span class="pub-type-badge case-study">{pub.type}</span>
+                        {pub.organization && (
+                          <span class="pub-org-badge">{pub.organization}</span>
+                        )}
+                        <span class="pub-date-badge">📅 {pub.date}</span>
+                      </div>
+                      <h3 class="pub-item-title">{pub.title}</h3>
+                      <p class="pub-item-subtitle">{pub.subtitle}</p>
+                      <p class="pub-item-summary">{pub.summary}</p>
+                      {pub.tags && pub.tags.length > 0 && (
+                        <div class="pub-tags-list">
+                          {pub.tags.map(t => (
+                            <span class="pub-tag-pill">{t}</span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
       )}
 
       <!-- Media Section: Series Archive vs Single Video vs Gallery -->
@@ -939,6 +1025,175 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
     .social-icon-btn.ig:hover { background: #e1306c; color: #fff; }
     .social-icon-btn.li:hover { background: #0a66c2; color: #fff; }
 
+    /* 5b. PUBLICATIONS & CIVIC IMPACT SECTION */
+    .publications-section {
+        margin: 54px 0 64px 0;
+        padding-top: 40px;
+        border-top: 2px solid #f1f5f9;
+    }
+
+    .publications-intro {
+        margin-bottom: 28px;
+    }
+
+    .publications-lead {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #475569;
+        margin-top: 14px;
+        max-width: 760px;
+    }
+
+    .publications-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .publication-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .publication-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    .pub-card-layout.with-visual {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+    }
+
+    .pub-visual-col {
+        background: #0f172a;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .pub-photo {
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .pub-photo-caption {
+        padding: 10px 14px;
+        background: rgba(15, 23, 42, 0.94);
+        color: #cbd5e1;
+        font-size: 0.78rem;
+        line-height: 1.45;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        margin: 0;
+    }
+
+    .caption-icon {
+        margin-right: 4px;
+    }
+
+    .pub-details-col {
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .pub-card-layout.standalone-text .pub-details-col {
+        padding: 32px;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .pub-meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .pub-type-badge {
+        display: inline-block;
+        padding: 3px 10px;
+        background: #0284c7;
+        color: #ffffff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        border-radius: 4px;
+    }
+
+    .pub-type-badge.case-study {
+        background: #7c3aed;
+    }
+
+    .pub-org-badge {
+        display: inline-block;
+        padding: 3px 10px;
+        background: #f1f5f9;
+        color: #334155;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: 4px;
+        border: 1px solid #cbd5e1;
+    }
+
+    .pub-date-badge {
+        color: #64748b;
+        font-size: 0.75rem;
+        font-weight: 500;
+        margin-left: auto;
+    }
+
+    .pub-item-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #0f172a;
+        line-height: 1.35;
+        margin: 0 0 8px 0;
+    }
+
+    .pub-item-subtitle {
+        font-size: 0.85rem;
+        color: #64748b;
+        font-weight: 600;
+        margin: 0 0 16px 0;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .pub-item-summary {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: #334155;
+        margin: 0 0 20px 0;
+    }
+
+    .pub-tags-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: auto;
+    }
+
+    .pub-tag-pill {
+        display: inline-block;
+        padding: 2px 8px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        font-size: 0.72rem;
+        color: #64748b;
+        font-weight: 500;
+    }
+
     /* 6. RESPONSIVE */
     @media (max-width: 768px) {
         .project-page-wrapper { padding-top: 82px; }
@@ -951,5 +1206,9 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
         .share-container { margin-bottom: 24px; }
         .series-cards-grid { grid-template-columns: 1fr; }
         .grant-details-grid { grid-template-columns: 1fr; }
+        .pub-card-layout.with-visual { grid-template-columns: 1fr; }
+        .pub-photo { min-height: 220px; max-height: 260px; }
+        .pub-details-col { padding: 20px; }
+        .pub-card-layout.standalone-text .pub-details-col { padding: 20px; }
     }
 </style>
