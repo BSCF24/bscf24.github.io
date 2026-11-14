@@ -77,7 +77,7 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
         {isDDIProject && (
           <div class="project-campaign-tagline">
             <span class="campaign-tagline-pill">Supported By</span>
-            <span class="campaign-tagline-title">Digital Democracy Initiative • Sub-Grant No. DDIBAN015</span>
+            <span class="campaign-tagline-title">{pageUrl?.includes('democracy-in-reels-impact') ? 'Digital Democracy Initiative' : 'Digital Democracy Initiative • Sub-Grant No. DDIBAN015'}</span>
           </div>
         )}
         <div class="title-accent-line"></div>
@@ -139,109 +139,135 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
       {hasImpactSections && (
         <div class="impact-sections-container">
           {impactSections.map((sec, idx) => (
-            <section class:list={['impact-section-block', `block-${sec.badgeType || 'general'}`]} id={sec.id}>
-              <!-- Section Header -->
-              <div class="impact-header-block">
-                <div class="impact-badge-row">
-                  <span class:list={['impact-pill', `pill-${sec.badgeType || 'general'}`]}>{sec.badge}</span>
-                  <span class="impact-index-pill">Part {idx + 1} of {impactSections.length}</span>
-                </div>
-                <h2 class="impact-block-title">{sec.title}</h2>
-                <p class="impact-block-subtitle">{sec.subtitle}</p>
-                <div class="impact-accent-divider"></div>
-              </div>
-
-              <!-- Lead narrative -->
-              {sec.lead && (
-                <p class="impact-lead-text">{sec.lead}</p>
-              )}
-
-              <!-- Main narrative paragraphs -->
-              {sec.narrative && sec.narrative.length > 0 && (
-                <div class="impact-narrative-group">
-                  {sec.narrative.map((para) => (
-                    <p class="impact-narrative-p">{para}</p>
-                  ))}
-                </div>
-              )}
-
-              <!-- Highlight box (e.g. Sayeed Al Hasnat's Turning Point with RCC) -->
-              {sec.highlightBox && (
-                <div class="impact-highlight-box">
-                  <div class="highlight-box-header">
-                    <span class="highlight-tag">{sec.highlightBox.tag}</span>
-                    <h3 class="highlight-title">{sec.highlightBox.title}</h3>
+            <Fragment key={sec.id}>
+              <section class:list={['impact-section-block', `block-${sec.badgeType || 'general'}`]} id={sec.id}>
+                <!-- Section Header -->
+                <div class="impact-header-block">
+                  <div class="impact-badge-row">
+                    <span class:list={['impact-pill', `pill-${sec.badgeType || 'general'}`]}>{sec.badge}</span>
+                    <span class="impact-index-pill">Part {idx + 1} of {impactSections.length}</span>
                   </div>
-                  <p class="highlight-body">{sec.highlightBox.text}</p>
+                  <h2 class="impact-block-title">{sec.title}</h2>
+                  <p class="impact-block-subtitle">{sec.subtitle}</p>
+                  <div class="impact-accent-divider"></div>
                 </div>
-              )}
 
-              <!-- Measured Metrics Grid (for Policy Brief) -->
-              {sec.metrics && sec.metrics.length > 0 && (
-                <div class="impact-metrics-section">
-                  {sec.metricsTitle && <h3 class="subsection-title">{sec.metricsTitle}</h3>}
-                  <div class="impact-metrics-grid">
-                    {sec.metrics.map(m => (
-                      <div class="impact-metric-card">
-                        <span class="metric-value">{m.value}</span>
-                        <span class="metric-label">{m.label}</span>
-                        {m.subtext && <span class="metric-subtext">{m.subtext}</span>}
-                      </div>
+                <!-- Lead narrative -->
+                {sec.lead && (
+                  <p class="impact-lead-text">{sec.lead}</p>
+                )}
+
+                <!-- Main narrative paragraphs -->
+                {sec.narrative && sec.narrative.length > 0 && (
+                  <div class="impact-narrative-group">
+                    {sec.narrative.map((para) => (
+                      <p class="impact-narrative-p">{para}</p>
                     ))}
                   </div>
-                </div>
-              )}
+                )}
 
-              <!-- Civic Communication Challenge -->
-              {sec.challenge && (
-                <div class="civic-challenge-card">
-                  <div class="challenge-icon-wrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <!-- Highlight box (e.g. Sayeed Al Hasnat's Turning Point with RCC) -->
+                {sec.highlightBox && (
+                  <div class="impact-highlight-box">
+                    <div class="highlight-box-header">
+                      <span class="highlight-tag">{sec.highlightBox.tag}</span>
+                      <h3 class="highlight-title">{sec.highlightBox.title}</h3>
+                    </div>
+                    <p class="highlight-body">{sec.highlightBox.text}</p>
                   </div>
-                  <div class="challenge-content">
-                    <h3 class="challenge-title">{sec.challenge.title}</h3>
-                    <p class="challenge-text">{sec.challenge.text}</p>
-                  </div>
-                </div>
-              )}
+                )}
 
-              <!-- Six Policy Recommendations -->
-              {sec.recommendations && sec.recommendations.length > 0 && (
-                <div class="recommendations-section">
-                  {sec.recommendationsTitle && <h3 class="subsection-title">{sec.recommendationsTitle}</h3>}
-                  <div class="recommendations-grid">
-                    {sec.recommendations.map(rec => (
-                      <div class="recommendation-card">
-                        <div class="rec-number-badge">{String(rec.num).padStart(2, '0')}</div>
-                        <div class="rec-content">
-                          <h4 class="rec-title">{rec.title}</h4>
-                          <p class="rec-desc">{rec.desc}</p>
+                <!-- Measured Metrics Grid (for Policy Brief) -->
+                {sec.metrics && sec.metrics.length > 0 && (
+                  <div class="impact-metrics-section">
+                    {sec.metricsTitle && <h3 class="subsection-title">{sec.metricsTitle}</h3>}
+                    <div class="impact-metrics-grid">
+                      {sec.metrics.map(m => (
+                        <div class="impact-metric-card">
+                          <span class="metric-value">{m.value}</span>
+                          <span class="metric-label">{m.label}</span>
+                          {m.subtext && <span class="metric-subtext">{m.subtext}</span>}
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              <!-- 90-Day Pilot Roadmap -->
-              {sec.roadmap && sec.roadmap.length > 0 && (
-                <div class="roadmap-section">
-                  {sec.roadmapTitle && <h3 class="subsection-title">{sec.roadmapTitle}</h3>}
-                  <div class="roadmap-grid">
-                    {sec.roadmap.map((step, sIdx) => (
-                      <div class="roadmap-card">
-                        <div class="roadmap-phase-header">
-                          <span class="roadmap-period-pill">{step.period}</span>
-                          <span class="roadmap-step-num">Phase {sIdx + 1}</span>
+                <!-- Civic Communication Challenge -->
+                {sec.challenge && (
+                  <div class="civic-challenge-card">
+                    <div class="challenge-icon-wrap">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <div class="challenge-content">
+                      <h3 class="challenge-title">{sec.challenge.title}</h3>
+                      <p class="challenge-text">{sec.challenge.text}</p>
+                    </div>
+                  </div>
+                )}
+
+                <!-- Six Policy Recommendations -->
+                {sec.recommendations && sec.recommendations.length > 0 && (
+                  <div class="recommendations-section">
+                    {sec.recommendationsTitle && <h3 class="subsection-title">{sec.recommendationsTitle}</h3>}
+                    <div class="recommendations-grid">
+                      {sec.recommendations.map(rec => (
+                        <div class="recommendation-card">
+                          <div class="rec-number-badge">{String(rec.num).padStart(2, '0')}</div>
+                          <div class="rec-content">
+                            <h4 class="rec-title">{rec.title}</h4>
+                            <p class="rec-desc">{rec.desc}</p>
+                          </div>
                         </div>
-                        <h4 class="roadmap-title">{step.title}</h4>
-                        <p class="roadmap-desc">{step.desc}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <!-- 90-Day Pilot Roadmap -->
+                {sec.roadmap && sec.roadmap.length > 0 && (
+                  <div class="roadmap-section">
+                    {sec.roadmapTitle && <h3 class="subsection-title">{sec.roadmapTitle}</h3>}
+                    <div class="roadmap-grid">
+                      {sec.roadmap.map((step, sIdx) => (
+                        <div class="roadmap-card">
+                          <div class="roadmap-phase-header">
+                            <span class="roadmap-period-pill">{step.period}</span>
+                            <span class="roadmap-step-num">Phase {sIdx + 1}</span>
+                          </div>
+                          <h4 class="roadmap-title">{step.title}</h4>
+                          <p class="roadmap-desc">{step.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </section>
+
+              <!-- Photo Gallery between Section 1 and Section 2 -->
+              {idx === 0 && images && images.length > 0 && (
+                <section class="gallery-wrapper impact-inline-gallery">
+                  <div class="gallery-intro">
+                    <span class="gallery-tag">Photo Gallery & Engagement</span>
+                    <h2 class="gallery-heading">Photo Gallery</h2>
+                    <div class="gallery-decoration"></div>
+                    <p class="gallery-subtext">Visual documentation from the Rajshahi City Corporation policy brief submission and Democracy in Reels civic dialogues.</p>
+                  </div>
+                  
+                  <div class="gallery-grid">
+                    {resolvedGalleryImages.map(item => (
+                      <div class="gallery-card">
+                        {item.resolved ? (
+                          <Image src={item.resolved} alt="Project gallery image" loading="lazy" width={600} height={400} />
+                        ) : (
+                          <img src={item.original} alt="Project gallery image" loading="lazy" />
+                        )}
                       </div>
                     ))}
                   </div>
-                </div>
+                </section>
               )}
-            </section>
+            </Fragment>
           ))}
         </div>
       )}
@@ -375,7 +401,7 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
           </div>
         </section>
       ) : (
-        images && images.length > 0 && (
+        !hasImpactSections && images && images.length > 0 && (
           <section class="gallery-wrapper">
             <div class="gallery-intro">
               <span class="gallery-tag">Visuals</span>
@@ -1406,6 +1432,19 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
         color: #475569;
         margin: 0;
         text-align: justify;
+    }
+
+    .impact-inline-gallery {
+        margin: 8px 0 16px 0;
+        padding-top: 20px;
+        border-top: none;
+    }
+
+    .gallery-subtext {
+        font-size: 0.95rem;
+        color: #64748b;
+        margin-top: 8px;
+        line-height: 1.5;
     }
 
     /* 6. RESPONSIVE */

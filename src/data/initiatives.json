@@ -887,16 +887,16 @@
     "date": "2026-11-15",
     "tag": "projects",
     "description": "How youth-led digital storytelling from Democracy in Reels sparked independent civic advocacy in Rajshahi and led to a formal 90-day civic video policy proposal to Rajshahi City Corporation.",
-    "featured": "/images/rcc-handover.jpeg",
+    "featured": "/images/ddr4.jpg",
     "images": [
       "/images/rcc-handover.jpeg",
-      "/initiatives/democracy-in-reels/ddr1.jpg",
-      "/initiatives/democracy-in-reels/ddr2.jpg",
-      "/initiatives/democracy-in-reels/ddr3.jpg",
-      "/initiatives/democracy-in-reels/ddr4.jpg"
+      "/images/ddr1.jpg",
+      "/images/ddr2.jpg",
+      "/images/ddr3.jpg",
+      "/images/ddr4.jpg"
     ],
-    "body": "Following the successful completion of the Democracy in Reels project (DDIBAN015), the Bangladesh Socio-Cultural Forum (BSCF) advanced its youth-led civic storytelling methodology from online media production into tangible municipal policy advocacy. Reaching 573,211 citizens across Bangladesh and engaging 120 community members in person, the campaign demonstrated that young people can actively communicate democratic awareness and shape institutional public communications. Below are the key milestones connecting grassroots youth digital advocacy with local governance in Rajshahi, spanning an in-depth case study and a formal 90-day civic video policy brief submitted to Rajshahi City Corporation.",
-    "rawBody": "Following the successful completion of the Democracy in Reels project (DDIBAN015), the Bangladesh Socio-Cultural Forum (BSCF) advanced its youth-led civic storytelling methodology from online media production into tangible municipal policy advocacy. Reaching 573,211 citizens across Bangladesh and engaging 120 community members in person, the campaign demonstrated that young people can actively communicate democratic awareness and shape institutional public communications. Below are the key milestones connecting grassroots youth digital advocacy with local governance in Rajshahi, spanning an in-depth case study and a formal 90-day civic video policy brief submitted to Rajshahi City Corporation.",
+    "body": "Following the successful completion of the Democracy in Reels project, the Bangladesh Socio-Cultural Forum (BSCF) advanced its youth-led civic storytelling methodology from online media production into tangible municipal policy advocacy. Reaching 573,211 citizens across Bangladesh and engaging 120 community members in person, the campaign demonstrated that young people can actively communicate democratic awareness and shape institutional public communications. Below are the key milestones connecting grassroots youth digital advocacy with local governance in Rajshahi, spanning an in-depth case study and a formal 90-day civic video policy brief submitted to Rajshahi City Corporation.",
+    "rawBody": "Following the successful completion of the Democracy in Reels project, the Bangladesh Socio-Cultural Forum (BSCF) advanced its youth-led civic storytelling methodology from online media production into tangible municipal policy advocacy. Reaching 573,211 citizens across Bangladesh and engaging 120 community members in person, the campaign demonstrated that young people can actively communicate democratic awareness and shape institutional public communications. Below are the key milestones connecting grassroots youth digital advocacy with local governance in Rajshahi, spanning an in-depth case study and a formal 90-day civic video policy brief submitted to Rajshahi City Corporation.",
     "fileType": ".njk",
     "impactSections": [
       {
@@ -904,11 +904,11 @@
         "badge": "Case Study",
         "badgeType": "case-study",
         "title": "Impact Story: From Participant to Digital Democracy Advocate",
-        "subtitle": "Case Study | Sayeed Al Hasnat, Senior Youth Associate, Bangladesh Socio-Cultural Forum (BSCF)",
+        "subtitle": "Case Study | Sayeed Al Hasnat, Active Youth Participant, Democracy in Reels",
         "lead": "How one young person's journey through Democracy in Reels inspired independent civic content creation and bridged grassroots youth storytelling with local government institutions in Rajshahi.",
         "narrative": [
-          "Implemented by the Bangladesh Socio-Cultural Forum (BSCF) from 25 June to 31 August 2026 with support from the Digital Democracy Initiative (Project Reference: DDIBAN015), Democracy in Reels engaged young citizens through 20 short-form Reels, 5 Online Video Contents (OVCs), 5 podcast episodes, a hands-on youth workshop ('Democracy Through Reels'), two Campus Screening and Democracy Dialogue events, and an interactive policy roundtable. The initiative sought to make democratic rights, freedom of speech, transparency, and civic participation engaging and accessible to young Bangladeshis.",
-          "Among the most active participants was Sayeed Al Hasnat, Senior Youth Associate at BSCF. Inspired by the production techniques, narrative framing, and civic responsibilities explored during the campaign's workshops and dialogue sessions, Sayeed transitioned from being a program participant to an independent civic storyteller. Following the formal completion of the project, he began independently scripting, recording, and publishing short-form video explainers on local civic issues, public accountability, and democratic values across social media platforms.",
+          "Implemented by the Bangladesh Socio-Cultural Forum (BSCF) from 25 June to 31 August 2026 with support from the Digital Democracy Initiative, Democracy in Reels engaged young citizens through 20 short-form Reels, 5 Online Video Contents (OVCs), 5 podcast episodes, a hands-on youth workshop ('Democracy Through Reels'), two Campus Screening and Democracy Dialogue events, and an interactive policy roundtable. The initiative sought to make democratic rights, freedom of speech, transparency, and civic participation engaging and accessible to young Bangladeshis.",
+          "Among the most active participants was Sayeed Al Hasnat, an active youth participant in Democracy in Reels. Inspired by the production techniques, narrative framing, and civic responsibilities explored during the campaign's workshops and dialogue sessions, Sayeed transitioned from being a program participant to an independent civic storyteller. Following the formal completion of the project, he began independently scripting, recording, and publishing short-form video explainers on local civic issues, public accountability, and democratic values across social media platforms.",
           "His accessible, youth-oriented video style resonated deeply with audiences across Bangladesh—and particularly within Rajshahi. By breaking down complex governance topics into concise, relatable everyday Bangla reels, Sayeed demonstrated that youth need not be passive consumers of civic awareness; they can become proactive communicators and advocates in their own communities."
         ],
         "highlightBox": {
