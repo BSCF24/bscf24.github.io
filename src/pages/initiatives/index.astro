@@ -63,14 +63,22 @@ initiatives.forEach(item => {
                 </div>
               </div>
             )}
-            {(item.video || (item.videos && item.videos.length > 0)) && (
+            {(item.video || (item.videos && item.videos.length > 0)) ? (
               <span class="card-video-badge" aria-label="Includes video">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
                 {item.videos && item.videos.length > 0 ? `${item.videos.length} Videos` : 'Video'}
               </span>
-            )}
+            ) : item.slug === 'democracy-in-reels-impact' ? (
+              <span class="card-video-badge policy-badge" aria-label="Policy & Impact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                Policy & Impact
+              </span>
+            ) : null}
           </div>
           
           <div class="card-content">
@@ -79,11 +87,15 @@ initiatives.forEach(item => {
               <span class="card-date">{formatInitiativeDate(item.date)}</span>
             </div>
             <h2 class="card-title">{item.title}</h2>
-            {item.videos && item.videos.length > 0 && (
+            {item.videos && item.videos.length > 0 ? (
               <div class="card-campaign-subtitle">
                 <span class="campaign-pill-sm">Digital Democracy Initiative</span> Sub-Grant DDIBAN015
               </div>
-            )}
+            ) : item.slug === 'democracy-in-reels-impact' ? (
+              <div class="card-campaign-subtitle">
+                <span class="campaign-pill-sm">Digital Democracy Initiative</span> Policy & Advocacy
+              </div>
+            ) : null}
             <p class="card-description">{item.description}</p>
             <span class="card-link">View item →</span>
           </div>

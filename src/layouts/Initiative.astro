@@ -4,7 +4,7 @@ import Base from './Base.astro';
 import metadata from '../data/metadata.json';
 import { getImageAsset } from '../utils/images';
 import { getVideoEmbedInfo, getYouTubeEmbedUrl } from '../utils/video';
-import type { ProjectVideoItem, ProjectPublicationItem } from '../data/initiatives';
+import type { ProjectVideoItem, ImpactSection } from '../data/initiatives';
 
 interface Props {
   title: string;
@@ -15,7 +15,8 @@ interface Props {
   tag?: string;
   video?: string;
   videos?: ProjectVideoItem[];
-  publications?: ProjectPublicationItem[];
+  impactSections?: ImpactSection[];
+  publications?: any[];
 }
 
 const {
@@ -27,7 +28,7 @@ const {
   tag,
   video,
   videos = [],
-  publications = []
+  impactSections = []
 } = Astro.props;
 
 const videoInfo = video ? getVideoEmbedInfo(video) : null;
@@ -39,13 +40,6 @@ const resolvedGalleryImages = await Promise.all(
   }))
 );
 
-const resolvedPublications = await Promise.all(
-  publications.map(async (pub) => ({
-    ...pub,
-    resolvedImage: pub.image ? await getImageAsset(pub.image) : null
-  }))
-);
-
 const shareUrl = `${metadata.url}${pageUrl}`;
 const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${shareUrl}`;
 const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
@@ -53,6 +47,8 @@ const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${
 const ogImageUrl = resolvedFeatured ? resolvedFeatured.src : featured;
 
 const hasVideos = videos && videos.length > 0;
+const hasImpactSections = impactSections && impactSections.length > 0;
+const isDDIProject = hasVideos || pageUrl.includes('democracy-in-reels');
 const reels = hasVideos ? videos.filter(v => v.category === 'reel') : [];
 const ovcs = hasVideos ? videos.filter(v => v.category === 'ovc') : [];
 const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
@@ -70,7 +66,7 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
       </div>
     )}
 
-    <article class:list={['project-content', { 'has-series': hasVideos, 'no-cover': !featured }]}>
+    <article class:list={['project-content', { 'has-series': hasVideos, 'has-impact': hasImpactSections, 'no-cover': !featured }]}>
       <div class="detail-hero-header">
         {tag && (
           <div class="project-badge-wrap">
@@ -78,7 +74,7 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
           </div>
         )}
         <h1 class="project-title">{title}</h1>
-        {hasVideos && (
+        {isDDIProject && (
           <div class="project-campaign-tagline">
             <span class="campaign-tagline-pill">Supported By</span>
             <span class="campaign-tagline-title">Digital Democracy Initiative • Sub-Grant No. DDIBAN015</span>
@@ -139,85 +135,115 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
         </div>
       )}
 
-      <!-- Dedicated Publications & Civic Impact Section -->
-      {resolvedPublications && resolvedPublications.length > 0 && (
-        <section class="publications-section">
-          <div class="publications-intro">
-            <span class="gallery-tag">Policy Engagement & Impact</span>
-            <h2 class="gallery-heading">Publications & Civic Impact</h2>
-            <div class="gallery-decoration"></div>
-            <p class="publications-lead">
-              Translating digital civic storytelling and youth engagement into municipal policy proposals and institutional partnerships.
-            </p>
-          </div>
+      <!-- Dedicated Impact & Policy Structured Sections -->
+      {hasImpactSections && (
+        <div class="impact-sections-container">
+          {impactSections.map((sec, idx) => (
+            <section class:list={['impact-section-block', `block-${sec.badgeType || 'general'}`]} id={sec.id}>
+              <!-- Section Header -->
+              <div class="impact-header-block">
+                <div class="impact-badge-row">
+                  <span class:list={['impact-pill', `pill-${sec.badgeType || 'general'}`]}>{sec.badge}</span>
+                  <span class="impact-index-pill">Part {idx + 1} of {impactSections.length}</span>
+                </div>
+                <h2 class="impact-block-title">{sec.title}</h2>
+                <p class="impact-block-subtitle">{sec.subtitle}</p>
+                <div class="impact-accent-divider"></div>
+              </div>
 
-          <div class="publications-grid">
-            {resolvedPublications.map((pub) => (
-              <article class="publication-card" id={pub.id}>
-                {pub.resolvedImage ? (
-                  <div class="pub-card-layout with-visual">
-                    <div class="pub-visual-col">
-                      <Image 
-                        src={pub.resolvedImage} 
-                        alt={pub.title} 
-                        class="pub-photo" 
-                        width={700} 
-                        height={480} 
-                        loading="lazy" 
-                      />
-                      {pub.imageCaption && (
-                        <p class="pub-photo-caption">
-                          <span class="caption-icon">📷</span> {pub.imageCaption}
-                        </p>
-                      )}
-                    </div>
-                    <div class="pub-details-col">
-                      <div class="pub-meta-row">
-                        <span class="pub-type-badge">{pub.type}</span>
-                        {pub.organization && (
-                          <span class="pub-org-badge">{pub.organization}</span>
-                        )}
-                        <span class="pub-date-badge">📅 {pub.date}</span>
-                      </div>
-                      <h3 class="pub-item-title">{pub.title}</h3>
-                      <p class="pub-item-subtitle">{pub.subtitle}</p>
-                      <p class="pub-item-summary">{pub.summary}</p>
-                      {pub.tags && pub.tags.length > 0 && (
-                        <div class="pub-tags-list">
-                          {pub.tags.map(t => (
-                            <span class="pub-tag-pill">{t}</span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+              <!-- Lead narrative -->
+              {sec.lead && (
+                <p class="impact-lead-text">{sec.lead}</p>
+              )}
+
+              <!-- Main narrative paragraphs -->
+              {sec.narrative && sec.narrative.length > 0 && (
+                <div class="impact-narrative-group">
+                  {sec.narrative.map((para) => (
+                    <p class="impact-narrative-p">{para}</p>
+                  ))}
+                </div>
+              )}
+
+              <!-- Highlight box (e.g. Sayeed Al Hasnat's Turning Point with RCC) -->
+              {sec.highlightBox && (
+                <div class="impact-highlight-box">
+                  <div class="highlight-box-header">
+                    <span class="highlight-tag">{sec.highlightBox.tag}</span>
+                    <h3 class="highlight-title">{sec.highlightBox.title}</h3>
                   </div>
-                ) : (
-                  <div class="pub-card-layout standalone-text">
-                    <div class="pub-details-col">
-                      <div class="pub-meta-row">
-                        <span class="pub-type-badge case-study">{pub.type}</span>
-                        {pub.organization && (
-                          <span class="pub-org-badge">{pub.organization}</span>
-                        )}
-                        <span class="pub-date-badge">📅 {pub.date}</span>
+                  <p class="highlight-body">{sec.highlightBox.text}</p>
+                </div>
+              )}
+
+              <!-- Measured Metrics Grid (for Policy Brief) -->
+              {sec.metrics && sec.metrics.length > 0 && (
+                <div class="impact-metrics-section">
+                  {sec.metricsTitle && <h3 class="subsection-title">{sec.metricsTitle}</h3>}
+                  <div class="impact-metrics-grid">
+                    {sec.metrics.map(m => (
+                      <div class="impact-metric-card">
+                        <span class="metric-value">{m.value}</span>
+                        <span class="metric-label">{m.label}</span>
+                        {m.subtext && <span class="metric-subtext">{m.subtext}</span>}
                       </div>
-                      <h3 class="pub-item-title">{pub.title}</h3>
-                      <p class="pub-item-subtitle">{pub.subtitle}</p>
-                      <p class="pub-item-summary">{pub.summary}</p>
-                      {pub.tags && pub.tags.length > 0 && (
-                        <div class="pub-tags-list">
-                          {pub.tags.map(t => (
-                            <span class="pub-tag-pill">{t}</span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                    ))}
                   </div>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
+                </div>
+              )}
+
+              <!-- Civic Communication Challenge -->
+              {sec.challenge && (
+                <div class="civic-challenge-card">
+                  <div class="challenge-icon-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  </div>
+                  <div class="challenge-content">
+                    <h3 class="challenge-title">{sec.challenge.title}</h3>
+                    <p class="challenge-text">{sec.challenge.text}</p>
+                  </div>
+                </div>
+              )}
+
+              <!-- Six Policy Recommendations -->
+              {sec.recommendations && sec.recommendations.length > 0 && (
+                <div class="recommendations-section">
+                  {sec.recommendationsTitle && <h3 class="subsection-title">{sec.recommendationsTitle}</h3>}
+                  <div class="recommendations-grid">
+                    {sec.recommendations.map(rec => (
+                      <div class="recommendation-card">
+                        <div class="rec-number-badge">{String(rec.num).padStart(2, '0')}</div>
+                        <div class="rec-content">
+                          <h4 class="rec-title">{rec.title}</h4>
+                          <p class="rec-desc">{rec.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <!-- 90-Day Pilot Roadmap -->
+              {sec.roadmap && sec.roadmap.length > 0 && (
+                <div class="roadmap-section">
+                  {sec.roadmapTitle && <h3 class="subsection-title">{sec.roadmapTitle}</h3>}
+                  <div class="roadmap-grid">
+                    {sec.roadmap.map((step, sIdx) => (
+                      <div class="roadmap-card">
+                        <div class="roadmap-phase-header">
+                          <span class="roadmap-period-pill">{step.period}</span>
+                          <span class="roadmap-step-num">Phase {sIdx + 1}</span>
+                        </div>
+                        <h4 class="roadmap-title">{step.title}</h4>
+                        <p class="roadmap-desc">{step.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          ))}
+        </div>
       )}
 
       <!-- Media Section: Series Archive vs Single Video vs Gallery -->
@@ -1025,173 +1051,361 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
     .social-icon-btn.ig:hover { background: #e1306c; color: #fff; }
     .social-icon-btn.li:hover { background: #0a66c2; color: #fff; }
 
-    /* 5b. PUBLICATIONS & CIVIC IMPACT SECTION */
-    .publications-section {
-        margin: 54px 0 64px 0;
-        padding-top: 40px;
-        border-top: 2px solid #f1f5f9;
+    /* 5b. DEDICATED IMPACT & POLICY SECTIONS */
+    .project-content.has-impact {
+        max-width: 1200px;
     }
 
-    .publications-intro {
+    .project-content.has-impact .project-body {
+        max-width: 920px;
+        margin-bottom: 40px;
+    }
+
+    .impact-sections-container {
+        display: flex;
+        flex-direction: column;
+        gap: 56px;
+        margin: 48px 0 64px 0;
+    }
+
+    .impact-section-block {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 40px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        transition: box-shadow 0.25s ease;
+    }
+
+    .impact-section-block:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .impact-header-block {
         margin-bottom: 28px;
     }
 
-    .publications-lead {
-        font-size: 1.05rem;
-        line-height: 1.6;
-        color: #475569;
-        margin-top: 14px;
-        max-width: 760px;
-    }
-
-    .publications-grid {
+    .impact-badge-row {
         display: flex;
-        flex-direction: column;
-        gap: 32px;
-    }
-
-    .publication-card {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        overflow: hidden;
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .publication-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
-    }
-
-    .pub-card-layout.with-visual {
-        display: grid;
-        grid-template-columns: 1.15fr 1fr;
-    }
-
-    .pub-visual-col {
-        background: #0f172a;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-    }
-
-    .pub-photo {
-        width: 100%;
-        height: 100%;
-        min-height: 320px;
-        object-fit: cover;
-        display: block;
-    }
-
-    .pub-photo-caption {
-        padding: 10px 14px;
-        background: rgba(15, 23, 42, 0.94);
-        color: #cbd5e1;
-        font-size: 0.78rem;
-        line-height: 1.45;
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
-        margin: 0;
-    }
-
-    .caption-icon {
-        margin-right: 4px;
-    }
-
-    .pub-details-col {
-        padding: 28px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .pub-card-layout.standalone-text .pub-details-col {
-        padding: 32px;
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    }
-
-    .pub-meta-row {
-        display: flex;
-        flex-wrap: wrap;
         align-items: center;
-        gap: 8px;
+        gap: 12px;
         margin-bottom: 12px;
     }
 
-    .pub-type-badge {
+    .impact-pill {
         display: inline-block;
-        padding: 3px 10px;
+        padding: 4px 12px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        border-radius: 6px;
+    }
+
+    .pill-case-study {
+        background: #7c3aed;
+        color: #ffffff;
+    }
+
+    .pill-policy-brief {
         background: #0284c7;
         color: #ffffff;
+    }
+
+    .impact-index-pill {
+        font-size: 0.75rem;
+        color: #64748b;
+        font-weight: 600;
+    }
+
+    .impact-block-title {
+        font-size: 1.85rem;
+        font-weight: 800;
+        color: #0f172a;
+        line-height: 1.3;
+        margin: 0 0 8px 0;
+    }
+
+    .impact-block-subtitle {
+        font-size: 0.92rem;
+        color: #64748b;
+        font-weight: 600;
+        margin: 0 0 16px 0;
+    }
+
+    .impact-accent-divider {
+        width: 48px;
+        height: 3px;
+        background: #0f172a;
+        border-radius: 2px;
+    }
+
+    .impact-lead-text {
+        font-size: 1.15rem;
+        font-weight: 500;
+        color: #1e293b;
+        line-height: 1.7;
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .impact-narrative-group {
+        margin-bottom: 32px;
+    }
+
+    .impact-narrative-p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: #334155;
+        margin-bottom: 18px;
+        text-align: justify;
+    }
+
+    /* Highlight box (Sayeed Al Hasnat's Turning Point) */
+    .impact-highlight-box {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-left: 4px solid #16a34a;
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin: 32px 0 16px 0;
+    }
+
+    .highlight-box-header {
+        margin-bottom: 10px;
+    }
+
+    .highlight-tag {
+        display: inline-block;
+        padding: 2px 10px;
+        background: #dcfce7;
+        color: #15803d;
         font-size: 0.72rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.06em;
         border-radius: 4px;
+        margin-bottom: 6px;
     }
 
-    .pub-type-badge.case-study {
-        background: #7c3aed;
+    .highlight-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #14532d;
+        margin: 4px 0 0 0;
     }
 
-    .pub-org-badge {
-        display: inline-block;
-        padding: 3px 10px;
-        background: #f1f5f9;
-        color: #334155;
-        font-size: 0.75rem;
-        font-weight: 600;
-        border-radius: 4px;
-        border: 1px solid #cbd5e1;
+    .highlight-body {
+        font-size: 1rem;
+        line-height: 1.65;
+        color: #166534;
+        margin: 0;
+        text-align: justify;
     }
 
-    .pub-date-badge {
-        color: #64748b;
-        font-size: 0.75rem;
-        font-weight: 500;
-        margin-left: auto;
+    /* Metrics Grid */
+    .impact-metrics-section {
+        margin: 32px 0;
     }
 
-    .pub-item-title {
-        font-size: 1.35rem;
+    .subsection-title {
+        font-size: 1.3rem;
         font-weight: 700;
         color: #0f172a;
-        line-height: 1.35;
-        margin: 0 0 8px 0;
+        margin: 0 0 18px 0;
     }
 
-    .pub-item-subtitle {
-        font-size: 0.85rem;
-        color: #64748b;
-        font-weight: 600;
-        margin: 0 0 16px 0;
-        padding-bottom: 12px;
-        border-bottom: 1px dashed #e2e8f0;
+    .impact-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
     }
 
-    .pub-item-summary {
-        font-size: 0.95rem;
-        line-height: 1.65;
-        color: #334155;
-        margin: 0 0 20px 0;
-    }
-
-    .pub-tags-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-top: auto;
-    }
-
-    .pub-tag-pill {
-        display: inline-block;
-        padding: 2px 8px;
+    .impact-metric-card {
         background: #f8fafc;
         border: 1px solid #e2e8f0;
         border-radius: 12px;
+        padding: 20px 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .impact-metric-card:hover {
+        transform: translateY(-2px);
+        border-color: #cbd5e1;
+    }
+
+    .metric-value {
+        font-size: 1.85rem;
+        font-weight: 800;
+        color: #0284c7;
+        line-height: 1.1;
+        margin-bottom: 6px;
+    }
+
+    .metric-label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 4px;
+    }
+
+    .metric-subtext {
         font-size: 0.72rem;
         color: #64748b;
         font-weight: 500;
+    }
+
+    /* Civic Challenge Card */
+    .civic-challenge-card {
+        display: flex;
+        gap: 20px;
+        background: #fffbeb;
+        border: 1px solid #fef3c7;
+        border-left: 4px solid #f59e0b;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 32px 0;
+    }
+
+    .challenge-icon-wrap {
+        color: #d97706;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .challenge-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #92400e;
+        margin: 0 0 8px 0;
+    }
+
+    .challenge-text {
+        font-size: 0.98rem;
+        line-height: 1.65;
+        color: #78350f;
+        margin: 0;
+        text-align: justify;
+    }
+
+    /* Policy Recommendations Grid */
+    .recommendations-section {
+        margin: 36px 0;
+    }
+
+    .recommendations-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .recommendation-card {
+        display: flex;
+        gap: 16px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 22px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .recommendation-card:hover {
+        border-color: #0284c7;
+        box-shadow: 0 4px 16px rgba(2, 132, 199, 0.08);
+    }
+
+    .rec-number-badge {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #0284c7;
+        color: #ffffff;
+        font-size: 0.85rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .rec-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0 0 6px 0;
+        line-height: 1.35;
+    }
+
+    .rec-desc {
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: #475569;
+        margin: 0;
+        text-align: justify;
+    }
+
+    /* 90-Day Roadmap Timeline */
+    .roadmap-section {
+        margin-top: 36px;
+    }
+
+    .roadmap-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .roadmap-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .roadmap-phase-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+
+    .roadmap-period-pill {
+        display: inline-block;
+        padding: 3px 10px;
+        background: #0f172a;
+        color: #ffffff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        border-radius: 4px;
+    }
+
+    .roadmap-step-num {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #64748b;
+    }
+
+    .roadmap-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0 0 8px 0;
+        line-height: 1.35;
+    }
+
+    .roadmap-desc {
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: #475569;
+        margin: 0;
+        text-align: justify;
     }
 
     /* 6. RESPONSIVE */
@@ -1206,9 +1420,11 @@ const podcasts = hasVideos ? videos.filter(v => v.category === 'podcast') : [];
         .share-container { margin-bottom: 24px; }
         .series-cards-grid { grid-template-columns: 1fr; }
         .grant-details-grid { grid-template-columns: 1fr; }
-        .pub-card-layout.with-visual { grid-template-columns: 1fr; }
-        .pub-photo { min-height: 220px; max-height: 260px; }
-        .pub-details-col { padding: 20px; }
-        .pub-card-layout.standalone-text .pub-details-col { padding: 20px; }
+        .impact-section-block { padding: 24px 18px; }
+        .impact-block-title { font-size: 1.5rem; }
+        .impact-metrics-grid { grid-template-columns: 1fr; }
+        .recommendations-grid { grid-template-columns: 1fr; }
+        .roadmap-grid { grid-template-columns: 1fr; }
+        .civic-challenge-card { flex-direction: column; gap: 12px; }
     }
 </style>

@@ -27,6 +27,51 @@ export interface ProjectPublicationItem {
   imageCaption?: string;
 }
 
+export interface ImpactMetric {
+  label: string;
+  value: string;
+  subtext?: string;
+}
+
+export interface PolicyRecommendation {
+  num: number;
+  title: string;
+  desc: string;
+}
+
+export interface RoadmapPhase {
+  period: string;
+  title: string;
+  desc: string;
+}
+
+export interface ImpactSection {
+  id: string;
+  badge: string;
+  badgeType?: 'case-study' | 'policy-brief';
+  title: string;
+  subtitle: string;
+  lead?: string;
+  narrative?: string[];
+  highlightBox?: {
+    tag: string;
+    title: string;
+    text: string;
+  };
+  metricsTitle?: string;
+  metrics?: ImpactMetric[];
+  challenge?: {
+    title: string;
+    text: string;
+  };
+  recommendationsTitle?: string;
+  recommendations?: PolicyRecommendation[];
+  roadmapTitle?: string;
+  roadmap?: RoadmapPhase[];
+  image?: string;
+  imageCaption?: string;
+}
+
 export interface InitiativeItem {
   slug: string;
   title: string;
@@ -40,6 +85,7 @@ export interface InitiativeItem {
   fileType: string;
   video?: string;
   videos?: ProjectVideoItem[];
+  impactSections?: ImpactSection[];
   publications?: ProjectPublicationItem[];
 }
 
@@ -51,6 +97,7 @@ const slugOrder: string[] = [
   "utsobe_sobai",
   "telescope_innovation_session",
   "democracy-in-reels",
+  "democracy-in-reels-impact",
   "technicalworkshop",
   "stem_telescope_observation",
   "stem-online-session",

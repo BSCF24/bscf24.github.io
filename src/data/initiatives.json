@@ -879,38 +879,128 @@
         "instagram": "https://www.instagram.com/reel/Dcv8t2CydTr/",
         "linkedin": "https://www.linkedin.com/feed/update/urn:li:activity:7500570342290231296"
       }
+    ]
+  },
+  {
+    "slug": "democracy-in-reels-impact",
+    "title": "From Production to Policy: Civic Impact of Democracy in Reels",
+    "date": "2026-11-15",
+    "tag": "projects",
+    "description": "How youth-led digital storytelling from Democracy in Reels sparked independent civic advocacy in Rajshahi and led to a formal 90-day civic video policy proposal to Rajshahi City Corporation.",
+    "featured": "/images/rcc-handover.jpeg",
+    "images": [
+      "/images/rcc-handover.jpeg",
+      "/initiatives/democracy-in-reels/ddr1.jpg",
+      "/initiatives/democracy-in-reels/ddr2.jpg",
+      "/initiatives/democracy-in-reels/ddr3.jpg",
+      "/initiatives/democracy-in-reels/ddr4.jpg"
     ],
-    "publications": [
+    "body": "Following the successful completion of the Democracy in Reels project (DDIBAN015), the Bangladesh Socio-Cultural Forum (BSCF) advanced its youth-led civic storytelling methodology from online media production into tangible municipal policy advocacy. Reaching 573,211 citizens across Bangladesh and engaging 120 community members in person, the campaign demonstrated that young people can actively communicate democratic awareness and shape institutional public communications. Below are the key milestones connecting grassroots youth digital advocacy with local governance in Rajshahi, spanning an in-depth case study and a formal 90-day civic video policy brief submitted to Rajshahi City Corporation.",
+    "rawBody": "Following the successful completion of the Democracy in Reels project (DDIBAN015), the Bangladesh Socio-Cultural Forum (BSCF) advanced its youth-led civic storytelling methodology from online media production into tangible municipal policy advocacy. Reaching 573,211 citizens across Bangladesh and engaging 120 community members in person, the campaign demonstrated that young people can actively communicate democratic awareness and shape institutional public communications. Below are the key milestones connecting grassroots youth digital advocacy with local governance in Rajshahi, spanning an in-depth case study and a formal 90-day civic video policy brief submitted to Rajshahi City Corporation.",
+    "fileType": ".njk",
+    "impactSections": [
       {
-        "id": "PUB-01",
-        "type": "Policy Brief",
-        "title": "Strengthening Civic Awareness and Youth Participation Through Digital Storytelling",
-        "subtitle": "Policy Brief • Submitted to The Administrator, Rajshahi City Corporation | November 2026",
-        "date": "November 2026",
-        "organization": "Rajshahi City Corporation",
-        "summary": "Submitted by BSCF to the Administrator of Rajshahi City Corporation, this policy brief translates the outcomes of Democracy in Reels (573,211 digital reach and 85% participant advocacy confidence) into a practical 90-day pilot proposal. It outlines six actionable recommendations—including a regular Bangla civic video series on municipal services (waste management, drainage, road maintenance, citizen complaints), youth creator partnerships, and transparent two-way civic communication.",
-        "tags": [
-          "Policy Brief",
-          "Rajshahi City Corporation",
-          "Civic Engagement",
-          "Municipal Governance"
+        "id": "case-study-sayeed",
+        "badge": "Case Study",
+        "badgeType": "case-study",
+        "title": "Impact Story: From Participant to Digital Democracy Advocate",
+        "subtitle": "Case Study | Sayeed Al Hasnat, Senior Youth Associate, Bangladesh Socio-Cultural Forum (BSCF)",
+        "lead": "How one young person's journey through Democracy in Reels inspired independent civic content creation and bridged grassroots youth storytelling with local government institutions in Rajshahi.",
+        "narrative": [
+          "Implemented by the Bangladesh Socio-Cultural Forum (BSCF) from 25 June to 31 August 2026 with support from the Digital Democracy Initiative (Project Reference: DDIBAN015), Democracy in Reels engaged young citizens through 20 short-form Reels, 5 Online Video Contents (OVCs), 5 podcast episodes, a hands-on youth workshop ('Democracy Through Reels'), two Campus Screening and Democracy Dialogue events, and an interactive policy roundtable. The initiative sought to make democratic rights, freedom of speech, transparency, and civic participation engaging and accessible to young Bangladeshis.",
+          "Among the most active participants was Sayeed Al Hasnat, Senior Youth Associate at BSCF. Inspired by the production techniques, narrative framing, and civic responsibilities explored during the campaign's workshops and dialogue sessions, Sayeed transitioned from being a program participant to an independent civic storyteller. Following the formal completion of the project, he began independently scripting, recording, and publishing short-form video explainers on local civic issues, public accountability, and democratic values across social media platforms.",
+          "His accessible, youth-oriented video style resonated deeply with audiences across Bangladesh—and particularly within Rajshahi. By breaking down complex governance topics into concise, relatable everyday Bangla reels, Sayeed demonstrated that youth need not be passive consumers of civic awareness; they can become proactive communicators and advocates in their own communities."
         ],
-        "image": "/initiatives/democracy-in-reels/rcc-handover.jpeg",
-        "imageCaption": "BSCF delegation submitting the Policy Brief to Dr. Dewan Muhammad Humayun Kabir, Administrator of Rajshahi City Corporation."
+        "highlightBox": {
+          "tag": "Institutional Milestone • October 2026",
+          "title": "Direct Institutional Outreach by Rajshahi City Corporation",
+          "text": "In the last week of October 2026, the Administrator of Rajshahi City Corporation personally contacted Sayeed Al Hasnat. Having observed his independent civic video content online, the Administrator commended the initiative, recognized the vital role of youth digital creators in citizen education, and expressed keen interest in collaborating with Sayeed and the BSCF team to co-produce democracy-focused civic video content—creating a direct, institutional bridge between grassroots youth digital storytelling and local municipal administration."
+        }
       },
       {
-        "id": "PUB-02",
-        "type": "Case Study",
-        "title": "From Participant to Digital Democracy Advocate: How One Young Person's Journey Through Democracy in Reels Inspired a New Wave of Digital Civic Engagement in Rajshahi",
-        "subtitle": "Case Study • Sayeed Al Hasnat, Senior Youth Associate (BSCF) | October 2026",
-        "date": "October 2026",
-        "organization": "BSCF Youth Leadership",
-        "summary": "Documents how Senior Youth Associate Sayeed Al Hasnat built on his participation in Democracy in Reels to independently produce democracy-focused social media videos after the project ended. His youth-led civic content resonated across Bangladesh—particularly in Rajshahi—and caught the attention of the Rajshahi City Corporation Administrator in late October 2026, opening pathways for institutional collaboration on civic video production.",
-        "tags": [
-          "Case Study",
-          "Youth Leadership",
-          "Civic Advocacy",
-          "Rajshahi"
+        "id": "policy-brief-rcc",
+        "badge": "Policy Brief",
+        "badgeType": "policy-brief",
+        "title": "Production to Policy: Strengthening Municipal Governance Through Civic Videos",
+        "subtitle": "Policy Brief | Submitted by Bangladesh Socio-Cultural Forum (BSCF) to The Administrator, Rajshahi City Corporation (November 2026)",
+        "lead": "Translating the verified digital engagement metrics and storytelling methodology of Democracy in Reels into actionable recommendations and a structured 90-day pilot proposal for Rajshahi City Corporation.",
+        "metricsTitle": "Verified Project Impact (Democracy in Reels)",
+        "metrics": [
+          {
+            "label": "Digital Campaign Reach",
+            "value": "573,211",
+            "subtext": "114.6% of 500,000 target"
+          },
+          {
+            "label": "In-Person Community Members",
+            "value": "120",
+            "subtext": "100% of community target"
+          },
+          {
+            "label": "Advocacy Confidence",
+            "value": "85%",
+            "subtext": "+15% above 70% target"
+          },
+          {
+            "label": "Total Views & Impressions",
+            "value": "325,874",
+            "subtext": "Across social channels"
+          }
+        ],
+        "challenge": {
+          "title": "The Civic Communication Challenge",
+          "text": "While Rajshahi City Corporation regularly issues official circulars, citizen charters, and notices, a significant communication gap persists between formal municipal documentation and everyday residents—particularly youth. Complex bureaucratic terminology and text-heavy formats often limit citizen awareness of critical local public services. Short-form video explainers in clear, conversational Bangla can complement formal notices to help residents understand practical civic topics including household waste management schedules, drainage and waterlogging prevention, neighborhood road maintenance updates, public health drives, holding tax assessment and digital payment, and official citizen complaint submission procedures."
+        },
+        "recommendationsTitle": "Six Policy Recommendations for Rajshahi City Corporation",
+        "recommendations": [
+          {
+            "num": 1,
+            "title": "Introduce a Regular Civic Video Series",
+            "desc": "Produce short, engaging explainer videos explaining City Corporation services, public notices, and civic responsibilities in clear, everyday Bangla to bridge the information gap with residents."
+          },
+          {
+            "num": 2,
+            "title": "Make Youth Participation Part of Public Communication",
+            "desc": "Engage local youth and emerging digital creators in co-producing municipal content under structured creative briefs, mentorship, and supervision."
+          },
+          {
+            "num": 3,
+            "title": "Prioritise Residents' Everyday Concerns",
+            "desc": "Focus content on immediate civic touchpoints: household waste disposal, drainage clearance, road repair updates, dengue/public health alerts, and citizen service workflows."
+          },
+          {
+            "num": 4,
+            "title": "Establish an Accuracy and Approval Process",
+            "desc": "Designate an official City Corporation focal person/department to review and verify facts, ensuring all published content is strictly factual, non-partisan, and accessible with captions."
+          },
+          {
+            "num": 5,
+            "title": "Create Two-Way Civic Communication",
+            "desc": "Utilize video comment threads and social feedback to invite resident questions, collect civic topic suggestions, and actively route actionable service requests to municipal departments."
+          },
+          {
+            "num": 6,
+            "title": "Measure Performance Transparently",
+            "desc": "Establish a transparent monitoring system tracking videos produced, reach, views, shares, public queries received, and measurable referrals to official City Corporation service desks."
+          }
+        ],
+        "roadmapTitle": "Proposed 90-Day Pilot Roadmap",
+        "roadmap": [
+          {
+            "period": "Days 1–30",
+            "title": "Phase 1: Foundation & Workflow Alignment",
+            "desc": "Nominate a City Corporation focal person, identify priority civic topics and municipal departments, agree on a streamlined fact-checking and sign-off workflow, and onboard youth creator partners."
+          },
+          {
+            "period": "Days 31–60",
+            "title": "Phase 2: Pilot Production & Dual Distribution",
+            "desc": "Produce and publish an initial series of 8–12 short civic videos across official City Corporation channels and youth creator networks while actively collecting public feedback and inquiries."
+          },
+          {
+            "period": "By Day 90",
+            "title": "Phase 3: Review, Evaluation & Institutionalization",
+            "desc": "Review audience response, factual accuracy, recurring resident questions, and service-channel referrals to refine formats and establish a sustained, regular publication schedule."
+          }
         ]
       }
     ]
