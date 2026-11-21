@@ -1,0 +1,568 @@
+---
+import Base from '../layouts/Base.astro';
+
+const registrationUrl = "https://forms.gle/JbWs9y6YBWRdamHN6";
+
+const keySegments = [
+  {
+    icon: "🔭",
+    title: "Astronomy Olympiad",
+    desc: "Rigorous divisional competition with direct qualification pathway to BSCF's National Astronomy Camp."
+  },
+  {
+    icon: "🌌",
+    title: "Expert-Led Sessions",
+    desc: "Interactive keynotes and masterclasses conducted by astronomy pioneers, academics, and researchers."
+  },
+  {
+    icon: "🚀",
+    title: "Hands-On Group Projects & Field Visit",
+    desc: "Team collaborative mission challenges, observational night-sky stargazing, and guided scientific field visits."
+  },
+  {
+    icon: "🤖",
+    title: "Future-Ready Tech & Ethics",
+    desc: "Cutting-edge workshops exploring Robotics Engineering, Empathy, and Responsible Social Media & AI Usage."
+  },
+  {
+    icon: "🎒",
+    title: "Participant Kit & Recognition",
+    desc: "Official camp T-shirt, ID card, bag, notebook & pen, souvenir magazine, and certificate (plus medals, crests, and trophies for Olympiad winners)."
+  }
+];
+---
+
+<Base 
+  title="3rd BSCF Astronomy Camp, 2026 | Official Registration Portal" 
+  description="Official registration portal for the 3rd BSCF Astronomy Camp, 2026 (30 Dec 2026 – 1 Jan 2027) at the University of Rajshahi. 3 days of space science, Astronomy Olympiad, robotics, AI, and national camp qualification for 1,500 students."
+  pageUrl="/astronomy-camp-2026/"
+>
+  <div class="camp-page-wrapper">
+    <!-- Cosmic background glow orbs -->
+    <div class="cosmic-glow-orb orb-1"></div>
+    <div class="cosmic-glow-orb orb-2"></div>
+
+    <div class="camp-content-container">
+
+      <!-- Hero Header & Quick Registration CTA -->
+      <div class="camp-header">
+        <div class="camp-tag-badge">
+          <span class="badge-dot"></span>
+          <span>3RD EDITION • FLAGSHIP SCIENCE INITIATIVE</span>
+        </div>
+
+        <h1 class="camp-title">
+          3rd BSCF <span class="gradient-text">Astronomy Camp</span>, 2026
+        </h1>
+        <p class="camp-tagline">“From Stardust We're Born, To Constellations We Belong”</p>
+
+        <p class="camp-organizer">
+          Organized by <strong>Bangladesh Socio-Cultural Forum (BSCF)</strong>
+        </p>
+
+        <!-- Quick Key Info Strip -->
+        <div class="camp-info-strip">
+          <div class="info-strip-item">
+            <span class="info-icon">📅</span>
+            <div class="info-text">
+              <span class="info-label">Date</span>
+              <strong class="info-val">30 Dec, 2026 – 1 Jan, 2027</strong>
+              <span class="info-sub">3 Days (Non-Residential)</span>
+            </div>
+          </div>
+
+          <div class="info-strip-item">
+            <span class="info-icon">🏛</span>
+            <div class="info-text">
+              <span class="info-label">Venue</span>
+              <strong class="info-val">University of Rajshahi</strong>
+              <span class="info-sub">Rajshahi, Bangladesh</span>
+            </div>
+          </div>
+
+          <div class="info-strip-item">
+            <span class="info-icon">👥</span>
+            <div class="info-text">
+              <span class="info-label">Participants</span>
+              <strong class="info-val">1,500 Students</strong>
+              <span class="info-sub">Schools, Colleges & Unis across Rajshahi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary CTA Button -->
+        <div class="camp-hero-cta">
+          <a 
+            href={registrationUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn-camp-register"
+          >
+            <span>Register Now</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Concise About & Program Highlights -->
+      <section class="camp-about-section">
+        <h2 class="section-title">About the Camp</h2>
+        <div class="section-line"></div>
+
+        <div class="about-paragraphs">
+          <p>
+            Following the tremendous success of the 1st BSCF Astronomy Camp 2024 (350+ participants) and the 2nd BSCF Divisional Astronomy Camp 2025 (1,200+ participants), the <strong>3rd BSCF Astronomy Camp, 2026</strong> brings together 1,500 students from schools, colleges, and universities across Rajshahi Division to the University of Rajshahi from <strong>30 December, 2026 – 1 January, 2027</strong> for three days of immersive, hands-on space science and STEM exploration.
+          </p>
+          <p>
+            The camp takes astronomy out of traditional textbooks into practical discovery. Outstanding performers and winners of the Divisional Astronomy Olympiad also qualify directly for <strong>BSCF's National Astronomy Camp</strong>, establishing a prestigious division-wide qualification pathway to nationwide exposure, scientific mentorship, and advanced astrophysics training.
+          </p>
+        </div>
+      </section>
+
+      <!-- Key Segments & Participant Perks -->
+      <section class="camp-segments-section">
+        <h2 class="section-title">Key Segments & Participant Perks</h2>
+        <div class="section-line"></div>
+
+        <div class="segments-grid">
+          {keySegments.map(item => (
+            <div class="segment-card">
+              <span class="segment-icon">{item.icon}</span>
+              <div class="segment-body">
+                <h3 class="segment-title">{item.title}</h3>
+                <p class="segment-desc">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Camp Leadership & Contact Card -->
+      <section class="camp-leadership-section">
+        <div class="leadership-card">
+          <div class="leader-col">
+            <span class="role-tag">Camp Adviser</span>
+            <h4 class="person-name">Dr. Md. Mahbubor Rahman</h4>
+            <p class="person-title">Proctor, University of Rajshahi</p>
+          </div>
+
+          <div class="leader-col divider-left">
+            <span class="role-tag">Chief Executive, BSCF</span>
+            <h4 class="person-name">Niloy Saha</h4>
+            <div class="contact-links">
+              <a href="tel:+8801770357859" class="c-link">📞 +880 1770-357859</a>
+              <a href="mailto:bscf24@gmail.com" class="c-link">✉️ bscf24@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Closing Registration CTA -->
+      <div class="camp-closing-cta">
+        <a 
+          href={registrationUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-camp-register large"
+        >
+          <span>Register Now</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</Base>
+
+<style>
+/* ===================================================
+   3rd BSCF Astronomy Camp 2026 - Compact Cosmic Theme
+   =================================================== */
+
+.camp-page-wrapper {
+  position: relative;
+  background: radial-gradient(circle at 50% 12%, #131d36 0%, #0a0f1d 55%, #050811 100%);
+  color: #f1f5f9;
+  min-height: 100vh;
+  padding: 105px 20px 80px; /* Ample top clearance below fixed navbar */
+  font-family: 'Jost', sans-serif;
+  overflow: hidden;
+}
+
+/* Ambient cosmic glow orbs */
+.cosmic-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 420px;
+  height: 420px;
+  top: 40px;
+  left: 5%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, transparent 70%);
+}
+
+.orb-2 {
+  width: 480px;
+  height: 480px;
+  top: 250px;
+  right: 5%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.13) 0%, transparent 70%);
+}
+
+.camp-content-container {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* Header Area */
+.camp-header {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.camp-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(2, 132, 199, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #7dd3fc;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: beaconGlow 1.8s infinite ease-in-out;
+}
+
+@keyframes beaconGlow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+.camp-title {
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #38bdf8 0%, #c084fc 50%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.camp-tagline {
+  font-size: clamp(1rem, 2.3vw, 1.3rem);
+  color: #cbd5e1;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+.camp-organizer {
+  font-size: 0.92rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+
+.camp-organizer strong {
+  color: #e2e8f0;
+}
+
+/* Quick Key Info Strip */
+.camp-info-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 16px;
+  padding: 18px 16px;
+  backdrop-filter: blur(12px);
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.info-strip-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-icon {
+  font-size: 1.7rem;
+  flex-shrink: 0;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.info-val {
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.info-sub {
+  font-size: 0.72rem;
+  color: #38bdf8;
+  margin-top: 2px;
+}
+
+/* Primary CTA Button */
+.camp-hero-cta {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-camp-register {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+  color: #ffffff !important;
+  font-size: 1.02rem;
+  font-weight: 700;
+  padding: 13px 38px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
+  transition: all 0.3s ease;
+}
+
+.btn-camp-register:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.65);
+  filter: brightness(1.1);
+}
+
+.btn-camp-register.large {
+  padding: 15px 44px;
+  font-size: 1.1rem;
+}
+
+/* Section Common Styling */
+.section-title {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.section-line {
+  width: 44px;
+  height: 3px;
+  background: linear-gradient(90deg, #38bdf8, #fbbf24);
+  margin: 0 auto 22px;
+  border-radius: 2px;
+}
+
+/* About Section */
+.camp-about-section {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  border-radius: 18px;
+  padding: 30px 28px;
+  margin-bottom: 34px;
+  backdrop-filter: blur(10px);
+}
+
+.about-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: #cbd5e1;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.about-paragraphs strong {
+  color: #f8fafc;
+}
+
+/* Key Segments & Perks Grid */
+.camp-segments-section {
+  margin-bottom: 34px;
+}
+
+.segments-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.segment-card {
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 16px;
+  padding: 20px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+
+.segment-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.segment-icon {
+  font-size: 1.7rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.segment-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.segment-desc {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.55;
+}
+
+/* Leadership Card */
+.camp-leadership-section {
+  margin-bottom: 34px;
+}
+
+.leadership-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 18px;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.role-tag {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #38bdf8;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.person-name {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 3px;
+}
+
+.person-title {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.divider-left {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 24px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.c-link {
+  font-size: 0.85rem;
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.c-link:hover {
+  text-decoration: underline;
+}
+
+/* Closing CTA */
+.camp-closing-cta {
+  text-align: center;
+  padding: 6px 0 16px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .camp-page-wrapper {
+    padding-top: 85px;
+  }
+
+  .camp-info-strip {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .segments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .leadership-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .divider-left {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 0;
+    padding-top: 18px;
+  }
+
+  .btn-camp-register {
+    width: 100%;
+  }
+}
+</style>

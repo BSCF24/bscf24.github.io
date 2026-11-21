@@ -7,6 +7,7 @@ import hero2 from '../assets/images/front2.jpg';
 import hero3 from '../assets/images/front3.jpg';
 import hero4 from '../assets/images/front4.jpg';
 import hero5 from '../assets/images/front5.jpg';
+import popBgImg from '../assets/images/popbg.jpg';
 
 const heroSlides = [
   { img: hero1, alt: "BSCF Hero Slide 1", class: "slide active", loading: "eager" as const },
@@ -110,6 +111,58 @@ const partners = await Promise.all(partnerData.map(async (partner) => {
       </div>
     </div>
   </section>
+
+  <!-- 3rd BSCF Astronomy Camp 2026 Square 5-Second Homepage Pop-Up -->
+  <aside 
+    id="astroSquarePopup" 
+    class="astro-square-popup" 
+    aria-label="3rd BSCF Astronomy Camp 2026 Announcement"
+  >
+    <!-- Direct link wrapping the entire square card -->
+    <a 
+      href="/astronomy-camp-2026/" 
+      class="astro-square-link" 
+      aria-label="3rd BSCF Astronomy Camp 2026 - Click to view event details and register"
+    >
+      <Image 
+        src={popBgImg} 
+        alt="3rd BSCF Astronomy Camp 2026" 
+        class="astro-square-img" 
+        width={560} 
+        height={560} 
+        loading="eager"
+      />
+      <div class="astro-square-hover-badge">
+        <span>Explore Camp &amp; Register &rarr;</span>
+      </div>
+    </a>
+
+    <!-- Discreet Close Button in the top-right corner -->
+    <button 
+      type="button" 
+      id="closeAstroSquareBtn" 
+      class="astro-square-close-btn" 
+      aria-label="Close Announcement"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </aside>
+
+  <!-- Minimized Floating Pill Button (When Dismissed or Auto-Closed) -->
+  <a 
+    href="/astronomy-camp-2026/" 
+    class="astro-camp-pill-btn" 
+    id="openAstroPillBtn" 
+    aria-label="3rd BSCF Astronomy Camp 2026 Registration"
+  >
+    <span class="pill-sparkle">🔭</span>
+    <span class="pill-title">Astro Camp '26</span>
+    <span class="pill-badge">Register</span>
+    <span class="pill-beacon"></span>
+  </a>
 </Base>
 
 <style>
@@ -357,6 +410,193 @@ const partners = await Promise.all(partnerData.map(async (partner) => {
   .hero-actions { flex-direction:column; }
   .partners-grid { grid-template-columns:1fr; }
 }
+
+/* ----------------------------------------------------
+   3rd BSCF Astronomy Camp 2026 Square 5-Second Pop-Up
+------------------------------------------------------- */
+
+.astro-square-popup {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 280px;
+  height: 280px;
+  z-index: 999;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55), 0 0 28px rgba(56, 189, 248, 0.3);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  background: #0f172a;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(24px) scale(0.92);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.astro-square-popup.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.astro-square-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.astro-square-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.astro-square-link:hover .astro-square-img {
+  transform: scale(1.04);
+}
+
+.astro-square-hover-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  color: #7dd3fc;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.astro-square-link:hover .astro-square-hover-badge {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.astro-square-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.astro-square-close-btn:hover {
+  background: rgba(239, 68, 68, 0.95);
+  border-color: transparent;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Discreet Floating Pill Button (When Dismissed or Auto-Closed) */
+.astro-camp-pill-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 998;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  border-radius: 999px;
+  padding: 9px 16px;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.9);
+}
+
+.astro-camp-pill-btn.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.astro-camp-pill-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  border-color: #38bdf8;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6), 0 0 28px rgba(56, 189, 248, 0.45);
+}
+
+.pill-sparkle {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.pill-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.pill-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #0284c7;
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pill-beacon {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: beaconPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes beaconPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+@media (max-width: 600px) {
+  .astro-square-popup {
+    width: 240px;
+    height: 240px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .astro-camp-pill-btn {
+    right: 16px;
+    bottom: 16px;
+    padding: 8px 14px;
+  }
+}
 </style>
 
 <script is:inline>
@@ -374,4 +614,55 @@ function changeSlide(){
 if (slides.length > 1) {
   setInterval(changeSlide, 4000);
 }
+
+// 3rd BSCF Astronomy Camp 2026 Square 5-Second Pop-Up Logic
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("astroSquarePopup");
+  const closeBtn = document.getElementById("closeAstroSquareBtn");
+  const pillBtn = document.getElementById("openAstroPillBtn");
+
+  if (!popup) return;
+
+  let autoDismissTimer = null;
+
+  function dismissPopup() {
+    if (autoDismissTimer) clearTimeout(autoDismissTimer);
+    popup.classList.remove("is-visible");
+    if (pillBtn) {
+      pillBtn.classList.add("is-visible");
+    }
+  }
+
+  // Smooth entrance ~0.8s after load
+  setTimeout(() => {
+    popup.classList.add("is-visible");
+
+    // Automatically disappears/closes after 5 seconds
+    autoDismissTimer = setTimeout(() => {
+      dismissPopup();
+    }, 5000);
+  }, 800);
+
+  // Discreet close button dismisses immediately
+  if (closeBtn) {
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      dismissPopup();
+    });
+  }
+
+  // Pause timer on hover, resume when leaving
+  popup.addEventListener("mouseenter", () => {
+    if (autoDismissTimer) clearTimeout(autoDismissTimer);
+  });
+
+  popup.addEventListener("mouseleave", () => {
+    if (popup.classList.contains("is-visible")) {
+      autoDismissTimer = setTimeout(() => {
+        dismissPopup();
+      }, 2500);
+    }
+  });
+});
 </script>
