@@ -259,13 +259,13 @@ describe("BSCF Site Regression & Build Tests", () => {
     });
   });
 
-  describe("3rd BSCF Astronomy Camp 2026 (/astronomy-camp-2026/)", () => {
+  describe("3rd BSCF National Astronomy Camp 2026 (/astronomy-camp-2026/)", () => {
     it("should render cosmic hero, title, tagline, updated dates, and registration CTAs", () => {
       const html = fs.readFileSync(path.join(astroDistDir, "astronomy-camp-2026", "index.html"), "utf8");
       const $ = cheerio.load(html);
 
       expect($(".camp-title").text()).toContain("3rd BSCF");
-      expect($(".camp-title").text()).toContain("Astronomy Camp");
+      expect($(".camp-title").text()).toContain("National Astronomy Camp");
       expect($(".camp-tagline").text()).toContain("From Stardust We're Born");
       expect($(".camp-organizer").text()).toContain("Bangladesh Socio-Cultural Forum (BSCF)");
       expect($(".camp-organizer").text()).not.toContain("Rajshahi Chapter");
