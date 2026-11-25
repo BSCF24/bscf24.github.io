@@ -270,7 +270,7 @@ describe("BSCF Site Regression & Build Tests", () => {
       expect($(".camp-organizer").text()).toContain("Bangladesh Socio-Cultural Forum (BSCF)");
       expect($(".camp-organizer").text()).not.toContain("Rajshahi Chapter");
       expect(html).not.toContain("coverbg.jpg");
-      expect($(".camp-info-strip").text()).toContain("31 Nov – 2 Jan");
+      expect($(".camp-info-strip").text()).toContain("31 Dec – 2 Jan");
       expect($(".camp-info-strip").text()).not.toContain("1,500");
       expect($("a[href*='forms.gle/JbWs9y6YBWRdamHN6']").length).toBeGreaterThanOrEqual(2);
     });
@@ -282,7 +282,7 @@ describe("BSCF Site Regression & Build Tests", () => {
       expect($(".about-paragraphs p").length).toBe(2);
       expect($(".about-paragraphs").text()).toContain("350+ participants");
       expect($(".about-paragraphs").text()).toContain("1,200+ participants");
-      expect($(".about-paragraphs").text()).toContain("31 November – 2 January");
+      expect($(".about-paragraphs").text()).toContain("31 December – 2 January");
       expect($(".about-paragraphs").text()).not.toContain("1,500");
       expect($(".segment-card").length).toBe(5);
       expect($(".leadership-card").text()).toContain("Dr. Md. Mahbubor Rahman");
