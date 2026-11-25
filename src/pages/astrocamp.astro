@@ -34,8 +34,8 @@ const keySegments = [
 
 <Base 
   title="3rd BSCF National Astronomy Camp, 2026 | Official Registration Portal" 
-  description="Official registration portal for the 3rd BSCF National Astronomy Camp, 2026 (30 Dec 2026 – 1 Jan 2027) at the University of Rajshahi. 3 days of space science, Astronomy Olympiad, robotics, AI, and national camp qualification for 1,500 students."
-  pageUrl="/astronomy-camp-2026/"
+  description="Official registration portal for the 3rd BSCF National Astronomy Camp, 2026 (31 Nov – 2 Jan) at the University of Rajshahi. 3 days of space science, Astronomy Olympiad, robotics, AI, and national camp qualification."
+  pageUrl="/astrocamp/"
 >
   <div class="camp-page-wrapper">
     <!-- Cosmic background glow orbs -->
@@ -66,7 +66,7 @@ const keySegments = [
             <span class="info-icon">📅</span>
             <div class="info-text">
               <span class="info-label">Date</span>
-              <strong class="info-val">30 Dec, 2026 – 1 Jan, 2027</strong>
+              <strong class="info-val">31 Nov – 2 Jan</strong>
               <span class="info-sub">3 Days (Non-Residential)</span>
             </div>
           </div>
@@ -77,15 +77,6 @@ const keySegments = [
               <span class="info-label">Venue</span>
               <strong class="info-val">University of Rajshahi</strong>
               <span class="info-sub">Rajshahi, Bangladesh</span>
-            </div>
-          </div>
-
-          <div class="info-strip-item">
-            <span class="info-icon">👥</span>
-            <div class="info-text">
-              <span class="info-label">Participants</span>
-              <strong class="info-val">1,500 Students</strong>
-              <span class="info-sub">Schools, Colleges & Unis across Rajshahi</span>
             </div>
           </div>
         </div>
@@ -114,7 +105,7 @@ const keySegments = [
 
         <div class="about-paragraphs">
           <p>
-            Following the tremendous success of the 1st BSCF Astronomy Camp 2024 (350+ participants) and the 2nd BSCF Divisional Astronomy Camp 2025 (1,200+ participants), the <strong>3rd BSCF National Astronomy Camp, 2026</strong> brings together 1,500 students from schools, colleges, and universities across Rajshahi Division to the University of Rajshahi from <strong>30 December, 2026 – 1 January, 2027</strong> for three days of immersive, hands-on space science and STEM exploration.
+            Following the tremendous success of the 1st BSCF Astronomy Camp 2024 (350+ participants) and the 2nd BSCF Divisional Astronomy Camp 2025 (1,200+ participants), the <strong>3rd BSCF National Astronomy Camp, 2026</strong> brings together students from schools, colleges, and universities across the country to the University of Rajshahi from <strong>31 November – 2 January</strong> for three days of immersive, hands-on space science and STEM exploration.
           </p>
           <p>
             The camp takes astronomy out of traditional textbooks into practical discovery. Outstanding performers and winners of the Divisional Astronomy Olympiad also qualify directly for <strong>BSCF's National Astronomy Camp</strong>, establishing a prestigious division-wide qualification pathway to nationwide exposure, scientific mentorship, and advanced astrophysics training.
@@ -296,14 +287,15 @@ const keySegments = [
 /* Quick Key Info Strip */
 .camp-info-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  max-width: 640px;
+  margin: 0 auto 28px;
   background: rgba(15, 23, 42, 0.72);
   border: 1px solid rgba(56, 189, 248, 0.25);
   border-radius: 16px;
-  padding: 18px 16px;
+  padding: 18px 22px;
   backdrop-filter: blur(12px);
-  margin-bottom: 28px;
   text-align: left;
 }
 

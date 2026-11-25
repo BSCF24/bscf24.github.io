@@ -35,7 +35,7 @@ describe("BSCF Site Regression & Build Tests", () => {
       const coreRoutes = [
         "index.html",
         "about/index.html",
-        "astronomy-camp-2026/index.html",
+        "astrocamp/index.html",
         "contact/index.html",
         "initiatives/index.html",
         "news/index.html",
@@ -259,9 +259,9 @@ describe("BSCF Site Regression & Build Tests", () => {
     });
   });
 
-  describe("3rd BSCF National Astronomy Camp 2026 (/astronomy-camp-2026/)", () => {
+  describe("3rd BSCF National Astronomy Camp 2026 (/astrocamp/)", () => {
     it("should render cosmic hero, title, tagline, updated dates, and registration CTAs", () => {
-      const html = fs.readFileSync(path.join(astroDistDir, "astronomy-camp-2026", "index.html"), "utf8");
+      const html = fs.readFileSync(path.join(astroDistDir, "astrocamp", "index.html"), "utf8");
       const $ = cheerio.load(html);
 
       expect($(".camp-title").text()).toContain("3rd BSCF");
@@ -269,29 +269,36 @@ describe("BSCF Site Regression & Build Tests", () => {
       expect($(".camp-tagline").text()).toContain("From Stardust We're Born");
       expect($(".camp-organizer").text()).toContain("Bangladesh Socio-Cultural Forum (BSCF)");
       expect($(".camp-organizer").text()).not.toContain("Rajshahi Chapter");
-      expect($(".camp-info-strip").text()).toContain("30 Dec, 2026 – 1 Jan, 2027");
+      expect(html).not.toContain("coverbg.jpg");
+      expect($(".camp-info-strip").text()).toContain("31 Nov – 2 Jan");
+      expect($(".camp-info-strip").text()).not.toContain("1,500");
       expect($("a[href*='forms.gle/JbWs9y6YBWRdamHN6']").length).toBeGreaterThanOrEqual(2);
     });
 
     it("should render concise about, key segments & perks, and leadership contact", () => {
-      const html = fs.readFileSync(path.join(astroDistDir, "astronomy-camp-2026", "index.html"), "utf8");
+      const html = fs.readFileSync(path.join(astroDistDir, "astrocamp", "index.html"), "utf8");
       const $ = cheerio.load(html);
 
       expect($(".about-paragraphs p").length).toBe(2);
+      expect($(".about-paragraphs").text()).toContain("350+ participants");
+      expect($(".about-paragraphs").text()).toContain("1,200+ participants");
+      expect($(".about-paragraphs").text()).toContain("31 November – 2 January");
+      expect($(".about-paragraphs").text()).not.toContain("1,500");
       expect($(".segment-card").length).toBe(5);
       expect($(".leadership-card").text()).toContain("Dr. Md. Mahbubor Rahman");
       expect($(".leadership-card").text()).toContain("Niloy Saha");
     });
 
-    it("should render square 5-second popup on homepage linking to camp page", () => {
+    it("should render square 5-second popup on homepage linking to /astrocamp/", () => {
       const indexHtml = fs.readFileSync(path.join(astroDistDir, "index.html"), "utf8");
       const $ = cheerio.load(indexHtml);
 
       expect($("#astroSquarePopup").length).toBe(1);
-      expect($("#astroSquarePopup a[href='/astronomy-camp-2026/']").length).toBe(1);
+      expect($("#astroSquarePopup a[href='/astrocamp/']").length).toBe(1);
       expect($("#astroSquarePopup .astro-square-img").length).toBe(1);
       expect($("#closeAstroSquareBtn").length).toBe(1);
       expect($("#openAstroPillBtn").length).toBe(1);
+      expect($("#openAstroPillBtn").attr("href")).toBe("/astrocamp/");
     });
   });
 });
