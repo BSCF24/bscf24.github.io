@@ -38,9 +38,24 @@ const keySegments = [
   pageUrl="/astrocamp/"
 >
   <div class="camp-page-wrapper">
-    <!-- Cosmic background glow orbs -->
-    <div class="cosmic-glow-orb orb-1"></div>
-    <div class="cosmic-glow-orb orb-2"></div>
+    <canvas id="astro-cosmos-canvas" aria-hidden="true"></canvas>
+
+    <!-- CSS Base & Breathing Nebula Layer (behind canvas) -->
+    <div class="cosmos-base-bg" id="cosmosBaseBg" aria-hidden="true">
+      <div class="nebula-layer nebula-layer-early">
+        <div class="nebula-blob nebula-indigo"></div>
+        <div class="nebula-blob nebula-teal"></div>
+        <div class="nebula-blob nebula-amber"></div>
+      </div>
+      <div class="nebula-layer nebula-layer-deep" id="nebulaDeepLayer">
+        <div class="nebula-blob nebula-deep-violet"></div>
+        <div class="nebula-blob nebula-deep-amber"></div>
+      </div>
+    </div>
+
+    <!-- Cinematic Vignette & Film Grain Overlays (above canvas, below content) -->
+    <div class="cosmos-vignette-overlay" aria-hidden="true"></div>
+    <div class="cosmos-grain-overlay" id="cosmosGrainOverlay" aria-hidden="true"></div>
 
     <div class="camp-content-container">
 
@@ -61,7 +76,7 @@ const keySegments = [
         </p>
 
         <!-- Quick Key Info Strip -->
-        <div class="camp-info-strip">
+        <div class="camp-info-strip glass-card">
           <div class="info-strip-item">
             <span class="info-icon">📅</span>
             <div class="info-text">
@@ -81,6 +96,60 @@ const keySegments = [
           </div>
         </div>
 
+        <!-- Live Early Bird Countdown Panel -->
+        <div class="early-bird-panel glass-card" id="earlyBirdPanel">
+          <div class="countdown-border-ring" aria-hidden="true"></div>
+
+          <div class="early-bird-header">
+            <span class="early-bird-title">⚡ EARLY BIRD REGISTRATION ENDS IN</span>
+            <span class="eb-urgent-tag" id="ebUrgentTag" hidden>Ending soon</span>
+          </div>
+          <p class="early-bird-sub">
+            Deadline: 10 December 2026 • 11:59 PM Bangladesh Time (UTC+6)
+          </p>
+
+          <div class="countdown-grid" id="countdownGrid" aria-hidden="true">
+            <div class="cd-unit">
+              <div class="cd-digit-box">
+                <span class="cd-val" id="cdDays">--</span>
+              </div>
+              <span class="cd-label">DAYS</span>
+            </div>
+
+            <span class="cd-colon" aria-hidden="true">:</span>
+
+            <div class="cd-unit">
+              <div class="cd-digit-box">
+                <span class="cd-val" id="cdHours">--</span>
+              </div>
+              <span class="cd-label">HOURS</span>
+            </div>
+
+            <span class="cd-colon" aria-hidden="true">:</span>
+
+            <div class="cd-unit">
+              <div class="cd-digit-box">
+                <span class="cd-val" id="cdMinutes">--</span>
+              </div>
+              <span class="cd-label">MINUTES</span>
+            </div>
+
+            <span class="cd-colon" aria-hidden="true">:</span>
+
+            <div class="cd-unit">
+              <div class="cd-digit-box">
+                <span class="cd-val" id="cdSeconds">--</span>
+              </div>
+              <span class="cd-label">SECONDS</span>
+            </div>
+          </div>
+
+          <p class="countdown-closed-msg" id="countdownClosedMsg" hidden>
+            Early Bird Registration Closed — Regular Registration Open!
+          </p>
+          <p class="sr-only" id="cdLiveStatus" aria-live="polite"></p>
+        </div>
+
         <!-- Primary CTA Button -->
         <div class="camp-hero-cta">
           <a 
@@ -96,10 +165,59 @@ const keySegments = [
             </svg>
           </a>
         </div>
+
+        <!-- Hero Bottom Warm Horizon Glow & Silhouette Ridge (scrolls with hero) -->
+        <div class="hero-horizon-wrap" aria-hidden="true">
+          <div class="hero-horizon-glow" id="heroHorizonGlow"></div>
+          <svg
+            class="hero-horizon-svg"
+            viewBox="0 0 1440 90"
+            preserveAspectRatio="xMidYMax slice"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <radialGradient id="tentLanternGlow" cx="50%" cy="65%" r="55%">
+                <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.72" />
+                <stop offset="45%" stop-color="#f59e0b" stop-opacity="0.28" />
+                <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+
+            <!-- Soft ambient lantern halo on the middle tent -->
+            <circle cx="964" cy="64" r="24" fill="url(#tentLanternGlow)" class="lantern-halo" />
+
+            <!-- Ridge silhouette -->
+            <path
+              d="M0,90 L0,64 C110,58 190,48 295,55 C395,62 465,44 570,50 C665,56 755,66 860,57 C955,49 1030,42 1135,51 C1245,60 1345,48 1440,56 L1440,90 Z"
+              fill="#02040a"
+            />
+
+            <!-- Left campsite: 2 tiny tent silhouettes -->
+            <polygon points="348,60 364,43 380,60" fill="#02040a" />
+            <polygon points="386,61 399,48 412,61" fill="#02040a" />
+
+            <!-- Refractor telescope on tripod -->
+            <g fill="#02040a" stroke="#02040a" stroke-linecap="round">
+              <!-- Tripod legs -->
+              <line x1="518" y1="38" x2="509" y2="54" stroke-width="1.6" />
+              <line x1="518" y1="38" x2="518" y2="54" stroke-width="1.4" />
+              <line x1="518" y1="38" x2="527" y2="54" stroke-width="1.6" />
+              <!-- Mount head -->
+              <circle cx="518" cy="37" r="2" />
+              <!-- Tilted refractor optical tube + eyepiece -->
+              <line x1="510" y1="41" x2="531" y2="27" stroke-width="3.2" />
+              <line x1="507" y1="43" x2="511" y2="40" stroke-width="1.8" />
+            </g>
+
+            <!-- Right campsite: lantern-lit tent -->
+            <polygon points="944,68 964,46 984,68" fill="#02040a" />
+            <polygon points="960,68 964,56 968,68" fill="#fbbf24" class="lantern-door" />
+          </svg>
+        </div>
       </div>
 
       <!-- Concise About & Program Highlights -->
-      <section class="camp-about-section">
+      <section class="camp-about-section glass-card">
         <h2 class="section-title">About the Camp</h2>
         <div class="section-line"></div>
 
@@ -120,7 +238,7 @@ const keySegments = [
 
         <div class="segments-grid">
           {keySegments.map(item => (
-            <div class="segment-card">
+            <div class="segment-card glass-card">
               <span class="segment-icon">{item.icon}</span>
               <div class="segment-body">
                 <h3 class="segment-title">{item.title}</h3>
@@ -133,7 +251,7 @@ const keySegments = [
 
       <!-- Camp Leadership Card -->
       <section class="camp-leadership-section">
-        <div class="leadership-card">
+        <div class="leadership-card glass-card">
           <div class="leader-col">
             <span class="role-tag">Camp Adviser</span>
             <h4 class="person-name">Dr. Md. Mahbubor Rahman</h4>
@@ -170,42 +288,159 @@ const keySegments = [
 
 <style>
 /* ===================================================
-   3rd BSCF Astronomy Camp 2026 - Compact Cosmic Theme
+   3rd BSCF Astronomy Camp 2026 - Deep-Space Interactive Theme
    =================================================== */
 
 .camp-page-wrapper {
   position: relative;
-  background: radial-gradient(circle at 50% 12%, #131d36 0%, #0a0f1d 55%, #050811 100%);
+  z-index: 0;
+  isolation: isolate;
+  background: linear-gradient(180deg, #030712 0%, #070d1f 52%, #0b132b 100%);
   color: #f1f5f9;
   min-height: 100vh;
   padding: 105px 20px 80px; /* Ample top clearance below fixed navbar */
   font-family: 'Jost', sans-serif;
+  overflow-x: clip;
+}
+
+#astro-cosmos-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* CSS Base Nebula Layer (sits behind canvas inside isolated stacking context) */
+.cosmos-base-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   overflow: hidden;
 }
 
-/* Ambient cosmic glow orbs */
-.cosmic-glow-orb {
+.nebula-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.nebula-layer-early {
+  opacity: 1;
+}
+
+.nebula-layer-deep {
+  opacity: 0;
+}
+
+.nebula-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
   pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.nebula-indigo {
+  width: min(72vw, 760px);
+  height: min(72vw, 760px);
+  top: -12%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(59, 42, 140, 0.9) 0%, rgba(59, 42, 140, 0.35) 38%, transparent 72%);
+  opacity: 0.13;
+  animation: nebulaBreatheA 22s ease-in-out infinite;
+}
+
+.nebula-teal {
+  width: min(68vw, 720px);
+  height: min(68vw, 720px);
+  top: 22%;
+  right: -12%;
+  background: radial-gradient(circle, rgba(14, 116, 144, 0.9) 0%, rgba(14, 116, 144, 0.32) 40%, transparent 72%);
+  opacity: 0.11;
+  animation: nebulaBreatheB 26s ease-in-out infinite;
+}
+
+.nebula-amber {
+  width: min(62vw, 640px);
+  height: min(62vw, 640px);
+  bottom: -14%;
+  left: 14%;
+  background: radial-gradient(circle, rgba(180, 83, 9, 0.85) 0%, rgba(180, 83, 9, 0.28) 38%, transparent 72%);
+  opacity: 0.09;
+  animation: nebulaBreatheC 29s ease-in-out infinite;
+}
+
+.nebula-deep-violet {
+  width: min(76vw, 800px);
+  height: min(76vw, 800px);
+  top: 8%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(109, 40, 217, 0.9) 0%, rgba(76, 29, 149, 0.35) 40%, transparent 72%);
+  opacity: 0.13;
+  animation: nebulaBreatheA 24s ease-in-out infinite;
+}
+
+.nebula-deep-amber {
+  width: min(70vw, 720px);
+  height: min(70vw, 720px);
+  bottom: -10%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.85) 0%, rgba(180, 83, 9, 0.3) 40%, transparent 72%);
+  opacity: 0.11;
+  animation: nebulaBreatheB 28s ease-in-out infinite;
+}
+
+@keyframes nebulaBreatheA {
+  0%, 100% { opacity: 0.10; transform: translate3d(0, 0, 0) scale(1); }
+  50% { opacity: 0.14; transform: translate3d(2%, 3%, 0) scale(1.07); }
+}
+
+@keyframes nebulaBreatheB {
+  0%, 100% { opacity: 0.09; transform: translate3d(0, 0, 0) scale(1.03); }
+  50% { opacity: 0.13; transform: translate3d(-3%, -2%, 0) scale(0.96); }
+}
+
+@keyframes nebulaBreatheC {
+  0%, 100% { opacity: 0.08; transform: translate3d(0, 0, 0) scale(0.98); }
+  50% { opacity: 0.12; transform: translate3d(2%, -2%, 0) scale(1.06); }
+}
+
+/* Cinematic Vignette & Film Grain Overlays (above canvas, below content) */
+.cosmos-vignette-overlay {
+  position: fixed;
+  inset: 0;
   z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 45%, rgba(3, 7, 18, 0) 56%, rgba(2, 4, 12, 0.28) 100%);
 }
 
-.orb-1 {
-  width: 420px;
-  height: 420px;
-  top: 40px;
-  left: 5%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, transparent 70%);
+.cosmos-grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  animation: grainShift 0.5s steps(4, end) infinite;
 }
 
-.orb-2 {
-  width: 480px;
-  height: 480px;
-  top: 250px;
-  right: 5%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.13) 0%, transparent 70%);
+@keyframes grainShift {
+  0% { background-position: 0 0; }
+  25% { background-position: 32px -24px; }
+  50% { background-position: -48px 40px; }
+  75% { background-position: 20px 56px; }
+  100% { background-position: 0 0; }
+}
+
+/* Keep site footer above the fixed canvas */
+:global(body:has(#astro-cosmos-canvas) .footer-container) {
+  position: relative;
+  z-index: 1;
 }
 
 .camp-content-container {
@@ -215,19 +450,81 @@ const keySegments = [
   margin: 0 auto;
 }
 
+/* Shared Glassmorphism Card Surface + Desktop Cursor Spotlight */
+.glass-card {
+  position: relative;
+  background: rgba(10, 17, 36, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 18px 42px rgba(2, 6, 23, 0.55);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-card {
+    background: rgba(10, 17, 36, 0.9);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .glass-card::before,
+  .glass-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+  }
+
+  /* Subtle inner spotlight glow */
+  .glass-card::before {
+    background: radial-gradient(
+      220px circle at var(--mx, -999px) var(--my, -999px),
+      rgba(56, 189, 248, 0.075),
+      rgba(251, 191, 36, 0.04) 45%,
+      transparent 75%
+    );
+  }
+
+  /* Masked radial border highlight */
+  .glass-card::after {
+    padding: 1px;
+    background: radial-gradient(
+      220px circle at var(--mx, -999px) var(--my, -999px),
+      rgba(45, 212, 191, 0.36),
+      rgba(251, 191, 36, 0.30) 48%,
+      transparent 75%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  .glass-card.is-spotlight-active::before,
+  .glass-card.is-spotlight-active::after {
+    opacity: 1;
+  }
+}
+
 /* Header Area */
 .camp-header {
   text-align: center;
-  margin-bottom: 42px;
+  margin-bottom: 34px;
 }
 
 .camp-tag-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(2, 132, 199, 0.15);
+  background: rgba(14, 116, 144, 0.22);
   border: 1px solid rgba(56, 189, 248, 0.35);
-  color: #7dd3fc;
+  color: #bae6fd;
   padding: 6px 16px;
   border-radius: 50px;
   font-size: 0.76rem;
@@ -257,6 +554,7 @@ const keySegments = [
   line-height: 1.2;
   margin-bottom: 10px;
   letter-spacing: -0.01em;
+  text-shadow: 0 2px 18px rgba(3, 7, 18, 0.65);
 }
 
 .gradient-text {
@@ -267,21 +565,21 @@ const keySegments = [
 
 .camp-tagline {
   font-size: clamp(1rem, 2.3vw, 1.3rem);
-  color: #cbd5e1;
+  color: #e2e8f0;
   font-style: italic;
   font-weight: 400;
   margin-bottom: 14px;
 }
 
 .camp-organizer {
-  font-size: 0.92rem;
-  color: #94a3b8;
+  font-size: 0.95rem;
+  color: #cbd5e1;
   line-height: 1.5;
-  margin-bottom: 28px;
+  margin-bottom: 26px;
 }
 
 .camp-organizer strong {
-  color: #e2e8f0;
+  color: #ffffff;
 }
 
 /* Quick Key Info Strip */
@@ -290,12 +588,8 @@ const keySegments = [
   grid-template-columns: repeat(2, 1fr);
   gap: 18px;
   max-width: 640px;
-  margin: 0 auto 28px;
-  background: rgba(15, 23, 42, 0.72);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  border-radius: 16px;
+  margin: 0 auto 22px;
   padding: 18px 22px;
-  backdrop-filter: blur(12px);
   text-align: left;
 }
 
@@ -316,24 +610,239 @@ const keySegments = [
 }
 
 .info-label {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: #cbd5e1;
   letter-spacing: 0.08em;
   font-weight: 600;
 }
 
 .info-val {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: #ffffff;
   font-weight: 700;
   line-height: 1.25;
 }
 
 .info-sub {
-  font-size: 0.72rem;
-  color: #38bdf8;
+  font-size: 0.76rem;
+  color: #7dd3fc;
   margin-top: 2px;
+}
+
+/* Early Bird Countdown Panel */
+.early-bird-panel {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto 24px;
+  padding: 20px 22px 22px;
+  border-radius: 20px;
+  border-color: transparent;
+}
+
+.countdown-border-ring {
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: 20px;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.countdown-border-ring::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background: conic-gradient(
+    from 0deg,
+    rgba(99, 102, 241, 0.72) 0deg,
+    rgba(20, 184, 166, 0.75) 120deg,
+    rgba(245, 158, 11, 0.72) 240deg,
+    rgba(99, 102, 241, 0.72) 360deg
+  );
+  animation: countdownBorderSpin 8s linear infinite;
+}
+
+@keyframes countdownBorderSpin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.early-bird-panel.is-urgent {
+  box-shadow:
+    inset 0 1px 0 rgba(251, 191, 36, 0.14),
+    0 18px 42px rgba(2, 6, 23, 0.55),
+    0 0 28px rgba(245, 158, 11, 0.22);
+}
+
+.early-bird-panel.is-urgent .countdown-border-ring::before {
+  background: conic-gradient(
+    from 0deg,
+    rgba(245, 158, 11, 0.9) 0deg,
+    rgba(251, 191, 36, 0.95) 120deg,
+    rgba(234, 88, 12, 0.85) 240deg,
+    rgba(245, 158, 11, 0.9) 360deg
+  );
+}
+
+.countdown-grid[hidden],
+.eb-urgent-tag[hidden],
+.countdown-closed-msg[hidden] {
+  display: none !important;
+}
+
+.early-bird-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.early-bird-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fde68a;
+}
+
+.eb-urgent-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(245, 158, 11, 0.22);
+  border: 1px solid rgba(251, 191, 36, 0.55);
+  color: #fef3c7;
+}
+
+.early-bird-sub {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+.countdown-grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 86px;
+  flex: 0 0 auto;
+}
+
+.cd-digit-box {
+  width: 100%;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 18px rgba(56, 189, 248, 0.14);
+  overflow: hidden;
+}
+
+.early-bird-panel.is-urgent .cd-digit-box {
+  border-color: rgba(251, 191, 36, 0.48);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 18px rgba(245, 158, 11, 0.2);
+}
+
+.cd-val {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.35rem, 4.5vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.cd-val.is-ticking {
+  animation: digitFlipSlide 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes digitFlipSlide {
+  0% {
+    opacity: 0.25;
+    transform: translateY(-35%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cd-label {
+  margin-top: 7px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+}
+
+.cd-colon {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 68px;
+  color: #7dd3fc;
+  user-select: none;
+  animation: colonPulse 2s ease-in-out infinite;
+}
+
+.early-bird-panel.is-urgent .cd-colon {
+  color: #fcd34d;
+}
+
+@keyframes colonPulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.35; }
+}
+
+.countdown-closed-msg {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fde68a;
+  padding: 12px 10px 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Primary CTA Button */
@@ -355,13 +864,13 @@ const keySegments = [
   border-radius: 50px;
   text-decoration: none;
   box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
-  transition: all 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
 
 .btn-camp-register:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(56, 189, 248, 0.65);
-  filter: brightness(1.1);
+  filter: brightness(1.08);
 }
 
 .btn-camp-register.large {
@@ -369,11 +878,61 @@ const keySegments = [
   font-size: 1.1rem;
 }
 
+/* Hero Bottom Horizon Silhouette & Warm Horizon Glow (scrolls away with hero) */
+.hero-horizon-wrap {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: 22px;
+  height: 86px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-horizon-glow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 82px;
+  background: linear-gradient(
+    to top,
+    rgba(245, 158, 11, 0.16) 0%,
+    rgba(180, 83, 9, 0.08) 42%,
+    rgba(180, 83, 9, 0) 100%
+  );
+  will-change: opacity;
+}
+
+.hero-horizon-svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lantern-door {
+  animation: lanternFlicker 3.2s ease-in-out infinite;
+}
+
+.lantern-halo {
+  animation: lanternFlicker 3.2s ease-in-out infinite;
+}
+
+@keyframes lanternFlicker {
+  0%, 100% { opacity: 0.92; }
+  25% { opacity: 0.72; }
+  50% { opacity: 1; }
+  75% { opacity: 0.78; }
+}
+
 /* Section Common Styling */
 .section-title {
   font-size: 1.55rem;
   font-weight: 700;
-  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #7dd3fc 58%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 8px;
   text-align: center;
 }
@@ -388,25 +947,21 @@ const keySegments = [
 
 /* About Section */
 .camp-about-section {
-  background: rgba(15, 23, 42, 0.65);
-  border: 1px solid rgba(56, 189, 248, 0.18);
-  border-radius: 18px;
   padding: 30px 28px;
   margin-bottom: 34px;
-  backdrop-filter: blur(10px);
 }
 
 .about-paragraphs {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  color: #cbd5e1;
+  color: #e2e8f0;
   font-size: 0.98rem;
-  line-height: 1.7;
+  line-height: 1.72;
 }
 
 .about-paragraphs strong {
-  color: #f8fafc;
+  color: #ffffff;
 }
 
 /* Key Segments & Perks Grid */
@@ -421,21 +976,16 @@ const keySegments = [
 }
 
 .segment-card {
-  background: rgba(15, 23, 42, 0.72);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  border-radius: 16px;
   padding: 20px 18px;
   display: flex;
   align-items: flex-start;
   gap: 13px;
   transition: transform 0.25s ease, border-color 0.25s ease;
-  backdrop-filter: blur(10px);
 }
 
 .segment-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(56, 189, 248, 0.5);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  border-color: rgba(56, 189, 248, 0.45);
 }
 
 .segment-icon {
@@ -452,8 +1002,8 @@ const keySegments = [
 }
 
 .segment-desc {
-  font-size: 0.88rem;
-  color: #94a3b8;
+  font-size: 0.9rem;
+  color: #cbd5e1;
   line-height: 1.55;
 }
 
@@ -463,21 +1013,17 @@ const keySegments = [
 }
 
 .leadership-card {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  border-radius: 18px;
   padding: 24px 28px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  backdrop-filter: blur(10px);
 }
 
 .role-tag {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #38bdf8;
+  color: #7dd3fc;
   font-weight: 700;
   display: block;
   margin-bottom: 5px;
@@ -491,30 +1037,13 @@ const keySegments = [
 }
 
 .person-title {
-  font-size: 0.85rem;
-  color: #94a3b8;
+  font-size: 0.88rem;
+  color: #cbd5e1;
 }
 
 .divider-left {
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
   padding-left: 24px;
-}
-
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 6px;
-}
-
-.c-link {
-  font-size: 0.85rem;
-  color: #38bdf8;
-  text-decoration: none;
-}
-
-.c-link:hover {
-  text-decoration: underline;
 }
 
 /* Closing CTA */
@@ -526,12 +1055,57 @@ const keySegments = [
 /* Responsive Breakpoints */
 @media (max-width: 768px) {
   .camp-page-wrapper {
-    padding-top: 85px;
+    padding: 85px 16px 64px;
+  }
+
+  .glass-card {
+    backdrop-filter: blur(6px) saturate(120%);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
   }
 
   .camp-info-strip {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .early-bird-panel {
+    width: 100%;
+    padding: 18px 14px 20px;
+  }
+
+  .countdown-grid {
+    gap: 5px;
+  }
+
+  .cd-unit {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    max-width: 82px;
+  }
+
+  .cd-digit-box {
+    height: 56px;
+    border-radius: 12px;
+  }
+
+  .cd-colon {
+    font-size: 1.35rem;
+    line-height: 56px;
+  }
+
+  .cd-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-horizon-wrap {
+    height: 56px;
+    margin-top: 16px;
+  }
+
+  .hero-horizon-glow {
+    height: 54px;
   }
 
   .segments-grid {
@@ -545,7 +1119,7 @@ const keySegments = [
 
   .divider-left {
     border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
     padding-left: 0;
     padding-top: 18px;
   }
@@ -554,4 +1128,1836 @@ const keySegments = [
     width: 100%;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .nebula-blob,
+  .badge-dot,
+  .countdown-border-ring::before,
+  .cd-colon,
+  .cd-val.is-ticking,
+  .cosmos-grain-overlay,
+  .lantern-door,
+  .lantern-halo {
+    animation: none !important;
+  }
+}
 </style>
+
+<script>
+  const TARGET = new Date('2026-12-10T23:59:59+06:00').getTime();
+  const GEMINIDS_PEAK_END = new Date('2026-12-15T00:00:00+06:00').getTime();
+  const URGENCY_MS = 72 * 60 * 60 * 1000;
+
+  interface Sprites {
+    softStarGlow: HTMLCanvasElement;
+    warmStarGlow: HTMLCanvasElement;
+    spikeStar: HTMLCanvasElement;
+    spikeStarWarm: HTMLCanvasElement;
+    meteorHead: HTMLCanvasElement;
+    redBeacon: HTMLCanvasElement;
+    cyanBeacon: HTMLCanvasElement;
+    cometHead: HTMLCanvasElement;
+  }
+
+  function makeGlowSprite(size: number, innerColor: string, midColor: string, outerColor: string): HTMLCanvasElement {
+    const c = document.createElement('canvas');
+    c.width = size;
+    c.height = size;
+    const g = c.getContext('2d')!;
+    const half = size / 2;
+    const grad = g.createRadialGradient(half, half, 0, half, half, half);
+    grad.addColorStop(0, innerColor);
+    grad.addColorStop(0.32, midColor);
+    grad.addColorStop(1, outerColor);
+    g.fillStyle = grad;
+    g.fillRect(0, 0, size, size);
+    return c;
+  }
+
+  function makeSpikeSprite(size: number, coreColor: string, midHalo: string, outerHalo: string, spikeTint: string): HTMLCanvasElement {
+    const c = document.createElement('canvas');
+    c.width = size;
+    c.height = size;
+    const g = c.getContext('2d')!;
+    const half = size / 2;
+
+    const halo = g.createRadialGradient(half, half, 0, half, half, half);
+    halo.addColorStop(0, coreColor);
+    halo.addColorStop(0.18, midHalo);
+    halo.addColorStop(0.55, outerHalo);
+    halo.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    g.fillStyle = halo;
+    g.fillRect(0, 0, size, size);
+
+    const hGrad = g.createLinearGradient(0, half, size, half);
+    hGrad.addColorStop(0, 'rgba(255,255,255,0)');
+    hGrad.addColorStop(0.5, spikeTint);
+    hGrad.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = hGrad;
+    g.fillRect(2, half - 0.7, size - 4, 1.4);
+
+    const vGrad = g.createLinearGradient(half, 0, half, size);
+    vGrad.addColorStop(0, 'rgba(255,255,255,0)');
+    vGrad.addColorStop(0.5, spikeTint);
+    vGrad.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = vGrad;
+    g.fillRect(half - 0.7, 2, 1.4, size - 4);
+
+    return c;
+  }
+
+  function createSprites(): Sprites {
+    return {
+      softStarGlow: makeGlowSprite(24, 'rgba(255,255,255,0.95)', 'rgba(207,227,255,0.32)', 'rgba(207,227,255,0)'),
+      warmStarGlow: makeGlowSprite(24, 'rgba(255,244,224,0.95)', 'rgba(255,233,196,0.34)', 'rgba(255,233,196,0)'),
+      spikeStar: makeSpikeSprite(
+        48,
+        'rgba(255, 255, 255, 0.96)',
+        'rgba(191, 224, 255, 0.48)',
+        'rgba(125, 211, 252, 0.12)',
+        'rgba(224, 242, 254, 0.85)'
+      ),
+      spikeStarWarm: makeSpikeSprite(
+        48,
+        'rgba(255, 245, 230, 0.96)',
+        'rgba(255, 176, 102, 0.48)',
+        'rgba(245, 158, 11, 0.14)',
+        'rgba(255, 224, 184, 0.85)'
+      ),
+      meteorHead: makeGlowSprite(32, 'rgba(255,255,255,1)', 'rgba(186,230,253,0.55)', 'rgba(56,189,248,0)'),
+      redBeacon: makeGlowSprite(28, 'rgba(255,160,160,1)', 'rgba(255,77,77,0.55)', 'rgba(255,77,77,0)'),
+      cyanBeacon: makeGlowSprite(28, 'rgba(207,250,254,1)', 'rgba(34,211,238,0.55)', 'rgba(34,211,238,0)'),
+      cometHead: makeGlowSprite(40, 'rgba(240,249,255,0.95)', 'rgba(147,197,253,0.42)', 'rgba(99,102,241,0)')
+    };
+  }
+
+  function applyGrainTexture(): void {
+    const grainEl = document.getElementById('cosmosGrainOverlay');
+    if (!grainEl) return;
+    const c = document.createElement('canvas');
+    c.width = 128;
+    c.height = 128;
+    const g = c.getContext('2d');
+    if (!g) return;
+    const img = g.createImageData(128, 128);
+    const data = img.data;
+    for (let i = 0; i < data.length; i += 4) {
+      const v = Math.floor(Math.random() * 256);
+      data[i] = v;
+      data[i + 1] = v;
+      data[i + 2] = v;
+      data[i + 3] = 255;
+    }
+    g.putImageData(img, 0, 0);
+    grainEl.style.backgroundImage = `url(${c.toDataURL('image/png')})`;
+  }
+
+  interface Star {
+    x: number;
+    y: number;
+    radius: number;
+    layer: 0 | 1 | 2;
+    color: string;
+    warm: boolean;
+    baseAlpha: number;
+    phase: number;
+    freq: number;
+    vx: number;
+    vy: number;
+  }
+
+  class Starfield {
+    stars: Star[] = [];
+    milkyWayCanvas: HTMLCanvasElement;
+    mwOffsetX = 0;
+    mwOffsetY = 0;
+    desktopCount = 200;
+    qualityScale = 1;
+    width = 1;
+    height = 1;
+    parallaxX = 0;
+    parallaxY = 0;
+    targetMouseX = 0;
+    targetMouseY = 0;
+    sprites: Sprites;
+
+    constructor(width: number, height: number, sprites: Sprites) {
+      this.width = width;
+      this.height = height;
+      this.sprites = sprites;
+      this.qualityScale = width < 768 ? 0.6 : 1;
+      this.milkyWayCanvas = document.createElement('canvas');
+      this.buildMilkyWay();
+      this.seed();
+    }
+
+    buildMilkyWay(): void {
+      const w = Math.max(1, Math.ceil(this.width * 1.25));
+      const h = Math.max(1, Math.ceil(this.height * 1.25));
+      this.milkyWayCanvas.width = w;
+      this.milkyWayCanvas.height = h;
+      const g = this.milkyWayCanvas.getContext('2d')!;
+      g.clearRect(0, 0, w, h);
+
+      g.save();
+      g.translate(w * 0.5, h * 0.5);
+      g.rotate(-0.48);
+
+      const bandGrad = g.createLinearGradient(0, -h * 0.24, 0, h * 0.24);
+      bandGrad.addColorStop(0, 'rgba(30, 58, 138, 0)');
+      bandGrad.addColorStop(0.28, 'rgba(99, 102, 241, 0.04)');
+      bandGrad.addColorStop(0.5, 'rgba(148, 163, 254, 0.065)');
+      bandGrad.addColorStop(0.72, 'rgba(14, 116, 144, 0.04)');
+      bandGrad.addColorStop(1, 'rgba(30, 58, 138, 0)');
+      g.fillStyle = bandGrad;
+      g.fillRect(-w, -h * 0.26, w * 2, h * 0.52);
+
+      for (let i = 0; i < 14; i++) {
+        const px = (i / 13 - 0.5) * w * 1.1;
+        const py = Math.sin(i * 1.7) * 0.07 * h;
+        const r = Math.min(w, h) * (0.14 + (i % 3) * 0.04);
+        const dust = g.createRadialGradient(px, py, 0, px, py, r);
+        dust.addColorStop(0, 'rgba(191, 219, 254, 0.045)');
+        dust.addColorStop(1, 'rgba(191, 219, 254, 0)');
+        g.fillStyle = dust;
+        g.fillRect(px - r, py - r, r * 2, r * 2);
+      }
+
+      for (let i = 0; i < 300; i++) {
+        const sx = (Math.random() - 0.5) * w * 1.35;
+        const gauss = (Math.random() + Math.random() + Math.random()) / 3 - 0.5;
+        const sy = gauss * h * 0.42;
+        const alpha = 0.03 + Math.random() * 0.05;
+        g.fillStyle = `rgba(226, 232, 240, ${alpha.toFixed(3)})`;
+        g.fillRect(sx, sy, 0.75, 0.75);
+      }
+      g.restore();
+    }
+
+    seed(): void {
+      const total = Math.max(50, Math.round(this.desktopCount * this.qualityScale));
+      const farCount = Math.round(total * 0.6);
+      const midCount = Math.round(total * 0.3);
+      const nearCount = Math.min(10, Math.max(4, total - farCount - midCount));
+      this.stars = [];
+
+      for (let i = 0; i < farCount; i++) {
+        this.stars.push({
+          x: Math.random() * this.width,
+          y: Math.random() * this.height,
+          radius: 0.4 + Math.random() * 0.5,
+          layer: 0,
+          color: '#e2e8f0',
+          warm: false,
+          baseAlpha: 0.35 + Math.random() * 0.45,
+          phase: Math.random() * Math.PI * 2,
+          freq: 0.2 + Math.random() * 0.6,
+          vx: -(1.2 + Math.random() * 1.0),
+          vy: -(0.5 + Math.random() * 0.5)
+        });
+      }
+
+      for (let i = 0; i < midCount; i++) {
+        const warm = Math.random() < 0.42;
+        this.stars.push({
+          x: Math.random() * this.width,
+          y: Math.random() * this.height,
+          radius: 0.8 + Math.random() * 0.7,
+          layer: 1,
+          color: warm ? '#ffe9c4' : '#cfe3ff',
+          warm,
+          baseAlpha: 0.5 + Math.random() * 0.4,
+          phase: Math.random() * Math.PI * 2,
+          freq: 0.4 + Math.random() * 0.9,
+          vx: -(2.6 + Math.random() * 1.4),
+          vy: -(1.0 + Math.random() * 0.7)
+        });
+      }
+
+      for (let i = 0; i < nearCount; i++) {
+        const warm = Math.random() < 0.3;
+        this.stars.push({
+          x: Math.random() * this.width,
+          y: Math.random() * this.height,
+          radius: 1.6 + Math.random() * 0.7,
+          layer: 2,
+          color: warm ? '#ffe9c4' : '#cfe3ff',
+          warm,
+          baseAlpha: 0.75 + Math.random() * 0.25,
+          phase: Math.random() * Math.PI * 2,
+          freq: 0.6 + Math.random() * 0.9,
+          vx: -(4.2 + Math.random() * 1.8),
+          vy: -(1.6 + Math.random() * 0.9)
+        });
+      }
+    }
+
+    resize(newW: number, newH: number, isMobile: boolean): void {
+      const oldW = this.width || 1;
+      const oldH = this.height || 1;
+      const scaleX = newW / oldW;
+      const scaleY = newH / oldH;
+      this.width = newW;
+      this.height = newH;
+
+      for (const s of this.stars) {
+        s.x *= scaleX;
+        s.y *= scaleY;
+      }
+
+      if (isMobile && this.qualityScale > 0.6) {
+        this.qualityScale = 0.6;
+        this.seed();
+      } else if (!isMobile && this.qualityScale === 0.6) {
+        this.qualityScale = 1;
+        this.seed();
+      }
+
+      this.buildMilkyWay();
+    }
+
+    reduceQuality(): void {
+      this.qualityScale = Math.max(0.42, this.qualityScale * 0.7);
+      const keep = Math.max(40, Math.round(this.stars.length * 0.7));
+      this.stars.length = keep;
+    }
+
+    setMouseTarget(nx: number, ny: number): void {
+      this.targetMouseX = nx;
+      this.targetMouseY = ny;
+    }
+
+    update(dt: number, scrollY: number, allowMouseParallax: boolean): void {
+      const goalX = allowMouseParallax ? this.targetMouseX * 140 : 0;
+      const goalY = (allowMouseParallax ? this.targetMouseY * 140 : 0) - scrollY * 0.35;
+      const lerpFactor = 1 - Math.exp(-dt * 5.5);
+      this.parallaxX += (goalX - this.parallaxX) * lerpFactor;
+      this.parallaxY += (goalY - this.parallaxY) * lerpFactor;
+
+      this.mwOffsetX = (this.mwOffsetX - dt * 0.35) % (this.width * 0.12);
+      this.mwOffsetY = (this.mwOffsetY - dt * 0.14) % (this.height * 0.12);
+
+      for (const s of this.stars) {
+        s.x += s.vx * dt;
+        s.y += s.vy * dt;
+        if (s.x < -20) s.x += this.width + 40;
+        if (s.x > this.width + 20) s.x -= this.width + 40;
+        if (s.y < -20) s.y += this.height + 40;
+        if (s.y > this.height + 20) s.y -= this.height + 40;
+      }
+    }
+
+    getScreenPos(s: Star): { sx: number; sy: number } {
+      const factor = s.layer === 0 ? 0.01 : s.layer === 1 ? 0.03 : 0.06;
+      const pad = 24;
+      let sx = (s.x + this.parallaxX * factor) % (this.width + pad * 2);
+      let sy = (s.y + this.parallaxY * factor) % (this.height + pad * 2);
+      if (sx < -pad) sx += this.width + pad * 2;
+      if (sy < -pad) sy += this.height + pad * 2;
+      return { sx, sy };
+    }
+
+    drawWarpStreak(
+      ctx: CanvasRenderingContext2D,
+      sx: number,
+      sy: number,
+      depthWeight: number,
+      warpFactor: number,
+      color: string,
+      alpha: number
+    ): void {
+      const cx = this.width * 0.5;
+      const cy = this.height * 0.5;
+      const dx = sx - cx;
+      const dy = sy - cy;
+      const dist = Math.hypot(dx, dy) || 1;
+      const ux = dx / dist;
+      const uy = dy / dist;
+      const len = (14 + dist * 0.14) * depthWeight * warpFactor;
+      const ex = sx + ux * len;
+      const ey = sy + uy * len;
+
+      ctx.strokeStyle = color;
+      ctx.globalAlpha = Math.min(1, alpha * 0.9);
+      ctx.lineWidth = Math.max(0.8, depthWeight * 1.35);
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(sx, sy);
+      ctx.lineTo(ex, ey);
+      ctx.stroke();
+    }
+
+    draw(ctx: CanvasRenderingContext2D, timeSec: number, animateTwinkle: boolean, warpFactor: number): void {
+      const mwX = -this.width * 0.125 + this.mwOffsetX + this.parallaxX * 0.005;
+      const mwY = -this.height * 0.125 + this.mwOffsetY + this.parallaxY * 0.005;
+      ctx.drawImage(this.milkyWayCanvas, mwX, mwY);
+
+      for (const s of this.stars) {
+        const { sx, sy } = this.getScreenPos(s);
+        const twinkle = animateTwinkle
+          ? 0.58 + 0.42 * Math.sin(timeSec * s.freq * Math.PI * 2 + s.phase)
+          : 0.85;
+        const alpha = Math.max(0.18, Math.min(1, s.baseAlpha * twinkle));
+
+        if (warpFactor > 0.01) {
+          const depthWeight = s.layer === 0 ? 0.5 : s.layer === 1 ? 1.0 : 1.7;
+          this.drawWarpStreak(ctx, sx, sy, depthWeight, warpFactor, s.color, alpha);
+        }
+
+        if (s.layer === 2) {
+          ctx.globalAlpha = alpha;
+          const size = s.radius * 11;
+          const sprite = s.warm ? this.sprites.spikeStarWarm : this.sprites.spikeStar;
+          ctx.drawImage(sprite, sx - size / 2, sy - size / 2, size, size);
+        } else if (s.layer === 1) {
+          ctx.globalAlpha = alpha * 0.72;
+          const glowSize = s.radius * 8;
+          const sprite = s.warm ? this.sprites.warmStarGlow : this.sprites.softStarGlow;
+          ctx.drawImage(sprite, sx - glowSize / 2, sy - glowSize / 2, glowSize, glowSize);
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = s.color;
+          ctx.beginPath();
+          ctx.arc(sx, sy, s.radius, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = s.color;
+          ctx.beginPath();
+          ctx.arc(sx, sy, s.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  interface SkyStarDef {
+    id: string;
+    raH: number;
+    decDeg: number;
+    radius: number;
+    color: string;
+    spike?: 'cool' | 'warm';
+    phase: number;
+  }
+
+  interface SkyConstellationDef {
+    name: string;
+    stars: SkyStarDef[];
+    lines: Array<[string, string]>;
+    labelAnchor: { raH: number; decDeg: number };
+    lineAlpha: number;
+  }
+
+  interface EdgeFade {
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
+    alpha: number;
+    target: number;
+  }
+
+  class Constellations {
+    edges = new Map<string, EdgeFade>();
+    enabled = true;
+    skyGroups: SkyConstellationDef[];
+    sprites: Sprites;
+    width = 1;
+    height = 1;
+
+    constructor(width: number, height: number, sprites: Sprites) {
+      this.width = width;
+      this.height = height;
+      this.sprites = sprites;
+      this.skyGroups = this.createDecemberSky();
+    }
+
+    createDecemberSky(): SkyConstellationDef[] {
+      const p = (id: string, raH: number, decDeg: number, radius: number, color: string, spike?: 'cool' | 'warm'): SkyStarDef => ({
+        id,
+        raH,
+        decDeg,
+        radius,
+        color,
+        spike,
+        phase: Math.random() * Math.PI * 2
+      });
+
+      const orion: SkyConstellationDef = {
+        name: 'ORION',
+        lineAlpha: 0,
+        labelAnchor: { raH: 5.58, decDeg: -12.4 },
+        stars: [
+          p('betelgeuse', 5.92, 7.41, 2.35, '#ffb066', 'warm'),
+          p('rigel', 5.24, -8.20, 2.40, '#bfe0ff', 'cool'),
+          p('bellatrix', 5.42, 6.35, 1.55, '#cfe3ff'),
+          p('mintaka', 5.53, -0.30, 1.40, '#dbeafe'),
+          p('alnilam', 5.60, -1.20, 1.55, '#dbeafe'),
+          p('alnitak', 5.68, -1.94, 1.45, '#dbeafe'),
+          p('saiph', 5.80, -9.67, 1.40, '#cfe3ff'),
+          p('meissa', 5.59, 9.93, 1.15, '#e2e8f0')
+        ],
+        lines: [
+          ['meissa', 'betelgeuse'],
+          ['meissa', 'bellatrix'],
+          ['betelgeuse', 'bellatrix'],
+          ['betelgeuse', 'alnitak'],
+          ['bellatrix', 'mintaka'],
+          ['mintaka', 'alnilam'],
+          ['alnilam', 'alnitak'],
+          ['mintaka', 'rigel'],
+          ['alnitak', 'saiph'],
+          ['rigel', 'saiph']
+        ]
+      };
+
+      const taurus: SkyConstellationDef = {
+        name: 'TAURUS',
+        lineAlpha: 0,
+        labelAnchor: { raH: 4.18, decDeg: 13.0 },
+        stars: [
+          p('aldebaran', 4.60, 16.51, 2.30, '#ffb066', 'warm'),
+          p('elnath', 5.44, 28.61, 1.55, '#cfe3ff'),
+          p('zeta_tau', 5.63, 21.14, 1.30, '#dbeafe'),
+          p('ain', 4.48, 19.18, 1.25, '#ffe9c4'),
+          p('delta_tau', 4.38, 17.54, 1.15, '#ffe9c4'),
+          p('gamma_tau', 4.33, 15.63, 1.15, '#ffe9c4'),
+          p('theta_tau', 4.48, 15.87, 1.15, '#ffe9c4'),
+          // Pleiades cluster (M45)
+          p('m45_alcyone', 3.79, 24.12, 1.25, '#dbeafe'),
+          p('m45_atlas', 3.82, 24.05, 1.0, '#cfe3ff'),
+          p('m45_electra', 3.75, 24.11, 1.0, '#cfe3ff'),
+          p('m45_maia', 3.76, 24.37, 1.05, '#dbeafe'),
+          p('m45_merope', 3.77, 23.95, 0.95, '#cfe3ff'),
+          p('m45_taygeta', 3.75, 24.47, 0.9, '#e2e8f0'),
+          p('m45_pleione', 3.82, 24.14, 0.85, '#e2e8f0')
+        ],
+        lines: [
+          ['elnath', 'ain'],
+          ['ain', 'delta_tau'],
+          ['delta_tau', 'gamma_tau'],
+          ['gamma_tau', 'theta_tau'],
+          ['theta_tau', 'aldebaran'],
+          ['aldebaran', 'zeta_tau']
+        ]
+      };
+
+      const gemini: SkyConstellationDef = {
+        name: 'GEMINI',
+        lineAlpha: 0,
+        labelAnchor: { raH: 7.05, decDeg: 33.8 },
+        stars: [
+          p('castor', 7.58, 31.89, 2.05, '#cfe3ff', 'cool'),
+          p('pollux', 7.76, 28.03, 2.20, '#ffd8a8', 'warm'),
+          p('alhena', 6.63, 16.40, 1.50, '#e2e8f0'),
+          p('mebsuta', 6.73, 25.13, 1.30, '#ffe9c4'),
+          p('tejat', 6.38, 22.51, 1.25, '#ffd8a8'),
+          p('propus', 6.25, 22.50, 1.10, '#ffd8a8'),
+          p('wasat', 7.34, 21.98, 1.20, '#e2e8f0'),
+          p('mekbuda', 7.07, 20.57, 1.20, '#ffe9c4')
+        ],
+        lines: [
+          ['castor', 'pollux'],
+          ['castor', 'mebsuta'],
+          ['mebsuta', 'tejat'],
+          ['tejat', 'propus'],
+          ['pollux', 'wasat'],
+          ['wasat', 'mekbuda'],
+          ['mekbuda', 'alhena']
+        ]
+      };
+
+      return [orion, taurus, gemini];
+    }
+
+    resize(w: number, h: number): void {
+      this.width = w;
+      this.height = h;
+    }
+
+    projectRaDec(raH: number, decDeg: number, starfield: Starfield): Point {
+      const isMobile = this.width < 768;
+      // Orion center RA ~5.58h, Dec ~0.5° positioned upper-centre/right on desktop
+      const originX = isMobile ? this.width * 0.56 : this.width * 0.61;
+      const originY = isMobile ? this.height * 0.27 : this.height * 0.34;
+      const scale = isMobile
+        ? Math.min(this.width, this.height) * 0.0085
+        : Math.min(this.width, this.height) * 0.0112;
+
+      // Facing South: +RA (East) lies leftward, +Dec (North) lies upward
+      const xBase = originX - (raH - 5.58) * 14.2 * scale;
+      const yBase = originY - (decDeg - 0.5) * 1.0 * scale;
+
+      // Mid-layer parallax (0.03)
+      return {
+        x: xBase + starfield.parallaxX * 0.03,
+        y: yBase + starfield.parallaxY * 0.03
+      };
+    }
+
+    getGeminidRadiant(starfield: Starfield): Point {
+      // Near Castor in Gemini (RA ~7.5h, Dec +32°)
+      return this.projectRaDec(7.48, 32.0, starfield);
+    }
+
+    updateAndDraw(
+      ctx: CanvasRenderingContext2D,
+      dt: number,
+      timeSec: number,
+      starfield: Starfield,
+      cursorX: number,
+      cursorY: number,
+      cursorActive: boolean,
+      isFinePointer: boolean,
+      animate: boolean,
+      warpFactor: number
+    ): void {
+      // 1. Draw real December sky constellation stars (always visible, participating in mid-layer parallax)
+      const projectedGroups = this.skyGroups.map((group) => {
+        const starMap = new Map<string, { star: SkyStarDef; pos: Point }>();
+        let sumX = 0;
+        let sumY = 0;
+        for (const st of group.stars) {
+          const pos = this.projectRaDec(st.raH, st.decDeg, starfield);
+          starMap.set(st.id, { star: st, pos });
+          sumX += pos.x;
+          sumY += pos.y;
+        }
+        const count = Math.max(1, group.stars.length);
+        return {
+          group,
+          starMap,
+          centerX: sumX / count,
+          centerY: sumY / count
+        };
+      });
+
+      for (const { starMap } of projectedGroups) {
+        for (const { star, pos } of starMap.values()) {
+          const twinkle = animate
+            ? 0.72 + 0.28 * Math.sin(timeSec * 0.9 + star.phase)
+            : 0.9;
+
+          if (warpFactor > 0.01) {
+            starfield.drawWarpStreak(ctx, pos.x, pos.y, star.spike ? 1.55 : 1.05, warpFactor, star.color, twinkle);
+          }
+
+          if (star.spike) {
+            ctx.globalAlpha = twinkle;
+            const sprite = star.spike === 'warm' ? this.sprites.spikeStarWarm : this.sprites.spikeStar;
+            const size = star.radius * 12;
+            ctx.drawImage(sprite, pos.x - size / 2, pos.y - size / 2, size, size);
+          } else {
+            ctx.globalAlpha = twinkle * 0.72;
+            const glowSize = star.radius * 7.5;
+            const glowSprite = star.color.startsWith('#ff') ? this.sprites.warmStarGlow : this.sprites.softStarGlow;
+            ctx.drawImage(glowSprite, pos.x - glowSize / 2, pos.y - glowSize / 2, glowSize, glowSize);
+            ctx.globalAlpha = twinkle;
+            ctx.fillStyle = star.color;
+            ctx.beginPath();
+            ctx.arc(pos.x, pos.y, star.radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }
+      ctx.globalAlpha = 1;
+
+      if (!animate || !this.enabled) {
+        for (const g of this.skyGroups) g.lineAlpha = 0;
+        this.edges.clear();
+        return;
+      }
+
+      // 2. Constellation lines + labels (desktop: cursor <= 200px; touch: 4s rotation every 12s)
+      const touchCycleSlot = Math.floor(timeSec / 12) % this.skyGroups.length;
+      const touchSlotPhase = timeSec % 12;
+      const touchShowCurrent = !isFinePointer && touchSlotPhase >= 1.5 && touchSlotPhase <= 5.5;
+
+      for (let idx = 0; idx < projectedGroups.length; idx++) {
+        const { group, starMap, centerX, centerY } = projectedGroups[idx];
+        let isHovered = false;
+
+        if (isFinePointer && cursorActive) {
+          if (Math.hypot(cursorX - centerX, cursorY - centerY) <= 200) {
+            isHovered = true;
+          } else {
+            for (const { pos } of starMap.values()) {
+              if (Math.hypot(cursorX - pos.x, cursorY - pos.y) <= 200) {
+                isHovered = true;
+                break;
+              }
+            }
+          }
+        } else if (!isFinePointer) {
+          isHovered = touchShowCurrent && idx === touchCycleSlot;
+        }
+
+        const targetAlpha = isHovered ? 1 : 0;
+        const step = dt / 0.4; // 400 ms fade
+        if (group.lineAlpha < targetAlpha) {
+          group.lineAlpha = Math.min(1, group.lineAlpha + step);
+        } else if (group.lineAlpha > targetAlpha) {
+          group.lineAlpha = Math.max(0, group.lineAlpha - step);
+        }
+
+        if (group.lineAlpha > 0.005) {
+          ctx.save();
+          ctx.strokeStyle = `rgba(186, 230, 253, ${(0.18 * group.lineAlpha).toFixed(4)})`;
+          ctx.lineWidth = 0.85;
+          ctx.beginPath();
+          for (const [idA, idB] of group.lines) {
+            const a = starMap.get(idA);
+            const b = starMap.get(idB);
+            if (a && b) {
+              ctx.moveTo(a.pos.x, a.pos.y);
+              ctx.lineTo(b.pos.x, b.pos.y);
+            }
+          }
+          ctx.stroke();
+
+          // Tiny uppercase letter-spaced label
+          const labelPos = this.projectRaDec(group.labelAnchor.raH, group.labelAnchor.decDeg, starfield);
+          ctx.fillStyle = `rgba(224, 242, 254, ${(0.45 * group.lineAlpha).toFixed(4)})`;
+          ctx.font = '300 10px "Jost", sans-serif';
+          ctx.textAlign = 'center';
+          const spaced = group.name.split('').join(' ');
+          ctx.fillText(spaced, labelPos.x, labelPos.y);
+          ctx.restore();
+        }
+      }
+
+      // 3. Ambient cursor proximity constellation threads (desktop only)
+      if (!isFinePointer) {
+        this.edges.clear();
+        return;
+      }
+
+      for (const edge of this.edges.values()) {
+        edge.target = 0;
+      }
+
+      if (cursorActive) {
+        const nearCursor: Array<{ idx: number; sx: number; sy: number; distCursor: number }> = [];
+        for (let i = 0; i < starfield.stars.length; i++) {
+          const s = starfield.stars[i];
+          const { sx, sy } = starfield.getScreenPos(s);
+          const dx = sx - cursorX;
+          const dy = sy - cursorY;
+          const d2 = dx * dx + dy * dy;
+          if (d2 <= 160 * 160) {
+            nearCursor.push({ idx: i, sx, sy, distCursor: Math.sqrt(d2) });
+          }
+        }
+
+        const candidates: Array<{ key: string; x1: number; y1: number; x2: number; y2: number; target: number; dist: number }> = [];
+        for (let a = 0; a < nearCursor.length; a++) {
+          for (let b = a + 1; b < nearCursor.length; b++) {
+            const p1 = nearCursor[a];
+            const p2 = nearCursor[b];
+            const dx = p1.sx - p2.sx;
+            const dy = p1.sy - p2.sy;
+            const d2 = dx * dx + dy * dy;
+            if (d2 <= 110 * 110) {
+              const dist = Math.sqrt(d2);
+              const pairFade = 1 - dist / 110;
+              const cursorFade = 1 - Math.max(p1.distCursor, p2.distCursor) / 160;
+              const target = Math.min(0.12, 0.12 * pairFade * (0.4 + 0.6 * cursorFade));
+              const key = p1.idx < p2.idx ? `${p1.idx}-${p2.idx}` : `${p2.idx}-${p1.idx}`;
+              candidates.push({ key, x1: p1.sx, y1: p1.sy, x2: p2.sx, y2: p2.sy, target, dist });
+            }
+          }
+        }
+
+        candidates.sort((a, b) => a.dist - b.dist);
+        for (const c of candidates.slice(0, 12)) {
+          const existing = this.edges.get(c.key);
+          if (existing) {
+            existing.x1 = c.x1;
+            existing.y1 = c.y1;
+            existing.x2 = c.x2;
+            existing.y2 = c.y2;
+            existing.target = c.target;
+          } else {
+            this.edges.set(c.key, {
+              x1: c.x1,
+              y1: c.y1,
+              x2: c.x2,
+              y2: c.y2,
+              alpha: 0.001,
+              target: c.target
+            });
+          }
+        }
+      }
+
+      const fadeStep = dt / 0.3;
+      ctx.lineWidth = 0.6;
+      for (const [key, edge] of this.edges.entries()) {
+        if (edge.alpha < edge.target) {
+          edge.alpha = Math.min(edge.target, edge.alpha + 0.12 * fadeStep);
+        } else if (edge.alpha > edge.target) {
+          edge.alpha = Math.max(edge.target, edge.alpha - 0.12 * fadeStep);
+        }
+
+        if (edge.alpha <= 0.001 && edge.target === 0) {
+          this.edges.delete(key);
+          continue;
+        }
+
+        ctx.strokeStyle = `rgba(207, 227, 255, ${edge.alpha.toFixed(4)})`;
+        ctx.beginPath();
+        ctx.moveTo(edge.x1, edge.y1);
+        ctx.lineTo(edge.x2, edge.y2);
+        ctx.stroke();
+      }
+    }
+  }
+
+  class Planet {
+    canvas: HTMLCanvasElement;
+    size = 0;
+    viewportW = 1;
+    viewportH = 1;
+
+    constructor(width: number, height: number) {
+      this.canvas = document.createElement('canvas');
+      this.resize(width, height);
+    }
+
+    resize(width: number, height: number): void {
+      this.viewportW = width;
+      this.viewportH = height;
+      const targetSize = Math.round(Math.min(Math.max(width, height) * 0.56, 560));
+      if (Math.abs(targetSize - this.size) < 24 && this.size > 0) return;
+      this.size = Math.max(260, targetSize);
+      this.prerender();
+    }
+
+    prerender(): void {
+      const s = this.size;
+      this.canvas.width = s;
+      this.canvas.height = s;
+      const g = this.canvas.getContext('2d')!;
+      g.clearRect(0, 0, s, s);
+
+      const cx = s * 0.5;
+      const cy = s * 0.5;
+      const r = s * 0.27;
+      const ringTilt = -0.34;
+
+      g.save();
+      g.translate(cx, cy);
+      g.rotate(ringTilt);
+      for (let i = 0; i < 3; i++) {
+        g.beginPath();
+        g.ellipse(0, 0, r * (1.72 + i * 0.12), r * (0.36 + i * 0.03), 0, Math.PI, Math.PI * 2);
+        g.strokeStyle = i === 1 ? 'rgba(94, 234, 212, 0.14)' : 'rgba(129, 140, 248, 0.10)';
+        g.lineWidth = i === 1 ? 3 : 1.5;
+        g.stroke();
+      }
+      g.restore();
+
+      const atmo = g.createRadialGradient(cx - r * 0.22, cy - r * 0.22, r * 0.78, cx, cy, r * 1.24);
+      atmo.addColorStop(0, 'rgba(45, 212, 191, 0)');
+      atmo.addColorStop(0.76, 'rgba(45, 212, 191, 0.16)');
+      atmo.addColorStop(0.88, 'rgba(99, 102, 241, 0.10)');
+      atmo.addColorStop(1, 'rgba(99, 102, 241, 0)');
+      g.fillStyle = atmo;
+      g.beginPath();
+      g.arc(cx, cy, r * 1.24, 0, Math.PI * 2);
+      g.fill();
+
+      g.save();
+      g.beginPath();
+      g.arc(cx, cy, r, 0, Math.PI * 2);
+      g.clip();
+
+      const sphereGrad = g.createRadialGradient(cx - r * 0.45, cy - r * 0.45, r * 0.1, cx + r * 0.15, cy + r * 0.15, r * 1.35);
+      sphereGrad.addColorStop(0, '#172a4a');
+      sphereGrad.addColorStop(0.45, '#0b1429');
+      sphereGrad.addColorStop(1, '#03060f');
+      g.fillStyle = sphereGrad;
+      g.fillRect(cx - r, cy - r, r * 2, r * 2);
+
+      const rimGrad = g.createLinearGradient(cx - r, cy - r, cx + r * 0.6, cy + r * 0.6);
+      rimGrad.addColorStop(0, 'rgba(45, 212, 191, 0.58)');
+      rimGrad.addColorStop(0.5, 'rgba(56, 189, 248, 0.28)');
+      rimGrad.addColorStop(1, 'rgba(99, 102, 241, 0.02)');
+      g.strokeStyle = rimGrad;
+      g.lineWidth = 3.5;
+      g.beginPath();
+      g.arc(cx, cy, r - 1.5, Math.PI * 0.88, Math.PI * 1.88);
+      g.stroke();
+      g.restore();
+
+      g.save();
+      g.translate(cx, cy);
+      g.rotate(ringTilt);
+      for (let i = 0; i < 3; i++) {
+        g.beginPath();
+        g.ellipse(0, 0, r * (1.72 + i * 0.12), r * (0.36 + i * 0.03), 0, 0, Math.PI);
+        g.strokeStyle = i === 1 ? 'rgba(94, 234, 212, 0.22)' : 'rgba(129, 140, 248, 0.15)';
+        g.lineWidth = i === 1 ? 3 : 1.5;
+        g.stroke();
+      }
+      g.restore();
+    }
+
+    draw(ctx: CanvasRenderingContext2D, timeSec: number, animate: boolean, scrollProgress: number): void {
+      const breathe = animate ? 1 + Math.sin(timeSec * 0.18) * 0.008 : 1;
+      const scrollScale = 1 + scrollProgress * 0.14;
+      const angle = animate ? Math.sin(timeSec * 0.08) * 0.015 : 0;
+      const drawSize = this.size * breathe * scrollScale;
+      const px = this.viewportW - drawSize * 0.36;
+      const py = this.viewportH - drawSize * 0.34 - scrollProgress * this.viewportH * 0.15;
+
+      ctx.save();
+      ctx.globalAlpha = 0.82;
+      ctx.translate(px, py);
+      ctx.rotate(angle);
+      ctx.drawImage(this.canvas, -drawSize / 2, -drawSize / 2, drawSize, drawSize);
+      ctx.restore();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  interface Point {
+    x: number;
+    y: number;
+  }
+
+  interface SatelliteEntity {
+    isStation: boolean;
+    beaconColor: 'red' | 'cyan';
+    active: boolean;
+    waitTimer: number;
+    elapsed: number;
+    duration: number;
+    p0: Point;
+    p1: Point;
+    p2: Point;
+    p3: Point;
+    rotation: number;
+    rotSpeed: number;
+    trail: Point[];
+    beaconPhase: number;
+  }
+
+  class Satellites {
+    entities: SatelliteEntity[] = [];
+    sprites: Sprites;
+    width = 1;
+    height = 1;
+
+    constructor(width: number, height: number, sprites: Sprites) {
+      this.width = width;
+      this.height = height;
+      this.sprites = sprites;
+
+      this.entities.push(this.createEntity(false, 'red', 1.5));
+      this.entities.push(this.createEntity(false, 'cyan', 8.5));
+      this.entities.push(this.createEntity(true, 'cyan', 14.0));
+    }
+
+    createEntity(isStation: boolean, beaconColor: 'red' | 'cyan', initialWait: number): SatelliteEntity {
+      return {
+        isStation,
+        beaconColor,
+        active: false,
+        waitTimer: initialWait,
+        elapsed: 0,
+        duration: 30,
+        p0: { x: 0, y: 0 },
+        p1: { x: 0, y: 0 },
+        p2: { x: 0, y: 0 },
+        p3: { x: 0, y: 0 },
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() < 0.5 ? -1 : 1) * (isStation ? 0.08 : 0.16),
+        trail: [],
+        beaconPhase: Math.random() * Math.PI * 2
+      };
+    }
+
+    edgePoint(edge: number): Point {
+      const m = 48;
+      if (edge === 0) return { x: Math.random() * this.width, y: -m };
+      if (edge === 1) return { x: this.width + m, y: Math.random() * this.height * 0.78 };
+      if (edge === 2) return { x: Math.random() * this.width, y: this.height + m };
+      return { x: -m, y: Math.random() * this.height * 0.78 };
+    }
+
+    spawnPass(ent: SatelliteEntity): void {
+      const startEdge = Math.floor(Math.random() * 4);
+      const endEdge = (startEdge + 1 + Math.floor(Math.random() * 2)) % 4;
+      ent.p0 = this.edgePoint(startEdge);
+      ent.p3 = this.edgePoint(endEdge);
+      ent.p1 = {
+        x: this.width * (0.2 + Math.random() * 0.6),
+        y: this.height * (0.12 + Math.random() * 0.55)
+      };
+      ent.p2 = {
+        x: this.width * (0.2 + Math.random() * 0.6),
+        y: this.height * (0.12 + Math.random() * 0.55)
+      };
+      ent.duration = ent.isStation ? 32 + Math.random() * 13 : 25 + Math.random() * 20;
+      ent.elapsed = 0;
+      ent.trail = [];
+      ent.active = true;
+    }
+
+    resize(newW: number, newH: number): void {
+      const sx = newW / (this.width || 1);
+      const sy = newH / (this.height || 1);
+      this.width = newW;
+      this.height = newH;
+      for (const ent of this.entities) {
+        for (const p of [ent.p0, ent.p1, ent.p2, ent.p3, ...ent.trail]) {
+          p.x *= sx;
+          p.y *= sy;
+        }
+      }
+    }
+
+    bezierPoint(t: number, p0: Point, p1: Point, p2: Point, p3: Point): Point {
+      const u = 1 - t;
+      const tt = t * t;
+      const uu = u * u;
+      const uuu = uu * u;
+      const ttt = tt * t;
+      return {
+        x: uuu * p0.x + 3 * uu * t * p1.x + 3 * u * tt * p2.x + ttt * p3.x,
+        y: uuu * p0.y + 3 * uu * t * p1.y + 3 * u * tt * p2.y + ttt * p3.y
+      };
+    }
+
+    update(dt: number): void {
+      for (const ent of this.entities) {
+        if (!ent.active) {
+          ent.waitTimer -= dt;
+          if (ent.waitTimer <= 0) {
+            this.spawnPass(ent);
+          }
+          continue;
+        }
+
+        ent.elapsed += dt;
+        ent.rotation += ent.rotSpeed * dt;
+        const t = Math.min(1, ent.elapsed / ent.duration);
+        const pos = this.bezierPoint(t, ent.p0, ent.p1, ent.p2, ent.p3);
+
+        const last = ent.trail[ent.trail.length - 1];
+        if (!last || Math.hypot(pos.x - last.x, pos.y - last.y) >= 3) {
+          ent.trail.push(pos);
+          if (ent.trail.length > 40) ent.trail.shift();
+        }
+
+        if (t >= 1) {
+          ent.active = false;
+          ent.trail = [];
+          ent.waitTimer = ent.isStation ? 60 + Math.random() * 30 : 5 + Math.random() * 10;
+        }
+      }
+    }
+
+    drawPanel(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number): void {
+      ctx.fillStyle = '#3b5998';
+      ctx.strokeStyle = 'rgba(148, 163, 184, 0.55)';
+      ctx.lineWidth = 0.6;
+      ctx.fillRect(x, y, w, h);
+      ctx.strokeRect(x, y, w, h);
+
+      ctx.strokeStyle = 'rgba(191, 219, 254, 0.35)';
+      ctx.lineWidth = 0.45;
+      ctx.beginPath();
+      ctx.moveTo(x + w * 0.5, y);
+      ctx.lineTo(x + w * 0.5, y + h);
+      ctx.moveTo(x, y + h * 0.5);
+      ctx.lineTo(x + w, y + h * 0.5);
+      ctx.stroke();
+    }
+
+    draw(ctx: CanvasRenderingContext2D, timeSec: number): void {
+      for (const ent of this.entities) {
+        if (!ent.active || ent.trail.length === 0) continue;
+
+        if (ent.trail.length > 1) {
+          ctx.lineWidth = ent.isStation ? 1.3 : 1;
+          for (let i = 1; i < ent.trail.length; i++) {
+            const frac = i / ent.trail.length;
+            const alpha = frac * 0.15;
+            ctx.strokeStyle = ent.beaconColor === 'red'
+              ? `rgba(226, 232, 240, ${alpha.toFixed(3)})`
+              : `rgba(125, 211, 252, ${alpha.toFixed(3)})`;
+            ctx.beginPath();
+            ctx.moveTo(ent.trail[i - 1].x, ent.trail[i - 1].y);
+            ctx.lineTo(ent.trail[i].x, ent.trail[i].y);
+            ctx.stroke();
+          }
+        }
+
+        const head = ent.trail[ent.trail.length - 1];
+        const scale = ent.isStation ? 1.6 : 1;
+
+        ctx.save();
+        ctx.translate(head.x, head.y);
+        ctx.rotate(ent.rotation);
+        ctx.scale(scale, scale);
+
+        if (ent.isStation) {
+          ctx.strokeStyle = '#cbd5e1';
+          ctx.lineWidth = 1.2;
+          ctx.beginPath();
+          ctx.moveTo(-12, 0);
+          ctx.lineTo(12, 0);
+          ctx.stroke();
+
+          ctx.fillStyle = '#e2e8f0';
+          ctx.fillRect(-3, -2.5, 6, 5);
+
+          this.drawPanel(ctx, -11.5, -8, 6, 5);
+          this.drawPanel(ctx, -11.5, 3, 6, 5);
+          this.drawPanel(ctx, 5.5, -8, 6, 5);
+          this.drawPanel(ctx, 5.5, 3, 6, 5);
+        } else {
+          ctx.fillStyle = '#e2e8f0';
+          ctx.fillRect(-2.5, -2, 5, 4);
+          this.drawPanel(ctx, -10.5, -2.5, 7, 5);
+          this.drawPanel(ctx, 3.5, -2.5, 7, 5);
+        }
+
+        const pulse = 0.25 + 0.75 * Math.max(0, Math.sin(timeSec * Math.PI * 2 + ent.beaconPhase));
+        const beaconSprite = ent.beaconColor === 'red' ? this.sprites.redBeacon : this.sprites.cyanBeacon;
+        ctx.globalAlpha = pulse;
+        ctx.drawImage(beaconSprite, -6, -6, 12, 12);
+        ctx.restore();
+        ctx.globalAlpha = 1;
+      }
+    }
+  }
+
+  interface MeteorEntity {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    elapsed: number;
+    duration: number;
+    tailLen: number;
+  }
+
+  class Meteors {
+    active: MeteorEntity[] = [];
+    spawnTimer = 2.6;
+    width = 1;
+    height = 1;
+    sprites: Sprites;
+
+    constructor(width: number, height: number, sprites: Sprites) {
+      this.width = width;
+      this.height = height;
+      this.sprites = sprites;
+    }
+
+    resize(w: number, h: number): void {
+      this.width = w;
+      this.height = h;
+    }
+
+    nextInterval(): number {
+      const isGeminidWindow = Date.now() < GEMINIDS_PEAK_END;
+      return isGeminidWindow ? 3 + Math.random() * 2 : 4 + Math.random() * 3;
+    }
+
+    spawn(radiant: Point): void {
+      const useRadiant = Math.random() < 0.6;
+      if (useRadiant) {
+        const theta = Math.random() * Math.PI * 2;
+        const offsetDist = 24 + Math.random() * 75;
+        const speed = 520 + Math.random() * 260;
+        this.active.push({
+          x: radiant.x + Math.cos(theta) * offsetDist,
+          y: radiant.y + Math.sin(theta) * offsetDist,
+          vx: Math.cos(theta) * speed,
+          vy: Math.sin(theta) * speed,
+          elapsed: 0,
+          duration: 0.6 + Math.random() * 0.6,
+          tailLen: 80 + Math.random() * 100
+        });
+        return;
+      }
+
+      const fromLeft = Math.random() < 0.7;
+      const angleDeg = 20 + Math.random() * 20;
+      const rad = (angleDeg * Math.PI) / 180;
+      const speed = 520 + Math.random() * 280;
+      const dir = fromLeft ? 1 : -1;
+
+      this.active.push({
+        x: fromLeft ? this.width * (0.08 + Math.random() * 0.6) : this.width * (0.35 + Math.random() * 0.55),
+        y: this.height * (0.04 + Math.random() * 0.41),
+        vx: Math.cos(rad) * speed * dir,
+        vy: Math.sin(rad) * speed,
+        elapsed: 0,
+        duration: 0.6 + Math.random() * 0.6,
+        tailLen: 80 + Math.random() * 100
+      });
+    }
+
+    update(dt: number, radiant: Point): void {
+      this.spawnTimer -= dt;
+      if (this.spawnTimer <= 0) {
+        if (this.active.length === 0) {
+          this.spawn(radiant);
+          if (Math.random() < 0.12) this.spawn(radiant);
+        }
+        this.spawnTimer = this.nextInterval();
+      }
+
+      for (let i = this.active.length - 1; i >= 0; i--) {
+        const m = this.active[i];
+        m.elapsed += dt;
+        const progress = Math.min(1, m.elapsed / m.duration);
+        const easeOutSpeed = 1 - progress * 0.55;
+        m.x += m.vx * easeOutSpeed * dt;
+        m.y += m.vy * easeOutSpeed * dt;
+        if (progress >= 1) {
+          this.active.splice(i, 1);
+        }
+      }
+    }
+
+    draw(ctx: CanvasRenderingContext2D): void {
+      for (const m of this.active) {
+        const p = Math.min(1, m.elapsed / m.duration);
+        const alpha = p < 0.15 ? p / 0.15 : 1 - (p - 0.15) / 0.85;
+        const speedMag = Math.hypot(m.vx, m.vy) || 1;
+        const ux = m.vx / speedMag;
+        const uy = m.vy / speedMag;
+        const tx = m.x - ux * m.tailLen;
+        const ty = m.y - uy * m.tailLen;
+
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, alpha);
+        const grad = ctx.createLinearGradient(m.x, m.y, tx, ty);
+        grad.addColorStop(0, 'rgba(255, 255, 255, 0.92)');
+        grad.addColorStop(0.35, 'rgba(186, 230, 253, 0.45)');
+        grad.addColorStop(1, 'rgba(56, 189, 248, 0)');
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2.2;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(tx, ty);
+        ctx.stroke();
+
+        ctx.drawImage(this.sprites.meteorHead, m.x - 10, m.y - 10, 20, 20);
+        ctx.restore();
+      }
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  class Comet {
+    active = false;
+    waitTimer = 38;
+    elapsed = 0;
+    duration = 8;
+    startX = 0;
+    startY = 0;
+    endX = 0;
+    endY = 0;
+    ctrlX = 0;
+    ctrlY = 0;
+    width = 1;
+    height = 1;
+    sprites: Sprites;
+
+    constructor(width: number, height: number, sprites: Sprites) {
+      this.width = width;
+      this.height = height;
+      this.sprites = sprites;
+    }
+
+    resize(w: number, h: number): void {
+      this.width = w;
+      this.height = h;
+    }
+
+    spawn(): void {
+      const leftToRight = Math.random() < 0.5;
+      this.startX = leftToRight ? -60 : this.width + 60;
+      this.endX = leftToRight ? this.width + 60 : -60;
+      this.startY = this.height * (0.1 + Math.random() * 0.25);
+      this.endY = this.height * (0.28 + Math.random() * 0.25);
+      this.ctrlX = this.width * 0.5;
+      this.ctrlY = Math.min(this.startY, this.endY) - this.height * 0.08;
+      this.elapsed = 0;
+      this.duration = 8;
+      this.active = true;
+    }
+
+    posAt(t: number): Point {
+      const u = 1 - t;
+      return {
+        x: u * u * this.startX + 2 * u * t * this.ctrlX + t * t * this.endX,
+        y: u * u * this.startY + 2 * u * t * this.ctrlY + t * t * this.endY
+      };
+    }
+
+    update(dt: number): void {
+      if (!this.active) {
+        this.waitTimer -= dt;
+        if (this.waitTimer <= 0) {
+          this.spawn();
+        }
+        return;
+      }
+
+      this.elapsed += dt;
+      if (this.elapsed >= this.duration) {
+        this.active = false;
+        this.waitTimer = 45 + Math.random() * 30;
+      }
+    }
+
+    draw(ctx: CanvasRenderingContext2D): void {
+      if (!this.active) return;
+      const t = Math.min(1, this.elapsed / this.duration);
+      const head = this.posAt(t);
+      const tailT = Math.max(0, t - 0.14);
+      const tail = this.posAt(tailT);
+      const midT = (t + tailT) * 0.5;
+      const mid = this.posAt(midT);
+      const fade = Math.sin(t * Math.PI);
+
+      ctx.save();
+      ctx.globalAlpha = 0.55 * fade;
+
+      const grad = ctx.createLinearGradient(head.x, head.y, tail.x, tail.y);
+      grad.addColorStop(0, 'rgba(186, 230, 253, 0.75)');
+      grad.addColorStop(0.45, 'rgba(125, 211, 252, 0.25)');
+      grad.addColorStop(1, 'rgba(99, 102, 241, 0)');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 7;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(head.x, head.y);
+      ctx.quadraticCurveTo(mid.x, mid.y - 6, tail.x, tail.y);
+      ctx.stroke();
+
+      ctx.drawImage(this.sprites.cometHead, head.x - 14, head.y - 14, 28, 28);
+      ctx.restore();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  class Loop {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    dpr = 1;
+    width = 1;
+    height = 1;
+    sprites: Sprites;
+    starfield: Starfield;
+    constellations: Constellations;
+    planet: Planet;
+    satellites: Satellites;
+    meteors: Meteors;
+    comet: Comet;
+
+    rafId = 0;
+    lastTs = 0;
+    simTime = 0;
+    cursorX = 0;
+    cursorY = 0;
+    cursorActive = false;
+    isFinePointer = false;
+    reducedMotion = false;
+    motionQuery: MediaQueryList;
+    resizeTimer = 0;
+
+    // Scroll journey state (cached outside rAF)
+    scrollY = 0;
+    maxScroll = 1;
+    easedScrollProgress = 0;
+    heroHorizonGlow: HTMLElement | null;
+    nebulaDeepLayer: HTMLElement | null;
+
+    // Warp burst state
+    warpActive = false;
+    warpElapsed = 0;
+    lastWarpTriggerMs = -Infinity;
+    warpButtons: NodeListOf<Element>;
+
+    // Adaptive quality tracking
+    slowAccumMs = 0;
+    slowFramesTotalMs = 0;
+    slowFrameCount = 0;
+    degraded = false;
+
+    constructor(canvas: HTMLCanvasElement) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d')!;
+      this.motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      this.reducedMotion = this.motionQuery.matches;
+      this.isFinePointer = window.matchMedia('(pointer: fine)').matches;
+
+      this.width = window.innerWidth || 1;
+      this.height = window.innerHeight || 1;
+      this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+      this.applyCanvasSize();
+      this.updateScrollMetrics();
+
+      this.heroHorizonGlow = document.getElementById('heroHorizonGlow');
+      this.nebulaDeepLayer = document.getElementById('nebulaDeepLayer');
+      this.warpButtons = document.querySelectorAll('.btn-camp-register');
+
+      this.sprites = createSprites();
+      this.starfield = new Starfield(this.width, this.height, this.sprites);
+      this.constellations = new Constellations(this.width, this.height, this.sprites);
+      this.constellations.enabled = !this.degraded;
+      this.planet = new Planet(this.width, this.height);
+      this.satellites = new Satellites(this.width, this.height, this.sprites);
+      this.meteors = new Meteors(this.width, this.height, this.sprites);
+      this.comet = new Comet(this.width, this.height, this.sprites);
+
+      this.bindEvents();
+      this.applyScrollVisuals(this.getTargetScrollProgress());
+      if (this.reducedMotion) {
+        this.drawStaticFrame();
+      } else {
+        this.start();
+      }
+    }
+
+    applyCanvasSize(): void {
+      this.canvas.width = Math.round(this.width * this.dpr);
+      this.canvas.height = Math.round(this.height * this.dpr);
+      this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+    }
+
+    updateScrollMetrics(): void {
+      this.scrollY = window.scrollY || 0;
+      this.maxScroll = Math.max(1, document.documentElement.scrollHeight - (window.innerHeight || 1));
+    }
+
+    getTargetScrollProgress(): number {
+      return Math.max(0, Math.min(1, this.scrollY / this.maxScroll));
+    }
+
+    applyScrollVisuals(p: number): void {
+      if (this.heroHorizonGlow) {
+        const glowOpacity = Math.max(0, 1 - p / 0.25);
+        this.heroHorizonGlow.style.opacity = glowOpacity.toFixed(3);
+      }
+      if (this.nebulaDeepLayer) {
+        this.nebulaDeepLayer.style.opacity = Math.min(1, p * 1.1).toFixed(3);
+      }
+    }
+
+    onScroll = (): void => {
+      this.scrollY = window.scrollY || 0;
+      if (this.reducedMotion) {
+        this.easedScrollProgress = this.getTargetScrollProgress();
+        this.applyScrollVisuals(this.easedScrollProgress);
+        this.drawStaticFrame();
+      }
+    };
+
+    onWarpTrigger = (): void => {
+      if (this.reducedMotion) return;
+      const now = performance.now();
+      if (now - this.lastWarpTriggerMs < 3000) return;
+      this.lastWarpTriggerMs = now;
+      this.warpActive = true;
+      this.warpElapsed = 0;
+    };
+
+    onResize = (): void => {
+      window.clearTimeout(this.resizeTimer);
+      this.resizeTimer = window.setTimeout(() => {
+        this.width = window.innerWidth || 1;
+        this.height = window.innerHeight || 1;
+        this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+        this.isFinePointer = window.matchMedia('(pointer: fine)').matches;
+        this.applyCanvasSize();
+        this.updateScrollMetrics();
+
+        const isMobile = this.width < 768;
+        this.starfield.resize(this.width, this.height, isMobile);
+        this.constellations.resize(this.width, this.height);
+        this.planet.resize(this.width, this.height);
+        this.satellites.resize(this.width, this.height);
+        this.meteors.resize(this.width, this.height);
+        this.comet.resize(this.width, this.height);
+        this.constellations.enabled = !this.degraded;
+
+        if (this.reducedMotion) {
+          this.drawStaticFrame();
+        }
+      }, 150);
+    };
+
+    onMouseMove = (e: MouseEvent): void => {
+      if (!this.isFinePointer) return;
+      this.cursorX = e.clientX;
+      this.cursorY = e.clientY;
+      this.cursorActive = true;
+      const nx = e.clientX / (this.width || 1) - 0.5;
+      const ny = e.clientY / (this.height || 1) - 0.5;
+      this.starfield.setMouseTarget(nx, ny);
+    };
+
+    onMouseLeave = (): void => {
+      this.cursorActive = false;
+    };
+
+    onVisibilityChange = (): void => {
+      if (document.hidden) {
+        this.stop();
+      } else if (!this.reducedMotion) {
+        this.lastTs = 0;
+        this.start();
+      }
+    };
+
+    onMotionChange = (e: MediaQueryListEvent): void => {
+      this.reducedMotion = e.matches;
+      if (this.reducedMotion) {
+        this.warpActive = false;
+        this.stop();
+        this.drawStaticFrame();
+      } else {
+        this.lastTs = 0;
+        this.start();
+      }
+    };
+
+    bindEvents(): void {
+      window.addEventListener('resize', this.onResize, { passive: true });
+      window.addEventListener('scroll', this.onScroll, { passive: true });
+      window.addEventListener('mousemove', this.onMouseMove, { passive: true });
+      document.addEventListener('mouseleave', this.onMouseLeave);
+      document.addEventListener('visibilitychange', this.onVisibilityChange);
+      this.motionQuery.addEventListener('change', this.onMotionChange);
+
+      this.warpButtons.forEach((btn) => {
+        btn.addEventListener('pointerenter', this.onWarpTrigger, { passive: true });
+        btn.addEventListener('pointerdown', this.onWarpTrigger, { passive: true });
+      });
+    }
+
+    destroy(): void {
+      this.stop();
+      window.clearTimeout(this.resizeTimer);
+      window.removeEventListener('resize', this.onResize);
+      window.removeEventListener('scroll', this.onScroll);
+      window.removeEventListener('mousemove', this.onMouseMove);
+      document.removeEventListener('mouseleave', this.onMouseLeave);
+      document.removeEventListener('visibilitychange', this.onVisibilityChange);
+      this.motionQuery.removeEventListener('change', this.onMotionChange);
+
+      this.warpButtons.forEach((btn) => {
+        btn.removeEventListener('pointerenter', this.onWarpTrigger);
+        btn.removeEventListener('pointerdown', this.onWarpTrigger);
+      });
+    }
+
+    start(): void {
+      if (this.rafId || this.reducedMotion || document.hidden) return;
+      this.rafId = window.requestAnimationFrame(this.tick);
+    }
+
+    stop(): void {
+      if (this.rafId) {
+        window.cancelAnimationFrame(this.rafId);
+        this.rafId = 0;
+      }
+      this.lastTs = 0;
+    }
+
+    drawStaticFrame(): void {
+      this.ctx.clearRect(0, 0, this.width, this.height);
+      const p = this.getTargetScrollProgress();
+      this.starfield.update(0, this.scrollY, false);
+      this.starfield.draw(this.ctx, 0, false, 0);
+      this.constellations.updateAndDraw(this.ctx, 0, 0, this.starfield, 0, 0, false, this.isFinePointer, false, 0);
+      this.planet.draw(this.ctx, 0, false, p);
+    }
+
+    checkAdaptiveQuality(frameMs: number): void {
+      if (this.degraded || frameMs > 200) return;
+      this.slowAccumMs += frameMs;
+      this.slowFramesTotalMs += frameMs;
+      this.slowFrameCount += 1;
+
+      if (this.slowAccumMs >= 2000) {
+        const avg = this.slowFramesTotalMs / Math.max(1, this.slowFrameCount);
+        if (avg > 22) {
+          this.degraded = true;
+          this.starfield.reduceQuality();
+          this.constellations.enabled = false;
+        }
+        this.slowAccumMs = 0;
+        this.slowFramesTotalMs = 0;
+        this.slowFrameCount = 0;
+      }
+    }
+
+    getWarpFactor(dt: number): number {
+      if (!this.warpActive) return 0;
+      this.warpElapsed += dt;
+      const duration = 0.6;
+      if (this.warpElapsed >= duration) {
+        this.warpActive = false;
+        return 0;
+      }
+      const p = this.warpElapsed / duration;
+      // Fast rise, smooth ease back
+      return Math.pow(Math.sin(Math.PI * p), 1.4);
+    }
+
+    tick = (ts: number): void => {
+      if (!this.lastTs) {
+        this.lastTs = ts;
+      }
+      const rawMs = ts - this.lastTs;
+      this.lastTs = ts;
+      this.checkAdaptiveQuality(rawMs);
+
+      const dt = Math.min(rawMs / 1000, 0.05);
+      this.simTime += dt;
+
+      const targetScroll = this.getTargetScrollProgress();
+      const scrollLerp = 1 - Math.exp(-dt * 7);
+      this.easedScrollProgress += (targetScroll - this.easedScrollProgress) * scrollLerp;
+      this.applyScrollVisuals(this.easedScrollProgress);
+
+      const warpFactor = this.getWarpFactor(dt);
+
+      this.ctx.clearRect(0, 0, this.width, this.height);
+
+      this.starfield.update(dt, this.scrollY, this.isFinePointer);
+      this.starfield.draw(this.ctx, this.simTime, true, warpFactor);
+
+      this.constellations.updateAndDraw(
+        this.ctx,
+        dt,
+        this.simTime,
+        this.starfield,
+        this.cursorX,
+        this.cursorY,
+        this.cursorActive,
+        this.isFinePointer,
+        true,
+        warpFactor
+      );
+
+      this.planet.draw(this.ctx, this.simTime, true, this.easedScrollProgress);
+
+      this.satellites.update(dt);
+      this.satellites.draw(this.ctx, this.simTime);
+
+      const geminidRadiant = this.constellations.getGeminidRadiant(this.starfield);
+      this.meteors.update(dt, geminidRadiant);
+      this.meteors.draw(this.ctx);
+
+      this.comet.update(dt);
+      this.comet.draw(this.ctx);
+
+      this.rafId = window.requestAnimationFrame(this.tick);
+    };
+  }
+
+  class CardSpotlights {
+    cards: NodeListOf<HTMLElement>;
+    rects = new WeakMap<HTMLElement, DOMRect>();
+    cleanups: Array<() => void> = [];
+
+    constructor() {
+      this.cards = document.querySelectorAll<HTMLElement>('.glass-card');
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+      this.cards.forEach((card) => {
+        const onEnter = () => {
+          this.rects.set(card, card.getBoundingClientRect());
+          card.classList.add('is-spotlight-active');
+        };
+        const onMove = (e: PointerEvent) => {
+          const rect = this.rects.get(card);
+          if (!rect) return;
+          card.style.setProperty('--mx', `${(e.clientX - rect.left).toFixed(1)}px`);
+          card.style.setProperty('--my', `${(e.clientY - rect.top).toFixed(1)}px`);
+        };
+        const onLeave = () => {
+          card.classList.remove('is-spotlight-active');
+        };
+
+        card.addEventListener('pointerenter', onEnter, { passive: true });
+        card.addEventListener('pointermove', onMove, { passive: true });
+        card.addEventListener('pointerleave', onLeave, { passive: true });
+
+        this.cleanups.push(() => {
+          card.removeEventListener('pointerenter', onEnter);
+          card.removeEventListener('pointermove', onMove);
+          card.removeEventListener('pointerleave', onLeave);
+        });
+      });
+    }
+
+    destroy(): void {
+      this.cleanups.forEach((fn) => fn());
+      this.cleanups = [];
+    }
+  }
+
+  class EarlyBirdCountdown {
+    panel: HTMLElement | null;
+    grid: HTMLElement | null;
+    closedMsg: HTMLElement | null;
+    urgentTag: HTMLElement | null;
+    liveStatus: HTMLElement | null;
+    elDays: HTMLElement | null;
+    elHours: HTMLElement | null;
+    elMinutes: HTMLElement | null;
+    elSeconds: HTMLElement | null;
+    motionQuery: MediaQueryList;
+    timerId = 0;
+    lastValues = { d: '', h: '', m: '', s: '' };
+    lastLiveDays = -1;
+    hydrated = false;
+
+    constructor() {
+      this.panel = document.getElementById('earlyBirdPanel');
+      this.grid = document.getElementById('countdownGrid');
+      this.closedMsg = document.getElementById('countdownClosedMsg');
+      this.urgentTag = document.getElementById('ebUrgentTag');
+      this.liveStatus = document.getElementById('cdLiveStatus');
+      this.elDays = document.getElementById('cdDays');
+      this.elHours = document.getElementById('cdHours');
+      this.elMinutes = document.getElementById('cdMinutes');
+      this.elSeconds = document.getElementById('cdSeconds');
+      this.motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      document.addEventListener('visibilitychange', this.onVisibilityChange);
+      this.update();
+    }
+
+    onVisibilityChange = (): void => {
+      if (!document.hidden) {
+        window.clearTimeout(this.timerId);
+        this.update();
+      }
+    };
+
+    destroy(): void {
+      window.clearTimeout(this.timerId);
+      document.removeEventListener('visibilitychange', this.onVisibilityChange);
+    }
+
+    setDigit(el: HTMLElement | null, val: string, key: 'd' | 'h' | 'm' | 's'): void {
+      if (!el) return;
+      if (this.lastValues[key] === val) return;
+      el.textContent = val;
+
+      if (this.hydrated && !this.motionQuery.matches) {
+        el.classList.remove('is-ticking');
+        void el.offsetWidth;
+        el.classList.add('is-ticking');
+      }
+      this.lastValues[key] = val;
+    }
+
+    update = (): void => {
+      const now = Date.now();
+      const diff = TARGET - now;
+
+      if (diff <= 0) {
+        if (this.grid) this.grid.hidden = true;
+        if (this.closedMsg) this.closedMsg.hidden = false;
+        if (this.urgentTag) this.urgentTag.hidden = true;
+        if (this.panel) this.panel.classList.remove('is-urgent');
+        if (this.liveStatus && this.lastLiveDays !== -2) {
+          this.liveStatus.textContent = 'Early bird registration closed. Regular registration is open.';
+          this.lastLiveDays = -2;
+        }
+        return;
+      }
+
+      if (this.grid) this.grid.hidden = false;
+      if (this.closedMsg) this.closedMsg.hidden = true;
+
+      const isUrgent = diff < URGENCY_MS;
+      if (this.panel) this.panel.classList.toggle('is-urgent', isUrgent);
+      if (this.urgentTag) this.urgentTag.hidden = !isUrgent;
+
+      const totalSec = Math.floor(diff / 1000);
+      const days = Math.floor(totalSec / 86400);
+      const hours = Math.floor((totalSec % 86400) / 3600);
+      const minutes = Math.floor((totalSec % 3600) / 60);
+      const seconds = totalSec % 60;
+
+      const dStr = String(days).padStart(2, '0');
+      const hStr = String(hours).padStart(2, '0');
+      const mStr = String(minutes).padStart(2, '0');
+      const sStr = String(seconds).padStart(2, '0');
+
+      this.setDigit(this.elDays, dStr, 'd');
+      this.setDigit(this.elHours, hStr, 'h');
+      this.setDigit(this.elMinutes, mStr, 'm');
+      this.setDigit(this.elSeconds, sStr, 's');
+      this.hydrated = true;
+
+      if (this.liveStatus && days !== this.lastLiveDays) {
+        this.lastLiveDays = days;
+        this.liveStatus.textContent = days === 0
+          ? 'Early bird registration ends in less than 1 day.'
+          : `Early bird registration ends in ${days} ${days === 1 ? 'day' : 'days'}.`;
+      }
+
+      const nextMs = Math.max(40, 1000 - (Date.now() % 1000));
+      this.timerId = window.setTimeout(this.update, nextMs);
+    };
+  }
+
+  let activeCosmos: Loop | null = null;
+  let activeCountdown: EarlyBirdCountdown | null = null;
+  let activeSpotlights: CardSpotlights | null = null;
+
+  function initAstroCamp(): void {
+    cleanupAstroCamp();
+    applyGrainTexture();
+    const canvas = document.getElementById('astro-cosmos-canvas') as HTMLCanvasElement | null;
+    if (canvas) {
+      activeCosmos = new Loop(canvas);
+    }
+    if (document.getElementById('earlyBirdPanel')) {
+      activeCountdown = new EarlyBirdCountdown();
+    }
+    activeSpotlights = new CardSpotlights();
+  }
+
+  function cleanupAstroCamp(): void {
+    if (activeCosmos) {
+      activeCosmos.destroy();
+      activeCosmos = null;
+    }
+    if (activeCountdown) {
+      activeCountdown.destroy();
+      activeCountdown = null;
+    }
+    if (activeSpotlights) {
+      activeSpotlights.destroy();
+      activeSpotlights = null;
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAstroCamp, { once: true });
+  } else {
+    initAstroCamp();
+  }
+  document.addEventListener('astro:page-load', initAstroCamp);
+  document.addEventListener('astro:before-swap', cleanupAstroCamp);
+</script>
